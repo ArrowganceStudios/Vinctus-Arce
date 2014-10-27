@@ -1,10 +1,13 @@
 #include "GameEngine.h"
 #include "Menu.h"
+#include "GraphicEngine.h"
 #include <string>
 
 GameEngine::GameEngine()
 {
+	graphicEngine = new GraphicEngine();
 	mainMenu = new Menu("Main menu");
+
 }
 
 GameEngine::~GameEngine()
@@ -27,7 +30,7 @@ void GameEngine::Init()
 
 void GameEngine::Update()
 {
-	gameLogic->Update();
+	//tbi
 }
 
 void GameEngine::Render()
