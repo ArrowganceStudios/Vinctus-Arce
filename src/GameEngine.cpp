@@ -17,7 +17,6 @@ GameEngine::~GameEngine()
 	delete mainMenu;
 	delete logicHandler;
 
-	delete gameLogic;
 	delete graphicEngine;
 }
 
@@ -55,5 +54,5 @@ void GameEngine::StartGame()
 
 bool GameEngine::Done()
 {
-	return gameLogic()->Done();
+	return done;
 }

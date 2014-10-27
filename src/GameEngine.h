@@ -1,8 +1,11 @@
 #pragma once
 #include <iostream>
+#include "Menu.h"
 
 class GameEngine
 {
+	bool done;
+
 	Menu *mainMenu;
 	ObjectHandler *objectHandler;
 	MapHandler *mapHandler;
