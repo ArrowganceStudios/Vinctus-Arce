@@ -1,8 +1,10 @@
 #include "GameEngine.h"
+#include "Menu.h"
+#include <string>
 
 GameEngine::GameEngine()
 {
-	mainMenu = new Menu();
+	mainMenu = new Menu("Main menu");
 }
 
 GameEngine::~GameEngine()

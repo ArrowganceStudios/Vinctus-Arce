@@ -1,13 +1,14 @@
 #pragma once
-#include <vector>
+#include <string>
+#include "Button.h"
 
 using namespace std;
 
 class Menu
 {
-	Button *button[]; //array of buttons, like Start Game, Credits, etc.
+	Button *button; //array
 	Menu *previousMenu;
 public:
-	Menu(vector<char> title, Menu *previousMenu = NULL);
-	void AddButton(vector<char> buttonText, Menu *destinationMenu);
+	Menu(string title, Menu *previousMenu = NULL);
+	void AddButton(string buttonText, Menu *destinationMenu);
 };

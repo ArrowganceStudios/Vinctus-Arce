@@ -3,7 +3,7 @@
 
 class GameEngine
 {
-	MenuInstance *mainMenu;
+	Menu *mainMenu;
 	ObjectHandler *objectHandler;
 	MapHandler *mapHandler;
 	CameraInstance *Camera;
@@ -12,7 +12,6 @@ class GameEngine
 	MenuInstance *mainMenu;
 	LogicHandler *logicHandler;
 
-	GameLogic *gameLogic;
 	GraphicEngine *graphicEngine;
 public:
 	GameEngine();
