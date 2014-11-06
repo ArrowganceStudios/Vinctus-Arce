@@ -16,8 +16,8 @@ class GraphicEngine
 	ALLEGRO_DISPLAY *display; //I dunno whether this should be here or rather at GameEngine
 public:
 	GraphicEngine();
-	void Init(); //??
-	void Render();
-	void Destroy();
+	void Init(){}; //??
+	void Render(){};
+	void Destroy(){};
 	void CreateGraphicInstance(/*some arguments to be put here in the future*/);
 };

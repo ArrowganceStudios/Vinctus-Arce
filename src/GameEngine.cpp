@@ -22,7 +22,7 @@ void GameEngine::Init()
 {
 	done = false;
 
-	graphicEngine = new GraphicEngine();
+	//graphicEngine = new GraphicEngine(); // THIS MOTHERFUCKER
 
 	graphicEngine->Init();
 	
@@ -118,6 +118,8 @@ void GameEngine::Render()
 		al_clear_to_color(al_map_rgb(0,0,0));
 	}
 }
+void GameEngine::Flush()
+{}
 void GameEngine::Destroy()
 {	
 	//project objects destroy
