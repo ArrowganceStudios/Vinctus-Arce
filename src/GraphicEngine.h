@@ -1,6 +1,9 @@
 #pragma once
 #include <allegro5\allegro.h>
 #include <vector>
+#include "GameEngine.h"
+
+class GameEngine;
 
 class GraphicEngine
 {
@@ -15,7 +18,7 @@ class GraphicEngine
 	//allegro variables
 	ALLEGRO_DISPLAY *display; //I dunno whether this should be here or rather at GameEngine
 public:
-	GraphicEngine();
+	GraphicEngine(float FPS, int w, int h);
 	void Init(){}; //??
 	void Render(){};
 	void Destroy(){};
