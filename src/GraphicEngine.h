@@ -19,5 +19,4 @@ public:
 	void Render();
 	void Destroy();
 	void CreateGraphicInstance(/*some arguments to be put here in the future*/);
-
 };
