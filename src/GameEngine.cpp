@@ -3,7 +3,7 @@
 #include "GraphicEngine.h"
 #include <string>
 
-GameEngine::GameEngine(int w, int h, float fps):WIDTH(w), HEIGHT(h), FPS(fps) {};
+GameEngine::GameEngine(int w, int h, float fps):WIDTH(w), HEIGHT(h), FPS(fps) {}
 
 GameEngine::~GameEngine()
 {

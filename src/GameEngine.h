@@ -10,6 +10,8 @@
 #include "Menu.h"
 #include "State.h"
 
+class State;
+
 class GameEngine
 {	
 	//consts
