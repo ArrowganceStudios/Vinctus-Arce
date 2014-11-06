@@ -41,7 +41,6 @@ void GameEngine::Init()
     al_register_event_source(eventQueue, al_get_timer_event_source(timer));
     al_start_timer(timer);
 }
-
 void GameEngine::InputHandler()
 {
 	if(event.type == ALLEGRO_EVENT_KEY_DOWN)
@@ -66,6 +65,40 @@ void GameEngine::InputHandler()
 		done = true;
 }
 
+void GameEngine::ChangeState(State* state) {
+    // cleanup the current state
+	if ( !states.empty() ) {
+		states.back()->Cleanup();
+		states.pop_back();
+	}
+    
+	// store and init the new state
+	states.push_back(state);
+	states.back()->Init();
+}
+void GameEngine::PushState(State* state) {
+    // pause current state
+	if ( !states.empty() ) {
+		states.back()->Pause();
+	}
+    
+	// store and init the new state
+	states.push_back(state);
+	states.back()->Init();
+}
+void GameEngine::PopState() {
+    // cleanup the current state
+	if ( !states.empty() ) {
+		states.back()->Cleanup();
+		states.pop_back();
+	}
+    
+	// resume previous state
+	if ( !states.empty() ) {
+		states.back()->Resume();
+	}
+}
+
 void GameEngine::Update()
 {
 	if(event.type == ALLEGRO_EVENT_TIMER)
@@ -73,7 +106,6 @@ void GameEngine::Update()
 		render = true;
 	}
 }
-
 void GameEngine::Render()
 {
 	if(render && al_is_event_queue_empty(eventQueue))
@@ -86,7 +118,6 @@ void GameEngine::Render()
 		al_clear_to_color(al_map_rgb(0,0,0));
 	}
 }
-
 void GameEngine::Destroy()
 {	
 	//project objects destroy
@@ -97,17 +128,6 @@ void GameEngine::Destroy()
 	al_destroy_display(display);
 	al_destroy_event_queue(eventQueue);
 	al_destroy_timer(timer);
-}
-
-void GameEngine::StartGame()
-{
-	/*objectHandler = new ObjectHandler();
-	mapHandler = new MapHandler();
-	Camera = new CameraInstance();
-	Collider = new CollisionDetector();
-	Input = new InputHandler();
-	mainMenu = new MenuInstance();
-	logicHandler = new LogicHandler();*/
 }
 
 bool GameEngine::Done() const

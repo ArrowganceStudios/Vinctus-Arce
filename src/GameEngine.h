@@ -1,8 +1,10 @@
 #pragma once
 #include <iostream>
 #include <allegro5/allegro.h>
+#include <vector>
 #include "GraphicEngine.h"
 #include "Menu.h"
+#include "State.h"
 
 class GameEngine
 {	
@@ -33,6 +35,9 @@ class GameEngine
 	ALLEGRO_EVENT event;
 	ALLEGRO_TIMER *timer;
 	//ALLEGRO_FONT *font18;
+
+	std::vector <State*> states;
+
 public:
 	GameEngine(int w, int h, float fps);
 	~GameEngine();
@@ -40,9 +45,15 @@ public:
 	void StartGame();
 
 	void Init();
+
+	void ChangeState(State* state);
+	void PushState(State* state);
+	void PopState();
+	
 	void InputHandler();
 	void Update();
 	void Render();
+	
 	void Flush();
 	void Destroy();
 
