@@ -3,17 +3,17 @@
 #include "GraphicEngine.h"
 #include <string>
 
-GameEngine::GameEngine(int w, int h, int fps):WIDTH(w), HEIGHT(h), FPS(fps) {}
+GameEngine::GameEngine(int w, int h, float fps):WIDTH(w), HEIGHT(h), FPS(fps) {};
 
 GameEngine::~GameEngine()
 {
-	delete objectHandler;
+	/*delete objectHandler;
 	delete mapHandler;
 	delete Camera;
 	delete Collider;
 	delete Input;
 	delete mainMenu;
-	delete logicHandler;
+	delete logicHandler;*/
 
 	delete graphicEngine;
 }
@@ -23,13 +23,10 @@ void GameEngine::Init()
 	done = false;
 
 	graphicEngine = new GraphicEngine();
-	mainMenu = new Menu("Main menu");
 
 	graphicEngine->Init();
 	
 	al_init(); //Initialises the allegro library
-    al_init_image_addon();
-	al_init_primitives_addon();
     
     display = al_create_display(WIDTH, HEIGHT);
 	al_set_window_title(display, "Vinctus Arce");
@@ -93,7 +90,6 @@ void GameEngine::Render()
 void GameEngine::Destroy()
 {	
 	//project objects destroy
-	gameLogic->Destroy(); //some shits
 	graphicEngine->Destroy(); //bitmaps
 
 	//allegro vars destroy
@@ -105,16 +101,16 @@ void GameEngine::Destroy()
 
 void GameEngine::StartGame()
 {
-	objectHandler = new ObjectHandler();
+	/*objectHandler = new ObjectHandler();
 	mapHandler = new MapHandler();
 	Camera = new CameraInstance();
 	Collider = new CollisionDetector();
 	Input = new InputHandler();
 	mainMenu = new MenuInstance();
-	logicHandler = new LogicHandler();
+	logicHandler = new LogicHandler();*/
 }
 
 bool GameEngine::Done() const
 {
 	return !done;
-}
+};

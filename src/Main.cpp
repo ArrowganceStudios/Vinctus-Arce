@@ -4,21 +4,19 @@ using namespace std;
 
 int main()
 {
-	GameEngine *engine = new GameEngine();
+	GameEngine gameEngine(800, 600, 60.0f);
 
-	engine->Init();
+	gameEngine.Init();
 
-	while(engine->Done())
+	while(gameEngine.Done())
 	{
-		engine->InputHandler();
-		engine->Update();
-		engine->Render();
-		engine->Flush();
+		gameEngine.InputHandler();
+		gameEngine.Update();
+		gameEngine.Render();
+		gameEngine.Flush();
 	}
 
-	engine->Destroy();
-
-	delete engine;
+	gameEngine.Destroy();
 	
 	return 0;
 }

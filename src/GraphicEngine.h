@@ -1,5 +1,6 @@
 #pragma once
 #include <allegro5\allegro.h>
+#include <vector>
 
 class GraphicEngine
 {
@@ -9,7 +10,7 @@ class GraphicEngine
 	const int HEIGHT;
 
 	//class pointers
-	vector <GameObject *> objectList; //list storing all rendered objects
+	//std::vector <GameObject *> objectList; //list storing all rendered objects
 
 	//allegro variables
 	ALLEGRO_DISPLAY *display; //I dunno whether this should be here or rather at GameEngine

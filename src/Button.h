@@ -11,7 +11,7 @@ class Button
 
 	string text;
 
-	Menu *destinationMenu;
+	//Menu *destinationMenu;
 public:
-	Button(int width, int height, string text):width(width), height(height), text(text) {};
-}
+	Button(int width, int height, string text):width(width), height(height), text(text){};
+};
