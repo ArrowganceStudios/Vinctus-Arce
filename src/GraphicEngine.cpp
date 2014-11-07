@@ -4,7 +4,7 @@ GraphicEngine::GraphicEngine()
 {
 	//tbi
 }
-void GraphicEngine::CreateGraphicInstance(GameObject *object) 
+void GraphicEngine::CreateGraphicInstance(GameObject *object, int id) 
 {
 
 	//tbi

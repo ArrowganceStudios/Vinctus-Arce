@@ -9,9 +9,10 @@ class GameEngine;
 
 class GraphicEngine
 {
+	int id;
 	//class pointers
 	std::vector <GameObject *> objectList; //list storing all rendered objects
-	std::vector <Sprite *> sprites; // ??
+	std::vector <Sprite *> sprites; // this needs to be sorted out diffrently, using 2d arrays
 	//allegro variables
 	//(tumbleweed)
 public:
@@ -20,7 +21,7 @@ public:
 	void Init(){}; //??
 	void Render(){};
 
-	void CreateGraphicInstance(GameObject *object);
+	void CreateGraphicInstance(GameObject *object, int id);
 	void DefineAnimation();
 	void RequestAnimation();
 
