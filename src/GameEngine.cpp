@@ -22,7 +22,7 @@ void GameEngine::Init()
 {
 	done = false;
 
-	graphicEngine = new GraphicEngine(FPS, WIDTH, HEIGHT); // THIS MOTHERFUCKER
+	graphicEngine = new GraphicEngine();
 
 	graphicEngine->Init();
 	

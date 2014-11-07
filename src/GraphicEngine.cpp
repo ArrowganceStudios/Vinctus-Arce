@@ -1,10 +1,11 @@
 #include "GameEngine.h"
 
-GraphicEngine::GraphicEngine(float fps, int w, int h):FPS(fps), WIDTH(w), HEIGHT(h)
+GraphicEngine::GraphicEngine()
 {
 	//tbi
 }
-void GraphicEngine::CreateGraphicInstance(/*some arguments to be put here in the future*/) 
+void GraphicEngine::CreateGraphicInstance(GameObject *object) 
 {
+
 	//tbi
 }
