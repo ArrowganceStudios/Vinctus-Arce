@@ -14,7 +14,7 @@ class GraphicEngine
 	std::vector <GameObject *> objectList; //list storing all rendered objects
 	std::vector <Sprite *> sprites; // this needs to be sorted out diffrently, using 2d arrays
 	//allegro variables
-	//(tumbleweed)
+	//(smoke weed every day)
 public:
 	GraphicEngine();
 
