@@ -30,7 +30,6 @@ class GameEngine
 	CameraInstance *Camera;
 	CollisionDetector *Collider;
 	InputHandler *Input;
-	MenuInstance *mainMenu;
 	LogicHandler *logicHandler;*/
 
 	GraphicEngine *graphicEngine;

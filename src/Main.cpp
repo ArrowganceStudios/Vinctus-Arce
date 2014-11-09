@@ -1,10 +1,12 @@
 #include <iostream>
 #include "GameEngine.h"
+#include "Globals.h"
+
 using namespace std;
 
 int main()
 {
-	GameEngine gameEngine(800, 600, 60.0f);
+	GameEngine gameEngine(SCREEN_WIDTH, SCREEN_HEIGHT, 60.0f);
 
 	gameEngine.Init();
 

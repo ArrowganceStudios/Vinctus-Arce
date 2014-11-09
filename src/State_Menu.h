@@ -12,8 +12,8 @@ private:
 public:
 	State_Menu();
 
-	virtual void Init() = 0;
-	void Cleanup() = 0;
+	virtual void Init();
+	void Cleanup();
 	void Pause() = 0;
 	void Resume() = 0;
 
