@@ -10,10 +10,11 @@ class Button;
 
 class Menu
 {
+	
 	vector<Button*> buttons; //array of pointers to distinct buttons
 	Menu *previousMenu; //will be changed to pointer to a function
 	string menuTitle;
 public:
 	Menu(string title): menuTitle(title){};
-	void AddButton(string buttonText, const void *function);
+	void AddButton(string buttonText, void(*function)());
 };

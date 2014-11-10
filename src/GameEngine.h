@@ -20,7 +20,7 @@ class GameEngine
 	const float FPS;
 
 	//primitive inits
-	bool done;
+	static bool done;
 	bool render;
 
 	//Handlers inits
@@ -62,6 +62,9 @@ public:
 	void Flush();
 	void Destroy();
 
+	void (GameEngine::*kuit)(); //TEST
+	static void Quit() { done = true; }
+	
 	bool Done() const;
 
 	ALLEGRO_EVENT_QUEUE * GetEventQueue() const { return eventQueue; }

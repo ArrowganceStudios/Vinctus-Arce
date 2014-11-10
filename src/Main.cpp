@@ -4,21 +4,24 @@
 
 using namespace std;
 
+extern GameEngine *gameEngine;
+
 int main()
 {
-	GameEngine gameEngine(SCREEN_WIDTH, SCREEN_HEIGHT, 60.0f);
 
-	gameEngine.Init();
+	GameEngine *gameEngine = new GameEngine(SCREEN_WIDTH, SCREEN_HEIGHT, 60.0f);
 
-	while(gameEngine.Done())
+	gameEngine->Init();
+
+	while(gameEngine->Done())
 	{
-		gameEngine.InputHandler();
-		gameEngine.Update();
-		gameEngine.Render();
-		gameEngine.Flush();
+		gameEngine->InputHandler();
+		gameEngine->Update();
+		gameEngine->Render();
+		gameEngine->Flush();
 	}
 
-	gameEngine.Destroy();
+	gameEngine->Destroy();
 	
 	return 0;
 }

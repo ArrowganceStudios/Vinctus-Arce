@@ -1,7 +1,9 @@
 #pragma once
+#include "GameEngine.h"
 
 namespace {
 
+	extern GameEngine *gameEngine;
 	extern const int SCREEN_WIDTH = 800;
 	extern const int SCREEN_HEIGHT = 600;
 

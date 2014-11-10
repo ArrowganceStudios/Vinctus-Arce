@@ -4,7 +4,7 @@
 class State_Game: public State
 {
 public:
-	void Init();
+	void Init(GameEngine *engine);
 	void Cleanup();
     
 	void Pause();

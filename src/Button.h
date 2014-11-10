@@ -13,12 +13,13 @@ class Button
 	float x;
 	float y;
 
-	void *function;
+	void (*action)();
 
 	string text;
 
 	//Menu *destinationMenu;
 public:
-	Button(string text, float x, float y):width(ButtonSize::width), height(ButtonSize::height), x(x), y(y), text(text){};
+	Button(string text, float x, float y, void (*function)()):width(ButtonSize::width), height(ButtonSize::height), x(x), y(y), text(text), action(*function) {};
 
+	//void UseFunction();
 };

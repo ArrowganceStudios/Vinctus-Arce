@@ -2,8 +2,14 @@
 #include "Menu.h"
 #include "GraphicEngine.h"
 #include <string>
+#include <iostream>
 
-GameEngine::GameEngine(int w, int h, float fps):WIDTH(w), HEIGHT(h), FPS(fps) {}
+bool GameEngine::done = false;
+
+GameEngine::GameEngine(int w, int h, float fps):WIDTH(w), HEIGHT(h), FPS(fps) 
+{
+	
+}
 
 GameEngine::~GameEngine()
 {
@@ -74,7 +80,7 @@ void GameEngine::ChangeState(State* state) {
     
 	// store and init the new state
 	states.push_back(state);
-	states.back()->Init();
+	states.back()->Init(this);
 }
 void GameEngine::PushState(State* state) {
     // pause current state
@@ -84,7 +90,7 @@ void GameEngine::PushState(State* state) {
     
 	// store and init the new state
 	states.push_back(state);
-	states.back()->Init();
+	states.back()->Init(this);
 }
 void GameEngine::PopState() {
     // cleanup the current state

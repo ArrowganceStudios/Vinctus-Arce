@@ -5,8 +5,11 @@ class GameEngine;
 
 class State
 {
+protected:
+	GameEngine *engine;
+	State(){}
 public:
-	virtual void Init() = 0;
+	virtual void Init(GameEngine *gameEngine) = 0;
 	virtual void Cleanup() = 0;
 	virtual void Pause() = 0;
 	virtual void Resume() = 0;
@@ -19,6 +22,4 @@ public:
 	{
 		game->ChangeState(state);
 	}*/
-protected:
-	State(){}
 };

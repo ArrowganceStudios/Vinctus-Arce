@@ -1,9 +1,6 @@
 #include "State_Menu.h"
-
-State_Menu::State_Menu()
-{
-	State_Menu::Init();
-}
+#include "GameEngine.h"
+#include "Globals.h"
 
 void State_Menu::Init()
 {
@@ -17,7 +14,7 @@ void State_Menu::Init()
 	pauseMenu = new Menu("Surrender?");
 	waveMenu = new Menu("Next Wave");
 
-	mainMenu->AddButton("Start Game", nullptr);
+	mainMenu->AddButton("Start Game", GameEngine::Quit);
 	mainMenu->AddButton("Options", nullptr);
 	mainMenu->AddButton("Credits", nullptr);
 	mainMenu->AddButton("Exit", nullptr);
