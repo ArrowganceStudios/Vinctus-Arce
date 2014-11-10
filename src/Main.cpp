@@ -8,7 +8,6 @@ extern GameEngine *gameEngine;
 
 int main()
 {
-
 	GameEngine *gameEngine = new GameEngine(SCREEN_WIDTH, SCREEN_HEIGHT, 60.0f);
 
 	gameEngine->Init();

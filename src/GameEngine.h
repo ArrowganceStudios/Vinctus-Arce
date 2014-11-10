@@ -62,7 +62,6 @@ public:
 	void Flush();
 	void Destroy();
 
-	void (GameEngine::*kuit)(); //TEST
 	static void Quit() { done = true; }
 	
 	bool Done() const;
