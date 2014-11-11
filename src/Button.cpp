@@ -6,7 +6,8 @@ Button::Button(string text, float x, float y, void(*function)()) : x(x), y(y), t
 	height = ButtonSize::ButtonHeight;
 }
 
-/*void Button::UseFunction()
+//Debug methods
+void Button::UseFunction()
 {
 	(*action)();
-}*/
+}

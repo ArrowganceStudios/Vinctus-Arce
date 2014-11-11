@@ -1,8 +1,5 @@
 #include "MenuActions.h"
 #include "GameEngine.h"
-//#include "Globals.h"
-
-//extern GameEngine *gameEngine;
 
 namespace MenuActions {
 	//Main menu

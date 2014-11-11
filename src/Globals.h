@@ -10,14 +10,14 @@ namespace {
 
 	namespace MenuDesign
 	{
-		float YOffset = 200; //used for the coords of the first button
-		float XOffset = SCREEN_WIDTH / 2;
-		float ButtonSpacing = 10;
+		const float YOffset = 200; //used for the coords of the first button
+		const float XOffset = SCREEN_WIDTH / 2;
+		const float ButtonSpacing = 10;
 	}
 	
 	namespace ButtonSize
 	{
-		int ButtonHeight = 50;
-		int ButtonWidth = 100;
+		const int ButtonHeight = 50;
+		const int ButtonWidth = 100;
 	}
 }

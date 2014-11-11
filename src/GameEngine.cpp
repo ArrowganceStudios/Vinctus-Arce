@@ -4,8 +4,6 @@
 #include <string>
 #include <iostream>
 
-//bool GameEngine::done = false;
-
 GameEngine::GameEngine(int w, int h, float fps):WIDTH(w), HEIGHT(h), FPS(fps) 
 {
 	
@@ -31,7 +29,7 @@ void GameEngine::Init()
 	graphicEngine = new GraphicEngine();
 
 	graphicEngine->Init();
-	
+
 	al_init(); //Initialises the allegro library
     
     display = al_create_display(WIDTH, HEIGHT);
@@ -47,6 +45,12 @@ void GameEngine::Init()
     al_register_event_source(eventQueue, al_get_timer_event_source(timer));
     al_start_timer(timer);
 }
+
+void GameEngine::StartGame()
+{
+	//ChangeState(something);
+}
+
 void GameEngine::InputHandler()
 {
 	if(event.type == ALLEGRO_EVENT_KEY_DOWN)
@@ -82,6 +86,7 @@ void GameEngine::ChangeState(State* state) {
 	states.push_back(state);
 	states.back()->Init(this);
 }
+
 void GameEngine::PushState(State* state) {
     // pause current state
 	if ( !states.empty() ) {
@@ -92,6 +97,7 @@ void GameEngine::PushState(State* state) {
 	states.push_back(state);
 	states.back()->Init(this);
 }
+
 void GameEngine::PopState() {
     // cleanup the current state
 	if ( !states.empty() ) {
@@ -112,6 +118,7 @@ void GameEngine::Update()
 		render = true;
 	}
 }
+
 void GameEngine::Render()
 {
 	if(render && al_is_event_queue_empty(eventQueue))

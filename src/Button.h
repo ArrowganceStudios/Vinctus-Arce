@@ -1,5 +1,4 @@
 #pragma once
-//#include "Menu.h"
 #include "Globals.h"
 #include <string>
 
@@ -17,9 +16,8 @@ class Button
 
 	string text;
 
-	//Menu *destinationMenu;
 public:
-	Button(string text, float x, float y, void(*function)());// : x(x), y(y), text(text), action(*function) {};
+	Button(string text, float x, float y, void(*function)());
 
-	//void UseFunction();
+	void UseFunction(); //debug
 };
