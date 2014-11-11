@@ -15,10 +15,10 @@ void State_Menu::Init()
 	pauseMenu = new Menu("Surrender?");
 	waveMenu = new Menu("Next Wave");
 
-	mainMenu->AddButton("Start Game", MenuActions::Exit);
+	mainMenu->AddButton("Start Game", MenuActions::StartGame);
 	mainMenu->AddButton("Options", nullptr);
 	mainMenu->AddButton("Credits", nullptr);
-	mainMenu->AddButton("Exit", nullptr);
+	mainMenu->AddButton("Exit", MenuActions::Exit);
 
 	optionsMenu->AddButton("Resolution", nullptr);
 	optionsMenu->AddButton("Sound", nullptr);

@@ -12,7 +12,7 @@ class Menu
 {
 	
 	vector<Button*> buttons; //array of pointers to distinct buttons
-	Menu *previousMenu; //will be changed to pointer to a function
+	Menu *previousMenu; //will be changed to pointer to a function     <<-- is this needed? we have vector for that : Uki
 	string menuTitle;
 public:
 	Menu(string title): menuTitle(title){};
