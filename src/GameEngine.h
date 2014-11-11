@@ -24,13 +24,14 @@ class GameEngine
 	bool render;
 
 	//Handlers inits
-	/*Menu *mainMenu;
+	/*
 	ObjectHandler *objectHandler;
 	MapHandler *mapHandler;
 	CameraInstance *Camera;
 	CollisionDetector *Collider;
 	InputHandler *Input;
-	LogicHandler *logicHandler;*/
+	LogicHandler *logicHandler
+	*/
 
 	GraphicEngine *graphicEngine;
 

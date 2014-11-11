@@ -51,7 +51,7 @@ void GameEngine::StartGame()
 	//ChangeState(something);
 }
 
-void GameEngine::InputHandler()
+void GameEngine::InputHandler() //this should be done in seperate class if I'm correct?
 {
 	if(event.type == ALLEGRO_EVENT_KEY_DOWN)
 	{

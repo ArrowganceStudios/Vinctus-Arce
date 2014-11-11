@@ -17,7 +17,6 @@ int main()
 		gameEngine->Update();
 		gameEngine->Render();
 		gameEngine->Flush();
-		//MenuActions::Exit(); // <- proof that it rly works
 	}
 
 	gameEngine->Destroy();

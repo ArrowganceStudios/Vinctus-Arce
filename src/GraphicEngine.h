@@ -22,7 +22,7 @@ public:
 	void Render(){};
 
 	void CreateGraphicInstance(GameObject *object, int id);
-	void DefineAnimation();
+	void DefineAnimation(GameObject * gameObject, std::vector<Sprite *> animations);
 	void RequestAnimation();
 
 	void Destroy(){};

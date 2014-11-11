@@ -6,27 +6,18 @@
 class MobileObject : public GameObject
 {
 private:
-	bool alive;
 	MobileObject* state;
 protected:
-	float x;
-	float y;
 	float velocity;
 
 public:
 	MobileObject();
 
-	void Init(float x, float y);
+	void Init(float x, float y, float velocity);
 
-	float GetX() const { return x; }
-	float GetY() const { return y; }
+	float GetVelocity() const { return velocity; }
+	float SetVelocity(float vel) { velocity = vel; }
 
 	void virtual Update() {};
 	void virtual Render() {};
-
-	bool IsAlive() const { return alive; }
-	void SetAlive(bool alive) { MobileObject::alive = alive; }
-	
-
-
 };

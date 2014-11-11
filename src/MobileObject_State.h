@@ -21,7 +21,7 @@ public:
 	void Cleanup();
 
 	void virtual Update() = 0;
-	void virtual Render() = 0;
+	void virtual Render() = 0; // ???
 
 
 };

@@ -13,7 +13,7 @@ class Sprite
 
 	ALLEGRO_BITMAP *image;
 public:
-	Sprite(int maxFrame, int curFrame, int frameCount, int frameDelay, int frameWidth, int framHeight, 
+	Sprite(int maxFrame, int curFrame, int frameCount, int frameDelay, int frameWidth, int frameHeight, 
 		   int animationColumns, ALLEGRO_BITMAP *image = NULL);
 	~Sprite();
 

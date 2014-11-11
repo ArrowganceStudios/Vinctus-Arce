@@ -1,5 +1,12 @@
 #pragma once
 #include <iostream>
+#include <vector>
+#include <allegro5\allegro.h>
+#include "Sprite.h"
+
+using namespace std;
+
+class Sprite;
 
 class GameObject
 {
@@ -10,14 +17,17 @@ protected:
 	float x;
 	float y;
 
-	//Sprite *sprite; // ???
+	vector<Sprite *> animations; // ??? <- I think that this should be just sent to Graphic Engine, and handled there.
 public:
 	GameObject();
 
 	void Init(float x, float y);
 
 	void virtual Update() {};
-	void virtual Render() {};
+	void virtual Render() {}; // I doubt it's gonna be needed since we are having a GraphicEngine
+	
+	void DefineAnimation(int maxFrame, int curFrame, int frameCount, int frameDelay, int frameWidth, int framHeight,
+		int animationColumns, ALLEGRO_BITMAP *image = NULL); //defining a sprite, and adding it to the vector of animations.
 
 	float GetX() const { return x; }
 	float GetY() const { return y; }
