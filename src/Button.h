@@ -19,7 +19,7 @@ class Button
 
 	//Menu *destinationMenu;
 public:
-	Button(string text, float x, float y, void (*function)()):width(ButtonSize::ButtonWidth), height(ButtonSize::ButtonHeight), x(x), y(y), text(text), action(*function) {};
+	Button(string text, float x, float y, void(*function)());// : x(x), y(y), text(text), action(*function) {};
 
 	//void UseFunction();
 };
