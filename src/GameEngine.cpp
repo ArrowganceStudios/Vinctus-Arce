@@ -4,7 +4,7 @@
 #include <string>
 #include <iostream>
 
-bool GameEngine::done = false;
+//bool GameEngine::done = false;
 
 GameEngine::GameEngine(int w, int h, float fps):WIDTH(w), HEIGHT(h), FPS(fps) 
 {

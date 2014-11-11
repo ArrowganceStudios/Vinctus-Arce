@@ -20,7 +20,7 @@ class GameEngine
 	const float FPS;
 
 	//primitive inits
-	static bool done;
+	bool done;
 	bool render;
 
 	//Handlers inits
@@ -62,7 +62,7 @@ public:
 	void Flush();
 	void Destroy();
 
-	static void Quit() { done = true; }
+	void Quit() { done = true; }
 	
 	bool Done() const;
 

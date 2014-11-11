@@ -1,6 +1,6 @@
 #include "MenuActions.h"
 #include "GameEngine.h"
-#include "Globals.h"
+//#include "Globals.h"
 
 //extern GameEngine *gameEngine;
 
