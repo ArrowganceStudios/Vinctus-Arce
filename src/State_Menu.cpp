@@ -16,19 +16,19 @@ void State_Menu::Init()
 	waveMenu = new Menu("Next Wave");
 
 	mainMenu->AddButton("Start Game", MenuActions::StartGame);
-	mainMenu->AddButton("Options", nullptr);
-	mainMenu->AddButton("Credits", nullptr);
+	mainMenu->AddButton("Options", MenuActions::Options);
+	mainMenu->AddButton("Credits", MenuActions::Credits);
 	mainMenu->AddButton("Exit", MenuActions::Exit);
 
-	optionsMenu->AddButton("Resolution", nullptr);
-	optionsMenu->AddButton("Sound", nullptr);
-	optionsMenu->AddButton("Back", nullptr);
+	optionsMenu->AddButton("Resolution", MenuActions::Resolution);
+	optionsMenu->AddButton("Sound", MenuActions::Sound);
+	optionsMenu->AddButton("Back", MenuActions::Back);
 	
-	pauseMenu->AddButton("Yesh", nullptr);
-	pauseMenu->AddButton("Nah", nullptr);
+	pauseMenu->AddButton("Yesh", MenuActions::Yesh);
+	pauseMenu->AddButton("Nah", MenuActions::Nah);
 
-	waveMenu->AddButton("Continue", nullptr);
-	waveMenu->AddButton("Surrender", nullptr);
+	waveMenu->AddButton("Continue", MenuActions::Continue);
+	waveMenu->AddButton("Surrender", MenuActions::Surrender);
 
 
 	std::vector<Menu*> menuList {mainMenu, optionsMenu, pauseMenu, waveMenu}; //C++11 Bitch

@@ -3,25 +3,22 @@
 #include "GameEngine.h"
 
 
-class MobileObject_State
+class MobileObject_MovementState
 {
 private:
-	vector<MobileObject_State *> statelist;
+	vector<MobileObject_MovementState *> statelist;
 public:
-	MobileObject_State();
+	MobileObject_MovementState();
 
 	/*static WalkRight_State WalkRight;
 	static WalkLeft_State WalkLeft;
 	static WalkUp_State WalkUp;
-	static WalkDown_State WalkDown;
-	static Melee_State Melee;
-	static Fire_State Fire;*/
+	static WalkDown_State WalkDown;*/
 
 	virtual void Init();
 	void Cleanup();
 
 	void virtual Update() = 0;
-	void virtual Render() = 0; // ???
 
 
 };
