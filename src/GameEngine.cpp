@@ -30,7 +30,7 @@ void GameEngine::Init()
 	done = false;
 
 	graphicEngine = new GraphicEngine();
-	//menuState = new State_Menu();
+	State *menuState = new State_Menu(); // About to move it to the state vector later!!! (or it will move itself via ChangeState...)
 	//State_Game *GameState;
 
 	graphicEngine->Init();
@@ -50,7 +50,7 @@ void GameEngine::Init()
     al_register_event_source(eventQueue, al_get_timer_event_source(timer));
     al_start_timer(timer);
 
-	//ChangeState(menuState);
+	ChangeState(menuState);
 }
 
 void GameEngine::StartGame()

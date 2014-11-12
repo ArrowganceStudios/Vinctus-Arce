@@ -5,13 +5,21 @@
 #include <vector>
 #include <string>
 
-class State_Menu: public State
+class State_Menu : public State
 {
 private:
-	vector<Menu *> menuList;  
-	
+	vector<Menu *> menuList;
+
+	Menu *mainMenu;
+	Menu *optionsMenu;
+	Menu *pauseMenu;
+	Menu *waveMenu;
+
 public:
-	State_Menu();
+	State_Menu(){};
+
+	Menu *Current;
+	void SwitchToMenu(int choice);
 
 	void Init();
 	void Cleanup();

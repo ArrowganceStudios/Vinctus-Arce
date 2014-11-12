@@ -6,6 +6,9 @@ using namespace std;
 
 class Button
 {
+	friend class Menu;
+	friend class State_Menu;
+
 	int height;
 	int width;
 
@@ -13,6 +16,8 @@ class Button
 	float y;
 
 	void (*action)();
+	bool highlighted;
+	bool clicked;
 
 	string text;
 

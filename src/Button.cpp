@@ -4,6 +4,9 @@ Button::Button(string text, float x, float y, void(*function)()) : x(x), y(y), t
 {
 	width = ButtonSize::ButtonWidth;
 	height = ButtonSize::ButtonHeight;
+	
+	highlighted = false;
+	clicked = false;
 }
 
 //Debug methods

@@ -8,3 +8,8 @@ void Menu::AddButton(string buttonText, void (*function)())
 							   MenuDesign::ButtonSpacing)), function);
 	buttons.push_back(newButton);
 }
+
+void Menu::Cleanup()
+{
+	this->buttons.clear();
+}
