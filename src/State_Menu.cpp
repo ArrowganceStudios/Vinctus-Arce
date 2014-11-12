@@ -1,6 +1,6 @@
 #include "State_Menu.h"
-#include "GameEngine.h"
 #include "Globals.h"
+#include "GameEngine.h"
 #include "MenuActions.h"
 
 void State_Menu::Init()
@@ -31,10 +31,11 @@ void State_Menu::Init()
 	waveMenu->AddButton("Surrender", MenuActions::Surrender);
 
 
-	std::vector<Menu*> menuList {mainMenu, optionsMenu, pauseMenu, waveMenu}; //C++11 Bitch
+	menuList = {mainMenu, optionsMenu, pauseMenu, waveMenu}; //C++11 Bitch
 }
 
 void State_Menu::Cleanup()
 {
-	//tbi
+	
+
 }

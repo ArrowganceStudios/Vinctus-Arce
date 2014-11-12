@@ -2,6 +2,8 @@
 #include "Menu.h"
 #include "GraphicEngine.h"
 #include "State.h"
+#include "State_Menu.h"
+#include "State_Game.h"
 #include <string>
 #include <iostream>
 
@@ -19,7 +21,7 @@ GameEngine::~GameEngine()
 	delete Input;
 	delete mainMenu;
 	delete logicHandler;*/
-
+	//delete menuState;
 	delete graphicEngine;
 }
 
@@ -28,6 +30,8 @@ void GameEngine::Init()
 	done = false;
 
 	graphicEngine = new GraphicEngine();
+	//menuState = new State_Menu();
+	//State_Game *GameState;
 
 	graphicEngine->Init();
 
@@ -45,6 +49,8 @@ void GameEngine::Init()
     timer = al_create_timer(1.0f / FPS);
     al_register_event_source(eventQueue, al_get_timer_event_source(timer));
     al_start_timer(timer);
+
+	//ChangeState(menuState);
 }
 
 void GameEngine::StartGame()
@@ -85,7 +91,7 @@ void GameEngine::ChangeState(State* state) {
     
 	// store and init the new state
 	states.push_back(state);
-	states.back()->Init(this);
+	states.back()->Init();
 }
 
 void GameEngine::PushState(State* state) {
@@ -96,7 +102,7 @@ void GameEngine::PushState(State* state) {
     
 	// store and init the new state
 	states.push_back(state);
-	states.back()->Init(this);
+	states.back()->Init();
 }
 
 void GameEngine::PopState() {
