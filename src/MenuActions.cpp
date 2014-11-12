@@ -5,17 +5,17 @@ namespace MenuActions {
 	//Main menu
 	void StartGame()
 	{
-		//gameEngine->ChangeState(new State_Game);
+		gameEngine->StartGame();
 	}
 
 	void Options()
 	{
-		//gameEngine->ChangeState(new State_Menu); //wtf idk
+		//gameEngine->ChangeState(new Options); //wtf idk
 	}
 
 	void Credits()
 	{
-		//gameEngine->ChangeState(new State_Menu);
+		//gameEngine->ChangeState(new Credits);
 	}
 
 	void Exit()

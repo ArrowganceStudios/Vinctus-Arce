@@ -1,6 +1,7 @@
 #include "GameEngine.h"
 #include "Menu.h"
 #include "GraphicEngine.h"
+#include "State.h"
 #include <string>
 #include <iostream>
 
@@ -48,7 +49,7 @@ void GameEngine::Init()
 
 void GameEngine::StartGame()
 {
-	//ChangeState(something);
+	//ChangeState(State_Game);
 }
 
 void GameEngine::InputHandler() //this should be done in seperate class if I'm correct?
@@ -143,6 +144,7 @@ void GameEngine::Destroy()
 	//project objects destroy
 	graphicEngine->Destroy(); //bitmaps
 
+	delete graphicEngine;
 	//allegro vars destroy
 	//al_destroy_font(font18);
 	al_destroy_display(display);

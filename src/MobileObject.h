@@ -19,6 +19,6 @@ public:
 	float GetVelocity() const { return velocity; }
 	float SetVelocity(float vel) { velocity = vel; }
 
-	void virtual Update();
+	void virtual Update() {};
 	void virtual Render() {};
 };
