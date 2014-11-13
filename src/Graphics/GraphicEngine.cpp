@@ -1,5 +1,6 @@
-#include "GameEngine.h"
-#include "UI_GraphicalElement.h"
+#include "../GameEngine.h"
+#include "GraphicEngine.h"
+#include "UI/UI_GraphicalElement.h"
 
 GraphicEngine::GraphicEngine()
 {
@@ -19,7 +20,10 @@ void DefineAnimation(GameObject * gameObject, std::vector<Sprite *> animations)
 void GraphicEngine::CreateUI_Element_GraphicInstance(UI_element *element)
 {
 	UI_GraphicalElement *UI_graphicalElement;
-	//UI_graphicalElement = new UI_GraphicalElement();
-	//graphicalElement->Get_Bitmap_Image() =
+	UI_graphicalElement = new UI_GraphicalElement();
+	if (typeid(element) == typeid(Button))
+	{
+		//UI_graphicalElement->SetBitmapImage(Button::)
+	}
 
 }

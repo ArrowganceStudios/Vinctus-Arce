@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include "GameEngine.h"
+#include "../GameEngine.h"
 
 
 class MobileObject_MovementState

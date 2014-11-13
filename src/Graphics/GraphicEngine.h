@@ -1,10 +1,10 @@
 #pragma once
 #include <allegro5\allegro.h>
 #include <vector>
-#include "GameEngine.h"
-#include "GameObject.h"
-#include "UI_element.h"
+#include "../GameEngine.h"
+#include "../Game/GameObject.h"
 #include "Sprite.h"
+#include "UI/UI_element.h"
 
 class GameEngine;
 
@@ -12,6 +12,7 @@ class GraphicEngine
 {
 	int id;
 	//class pointers
+	std::vector <UI_element *> UIelementList;
 	std::vector <GameObject *> objectList; //list storing all rendered objects
 	std::vector <Sprite *> sprites; // this needs to be sorted out diffrently, using 2d arrays
 	//allegro variables

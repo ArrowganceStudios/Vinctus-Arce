@@ -1,11 +1,11 @@
-#include "GameEngine.h"
-#include "Menu.h"
-#include "GraphicEngine.h"
-#include "State.h"
-#include "State_Menu.h"
-#include "State_Game.h"
 #include <string>
 #include <iostream>
+#include "GameEngine.h"
+#include "State.h"
+#include "Menu/Menu.h"
+#include "Graphics/GraphicEngine.h"
+#include "Menu/State_Menu.h"
+#include "Game/State_Game.h"
 
 GameEngine::GameEngine(int w, int h, float fps):WIDTH(w), HEIGHT(h), FPS(fps) 
 {

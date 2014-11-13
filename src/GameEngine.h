@@ -6,9 +6,9 @@
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
 #include <vector>
-#include "GraphicEngine.h"
-#include "Menu.h"
 #include "State.h"
+#include "Graphics/GraphicEngine.h"
+#include "Menu/Menu.h"
 
 class State;
 

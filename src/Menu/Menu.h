@@ -1,8 +1,8 @@
 #pragma once
 #include <string>
 #include <vector>
+#include "../Globals.h"
 #include "Button.h"
-#include "Globals.h"
 
 using namespace std;
 

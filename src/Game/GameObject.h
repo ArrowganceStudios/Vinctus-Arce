@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <allegro5\allegro.h>
-#include "Sprite.h"
+#include "../Graphics/Sprite.h"
 
 using namespace std;
 

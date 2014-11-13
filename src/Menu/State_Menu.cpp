@@ -1,7 +1,7 @@
+#include "../Globals.h"
+#include "../GameEngine.h"
+#include "../Graphics/GraphicEngine.h"
 #include "State_Menu.h"
-#include "Globals.h"
-#include "GameEngine.h"
-#include "GraphicEngine.h"
 #include "MenuActions.h"
 
 void State_Menu::Init()

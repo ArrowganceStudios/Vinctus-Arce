@@ -1,5 +1,5 @@
+#include "../GameEngine.h"
 #include "MenuActions.h"
-#include "GameEngine.h"
 
 namespace MenuActions {
 	//Main menu

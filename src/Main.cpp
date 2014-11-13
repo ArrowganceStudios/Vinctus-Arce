@@ -1,7 +1,7 @@
 #include <iostream>
 #include "GameEngine.h"
 #include "Globals.h"
-#include "MenuActions.h"
+#include "Menu/MenuActions.h"
 
 using namespace std;
 
