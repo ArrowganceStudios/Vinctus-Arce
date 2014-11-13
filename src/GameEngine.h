@@ -7,13 +7,17 @@
 #include <allegro5/allegro_ttf.h>
 #include <vector>
 #include "State.h"
+#include "Input.h"
 #include "Graphics/GraphicEngine.h"
 #include "Menu/Menu.h"
 
 class State;
+class InputHandler;
 
 class GameEngine
 {	
+	friend class InputHandler;
+	
 	//consts
 	const int WIDTH;
 	const int HEIGHT;
@@ -29,9 +33,9 @@ class GameEngine
 	MapHandler *mapHandler;
 	CameraInstance *Camera;
 	CollisionDetector *Collider;
-	InputHandler *Input;
 	LogicHandler *logicHandler
 	*/
+	InputHandler *input;
 
 	GraphicEngine *graphicEngine;
 	State *menuState;
@@ -58,7 +62,7 @@ public:
 	void PushState(State* state);
 	void PopState();
 	
-	void InputHandler();
+	void Escaper();
 	void Update();
 	void Render();
 	

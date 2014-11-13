@@ -13,7 +13,7 @@ int main()
 
 	while(gameEngine->Done())
 	{
-		gameEngine->InputHandler();
+		gameEngine->Escaper();
 		gameEngine->Update();
 		gameEngine->Render();
 		gameEngine->Flush();

@@ -6,8 +6,8 @@
 class MobileObject : public GameObject
 {
 private:
-	MobileObject* movementState;
-	MobileObject* attackState;
+	MobileObject* movementState; // what is this0
+	MobileObject* attackState; //and this
 protected:
 	float velocity;
 

@@ -10,10 +10,6 @@ class Button : protected UI_element
 	friend class Menu;
 	friend class State_Menu;
 
-	ALLEGRO_BITMAP *normal;
-	ALLEGRO_BITMAP *highlitedImage;
-	ALLEGRO_BITMAP *clickedImage;
-
 	void (*action)();
 	bool highlighted;
 	bool clicked;

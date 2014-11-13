@@ -3,7 +3,6 @@
 
 class GameEngine;
 
-class GameEngine;
 class State
 {
 protected:

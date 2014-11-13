@@ -19,7 +19,7 @@ private:
 public:
 	State_Menu(){};
 
-	Menu *Current;
+	Menu *CurrentMenu;
 	void SwitchToMenu(int choice);
 
 	void Init();

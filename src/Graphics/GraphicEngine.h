@@ -24,9 +24,11 @@ public:
 	void Render(){};
 
 	void CreateGraphicInstance(GameObject *object,int id);
- 	void CreateUI_Element_GraphicInstance(UI_element *element); 
+	void DefineUI_Element_Graphic(UI_element *element, std::vector<ALLEGRO_BITMAP *> bitmaps);
+ 	void CreateUI_Element_GraphicInstance(UI_element *element);
 	void DefineAnimation(GameObject * gameObject, std::vector<Sprite *> animations);
-	void RequestAnimation();
+	void RequestAnimation(GameObject *gameObject, int animationNumber);
+	void RequestUI_Element_Graphic(UI_element *element, int graphicNumber);
 
 	void Destroy(){};
 };

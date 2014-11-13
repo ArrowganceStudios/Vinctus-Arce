@@ -2,6 +2,7 @@
 #include <iostream>
 #include "GameEngine.h"
 #include "State.h"
+#include "Input.h"
 #include "Menu/Menu.h"
 #include "Graphics/GraphicEngine.h"
 #include "Menu/State_Menu.h"
@@ -18,13 +19,13 @@ GameEngine::~GameEngine()
 	delete mapHandler;
 	delete Camera;
 	delete Collider;
-	delete Input;
 	delete mainMenu;
 	delete logicHandler;*/
 	//delete menuState;
 	delete graphicEngine;
 	delete gameState;
 	delete menuState;
+	delete input;
 }
 
 void GameEngine::Init()
@@ -32,18 +33,20 @@ void GameEngine::Init()
 	done = false;
 
 	graphicEngine = new GraphicEngine();
-	menuState = new State_Menu(); 
+	input = new InputHandler();
+
+	menuState = new State_Menu();
 	gameState = new State_Game();
 
-
 	graphicEngine->Init();
+	input->Init();
 
 	al_init(); //Initialises the allegro library
+	al_install_keyboard();
+	al_install_mouse();
     
     display = al_create_display(WIDTH, HEIGHT);
 	al_set_window_title(display, "Vinctus Arce");
-    
-	al_install_keyboard(); //Installs keyboard driver
     
     eventQueue = al_create_event_queue();
     al_register_event_source(eventQueue, al_get_display_event_source(display));
@@ -61,7 +64,7 @@ void GameEngine::StartGame()
 	ChangeState(gameState);
 }
 
-void GameEngine::InputHandler() //this should be done in seperate class if I'm correct?
+void GameEngine::Escaper() //this should be done in seperate class if I'm correct?
 {
 	if(event.type == ALLEGRO_EVENT_KEY_DOWN)
 	{

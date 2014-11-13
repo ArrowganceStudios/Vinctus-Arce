@@ -1,6 +1,7 @@
 #include "../Globals.h"
 #include "../GameEngine.h"
 #include "../Graphics/GraphicEngine.h"
+#include "../InputMap.h"
 #include "State_Menu.h"
 #include "MenuActions.h"
 
@@ -27,7 +28,7 @@ void State_Menu::Init()
 	waveMenu->AddButton("Surrender", MenuActions::Surrender);
 
 
-	menuList = {mainMenu, optionsMenu, pauseMenu, waveMenu}; //C++11 Bitch
+	menuList = {mainMenu, optionsMenu, pauseMenu, waveMenu};
 	SwitchToMenu(MAIN);
 }
 
@@ -37,19 +38,19 @@ void State_Menu::SwitchToMenu(int choice)
 	{
 
 	case MAIN:
-		Current = this->mainMenu;
+		CurrentMenu = this->mainMenu;
 		break;
 	case OPTIONS:
-		Current = this->optionsMenu;
+		CurrentMenu = this->optionsMenu;
 		break;
 	case PAUSE:
-		Current = this->pauseMenu;
+		CurrentMenu = this->pauseMenu;
 		break;
 	case WAVE:
-		Current = this->waveMenu;
+		CurrentMenu = this->waveMenu;
 		break;
 	default:
-		Current = this->mainMenu;
+		CurrentMenu = this->mainMenu;
 		break;
 	}
 
@@ -80,34 +81,32 @@ void State_Menu::HandleEvents()
 
 void State_Menu::Update()		//	To do: handling input/UseFunction();
 {
-	/*
-	for (int i = 0; i < Current->buttons.size(); i++)
+	for (int i = 0; i < CurrentMenu->buttons.size(); i++)
 	{
-		if ((myEngine->mouseX >= (Current->buttons[i]->x - Current->buttons[i]->width / 2)) &&
-			(myEngine->mouseX <= (Current->buttons[i]->x + Current->buttons[i]->width / 2)) &&
-			(myEngine->mouseY >= (Current->buttons[i]->y - Current->buttons[i]->height / 2)) &&
-			(myEngine->mouseY <= (Current->buttons[i]->y + Current->buttons[i]->height / 2)))
+		if ((mouseX >= (CurrentMenu->buttons[i]->x - CurrentMenu->buttons[i]->width / 2)) &&
+			(mouseX <= (CurrentMenu->buttons[i]->x + CurrentMenu->buttons[i]->width / 2)) &&
+			(mouseY >= (CurrentMenu->buttons[i]->y - CurrentMenu->buttons[i]->height / 2)) &&
+			(mouseY <= (CurrentMenu->buttons[i]->y + CurrentMenu->buttons[i]->height / 2)))
 		{
-			Current->buttons[i]->highlighted = true;
-			if (Current->MarkedButton == NULL) Current->MarkedButton = Current->buttons[i];
+			CurrentMenu->buttons[i]->highlighted = true;
+			if (CurrentMenu->MarkedButton == NULL) CurrentMenu->MarkedButton = CurrentMenu->buttons[i];
 			break;
 		}
 		else
 		{
-			Current->buttons[i]->highlighted = false;
-			if (Current->MarkedButton != NULL) Current->MarkedButton = NULL;
-			if (Current->buttons[i]->clicked) Current->buttons[i]->clicked = false;
+			CurrentMenu->buttons[i]->highlighted = false;
+			if (CurrentMenu->MarkedButton != NULL) CurrentMenu->MarkedButton = NULL;
+			if (CurrentMenu->buttons[i]->clicked) CurrentMenu->buttons[i]->clicked = false;
 		}
 	}
-	if (myEngine->mouseLMB)
+	if (mouse[LMB])
 	{
-		if (Current->MarkedButton != NULL && Current->MarkedButton->highlighted) Current->MarkedButton->clicked = true;
+		if (CurrentMenu->MarkedButton != NULL && CurrentMenu->MarkedButton->highlighted) CurrentMenu->MarkedButton->clicked = true;
 	}
-	if (Current->MarkedButton->highlighted && Current->MarkedButton->clicked)
+	if (CurrentMenu->MarkedButton->highlighted && CurrentMenu->MarkedButton->clicked)
 	{
-		Current->MarkedButton->UseFunction();
+		CurrentMenu->MarkedButton->UseFunction();
 	}
-	*/
 }
 
 void State_Menu::Render()
