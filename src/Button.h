@@ -19,5 +19,6 @@ class Button : protected UI_element
 public:
 	Button(string text, float x, float y, void(*function)());
 
+
 	void UseFunction(); //debug
 };
