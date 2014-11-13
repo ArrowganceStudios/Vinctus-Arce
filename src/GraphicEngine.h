@@ -3,12 +3,14 @@
 #include <vector>
 #include "GameEngine.h"
 #include "GameObject.h"
+#include "UI_element.h"
 #include "Sprite.h"
 
 class GameEngine;
 
 class GraphicEngine
 {
+	int id;
 	//class pointers
 	std::vector <GameObject *> objectList; //list storing all rendered objects
 	std::vector <Sprite *> sprites; // this needs to be sorted out diffrently, using 2d arrays
@@ -20,8 +22,8 @@ public:
 	void Init(){}; //??
 	void Render(){};
 
-	void CreateGraphicInstance(GameObject *object);
-//	void CreateUI_Element_GraphicInstance(UI_element *element); <-- some problem
+	void CreateGraphicInstance(GameObject *object,int id);
+ 	void CreateUI_Element_GraphicInstance(UI_element *element); 
 	void DefineAnimation(GameObject * gameObject, std::vector<Sprite *> animations);
 	void RequestAnimation();
 

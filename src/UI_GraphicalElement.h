@@ -4,9 +4,9 @@
 
 class UI_GraphicalElement
 {
-private:
 	ALLEGRO_BITMAP *image;
 	std::vector <UI_GraphicalElement*> graphics;
-	UI_GraphicalElement();
 public:
+	UI_GraphicalElement();
+	ALLEGRO_BITMAP* Get_Bitmap_Image() { return image; }
 };
