@@ -23,6 +23,8 @@ GameEngine::~GameEngine()
 	delete logicHandler;*/
 	//delete menuState;
 	delete graphicEngine;
+	delete gameState;
+	delete menuState;
 }
 
 void GameEngine::Init()
@@ -30,8 +32,10 @@ void GameEngine::Init()
 	done = false;
 
 	graphicEngine = new GraphicEngine();
-	State *menuState = new State_Menu(); // About to move it to the state vector later!!! (or it will move itself via ChangeState...)
-	//State_Game *GameState;
+	menuState = new State_Menu(); // About to move it to the state vector later!!! (or it will move itself via ChangeState...)
+	gameState = new State_Game();
+
+	states = { menuState, gameState };
 
 	graphicEngine->Init();
 

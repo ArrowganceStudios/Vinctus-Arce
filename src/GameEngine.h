@@ -34,6 +34,8 @@ class GameEngine
 	*/
 
 	GraphicEngine *graphicEngine;
+	State *menuState;
+	State *gameState;
 
 	//allegro variables
 	ALLEGRO_DISPLAY *display;
