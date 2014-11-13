@@ -32,10 +32,9 @@ void GameEngine::Init()
 	done = false;
 
 	graphicEngine = new GraphicEngine();
-	menuState = new State_Menu(); // About to move it to the state vector later!!! (or it will move itself via ChangeState...)
+	menuState = new State_Menu(); 
 	gameState = new State_Game();
 
-	states = { menuState, gameState };
 
 	graphicEngine->Init();
 
@@ -59,7 +58,7 @@ void GameEngine::Init()
 
 void GameEngine::StartGame()
 {
-	//ChangeState(State_Game);
+	ChangeState(gameState);
 }
 
 void GameEngine::InputHandler() //this should be done in seperate class if I'm correct?

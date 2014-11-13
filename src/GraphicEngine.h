@@ -22,6 +22,7 @@ public:
 	void Render(){};
 
 	void CreateGraphicInstance(GameObject *object, int id);
+	//void CreateUI_Element(, int id);
 	void DefineAnimation(GameObject * gameObject, std::vector<Sprite *> animations);
 	void RequestAnimation();
 

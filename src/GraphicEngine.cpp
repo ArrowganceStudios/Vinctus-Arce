@@ -6,7 +6,7 @@ GraphicEngine::GraphicEngine()
 }
 void GraphicEngine::CreateGraphicInstance(GameObject *object, int id) 
 {
-
+	
 	//tbi
 }
 

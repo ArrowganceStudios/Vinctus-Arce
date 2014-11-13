@@ -2,6 +2,7 @@
 #include "GameEngine.h"
 
 extern GameEngine *gameEngine;
+extern GraphicEngine *graphicEngine;
 
 namespace {
 	

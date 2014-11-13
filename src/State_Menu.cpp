@@ -1,6 +1,7 @@
 #include "State_Menu.h"
 #include "Globals.h"
 #include "GameEngine.h"
+#include "GraphicEngine.h"
 #include "MenuActions.h"
 
 void State_Menu::Init()
@@ -111,5 +112,5 @@ void State_Menu::Update()		//	To do: handling input/UseFunction();
 
 void State_Menu::Render()
 {
-
+	//graphicEngine->CreateGraphicInstance(??, ??)
 }

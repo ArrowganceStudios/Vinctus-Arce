@@ -1,19 +1,14 @@
 #pragma once
 #include "Globals.h"
+#include "UI_element.h"
 #include <string>
 
 using namespace std;
 
-class Button
+class Button : protected UI_element
 {
 	friend class Menu;
 	friend class State_Menu;
-
-	int height;
-	int width;
-
-	float x;
-	float y;
 
 	void (*action)();
 	bool highlighted;
