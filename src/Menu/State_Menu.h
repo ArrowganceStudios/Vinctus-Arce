@@ -1,10 +1,12 @@
 #pragma once
 #include <vector>
 #include <string>
-#include "../State.h"
-#include "../GameEngine.h"
-#include "Menu.h"
+//#include "../State.h"
+//#include "../GameEngine.h"
+//#include "Menu.h"
 
+class State;
+class Menu;
 
 class State_Menu : public State
 {
@@ -20,7 +22,7 @@ public:
 	State_Menu(){};
 
 	Menu *CurrentMenu;
-	void SwitchToMenu(int choice);
+	void SwitchToMenu(string newMenu);
 
 	void Init();
 	void Cleanup();

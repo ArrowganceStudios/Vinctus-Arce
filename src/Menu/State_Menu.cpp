@@ -1,8 +1,8 @@
+//#include "State_Menu.h"
 #include "../Globals.h"
-#include "../GameEngine.h"
-#include "../Graphics/GraphicEngine.h"
+//#include "../GameEngine.h"
+//#include "../Graphics/GraphicEngine.h"
 #include "../InputMap.h"
-#include "State_Menu.h"
 #include "MenuActions.h"
 
 void State_Menu::Init()
@@ -29,29 +29,15 @@ void State_Menu::Init()
 
 
 	menuList = {mainMenu, optionsMenu, pauseMenu, waveMenu};
-	SwitchToMenu(MAIN);
+	SwitchToMenu("Main Menu");
 }
 
-void State_Menu::SwitchToMenu(int choice)
+void State_Menu::SwitchToMenu(string newMenu)
 {
-	switch (choice)
+	for(auto menuit : menuList)
 	{
-
-	case MAIN:
-		CurrentMenu = this->mainMenu;
-		break;
-	case OPTIONS:
-		CurrentMenu = this->optionsMenu;
-		break;
-	case PAUSE:
-		CurrentMenu = this->pauseMenu;
-		break;
-	case WAVE:
-		CurrentMenu = this->waveMenu;
-		break;
-	default:
-		CurrentMenu = this->mainMenu;
-		break;
+		if(menuit->menuTitle == newMenu)
+			CurrentMenu = menuit;	//???
 	}
 
 }

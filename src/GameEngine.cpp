@@ -1,11 +1,10 @@
 #include <string>
 #include <iostream>
 #include "GameEngine.h"
-#include "State.h"
+//#include "State.h"
 #include "Input.h"
 #include "Menu/Menu.h"
 #include "Graphics/GraphicEngine.h"
-#include "Menu/State_Menu.h"
 #include "Game/State_Game.h"
 
 GameEngine::GameEngine(int w, int h, float fps):WIDTH(w), HEIGHT(h), FPS(fps) 
@@ -38,6 +37,8 @@ void GameEngine::Init()
 	menuState = new State_Menu();
 	gameState = new State_Game();
 
+	states = { reinterpret_cast<State *>(menuState), gameState };
+
 	graphicEngine->Init();
 	input->Init();
 
@@ -56,12 +57,17 @@ void GameEngine::Init()
     al_register_event_source(eventQueue, al_get_timer_event_source(timer));
     al_start_timer(timer);
 
-	ChangeState(menuState);
+	PushState(menuState);
 }
 
 void GameEngine::StartGame()
 {
 	ChangeState(gameState);
+}
+
+void GameEngine::Continue()
+{
+	PopState();
 }
 
 void GameEngine::Escaper() //this should be done in seperate class if I'm correct?
@@ -126,6 +132,8 @@ void GameEngine::PopState() {
 
 void GameEngine::Update()
 {
+	input->Update(&event);
+	//states.back()->Update(); <- some errors regarding memory violation
 	if(event.type == ALLEGRO_EVENT_TIMER)
 	{
 		render = true;

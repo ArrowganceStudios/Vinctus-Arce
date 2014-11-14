@@ -1,5 +1,6 @@
 #include "../GameEngine.h"
 #include "MenuActions.h"
+//#include "../Menu/State_Menu.h"
 
 namespace MenuActions {
 	//Main menu
@@ -10,7 +11,7 @@ namespace MenuActions {
 
 	void Options()
 	{
-		//gameEngine->ChangeState(new Options); //wtf idk
+		//gameEngine->ChangeState(new Options); 
 	}
 
 	void Credits()
@@ -44,7 +45,8 @@ namespace MenuActions {
 	//Surrender menu
 	void Yesh()
 	{
-		//gameEngine->Yes();
+		//gameEngine->GetMenuState()->SwitchToMenu(mainMenu);
+		gameEngine->GetMenuState()->SwitchToMenu("Main Menu");
 	}
 
 	void Nah()
@@ -56,7 +58,7 @@ namespace MenuActions {
 	//Wave menu
 	void Continue()
 	{
-		//gameEngine->Continue();
+		gameEngine->Continue();
 	}
 
 	void Surrender()

@@ -9,8 +9,6 @@ namespace {
 	extern const int SCREEN_WIDTH = 800;
 	extern const int SCREEN_HEIGHT = 600;
 
-	enum MenuType {MAIN, OPTIONS, PAUSE, WAVE};
-
 	namespace MenuDesign
 	{
 		const float YOffset = 200; //used for the coords of the first button

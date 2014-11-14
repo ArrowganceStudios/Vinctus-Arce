@@ -1,5 +1,7 @@
 #pragma once
 
+//class GameEngine;
+
 namespace MenuActions {
 	//Main menu
 	void StartGame();

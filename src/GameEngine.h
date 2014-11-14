@@ -9,9 +9,11 @@
 #include "State.h"
 #include "Input.h"
 #include "Graphics/GraphicEngine.h"
+#include "Menu/State_Menu.h"
 #include "Menu/Menu.h"
 
-class State;
+
+//class State;
 class InputHandler;
 
 class GameEngine
@@ -38,7 +40,7 @@ class GameEngine
 	InputHandler *input;
 
 	GraphicEngine *graphicEngine;
-	State *menuState;
+	State_Menu *menuState;
 	State *gameState;
 
 	//allegro variables
@@ -53,6 +55,8 @@ class GameEngine
 public:
 	GameEngine(int w, int h, float fps);
 	~GameEngine();
+
+	State_Menu * GetMenuState() { return menuState; }
 
 	void StartGame();
 
@@ -69,6 +73,7 @@ public:
 	void Flush();
 	void Destroy();
 
+	void Continue();
 	void Quit() { done = true; }
 	
 	bool Done() const;
