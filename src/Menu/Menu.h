@@ -8,7 +8,7 @@ using namespace std;
 
 class Button;
 
-class Menu
+class Menu : protected UI_element
 {
 	friend class State_Menu;
 
@@ -17,7 +17,7 @@ class Menu
 	string menuTitle;
 
 public:
-	Menu(string title) : menuTitle(title){ MarkedButton = NULL; };
+	Menu(string title, float x = SCREEN_WIDTH/2, float y = SCREEN_HEIGHT/2);
 	void AddButton(string buttonText, void(*function)());
 	void Cleanup();
 };

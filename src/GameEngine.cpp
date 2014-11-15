@@ -52,6 +52,7 @@ void GameEngine::Init()
     eventQueue = al_create_event_queue();
     al_register_event_source(eventQueue, al_get_display_event_source(display));
     al_register_event_source(eventQueue, al_get_keyboard_event_source());
+	al_register_event_source(eventQueue, al_get_mouse_event_source());
 
     timer = al_create_timer(1.0f / FPS);
     al_register_event_source(eventQueue, al_get_timer_event_source(timer));
@@ -133,7 +134,7 @@ void GameEngine::PopState() {
 void GameEngine::Update()
 {
 	input->Update(&event);
-	//states.back()->Update(); <- some errors regarding memory violation
+	states.back()->Update();
 	if(event.type == ALLEGRO_EVENT_TIMER)
 	{
 		render = true;

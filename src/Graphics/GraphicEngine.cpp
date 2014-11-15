@@ -1,6 +1,7 @@
 #include "../GameEngine.h"
 //#include "GraphicEngine.h"
 #include "UI/UI_GraphicalElement.h"
+#include <iostream>
 
 GraphicEngine::GraphicEngine()
 {
@@ -52,7 +53,7 @@ void GraphicEngine::CreateUI_Element_GraphicInstance(UI_element *element)
 	const std::type_info& info = typeid(element); //this idiet returns "class UI_element *" so we'll need to handle this in a different way
 	string className = static_cast<string>(info.name());
 
-	//cout << "name of object is: " << className << endl;
+	cout << "name of object is: " << className << endl;
 
 	UI_elementsMap.emplace(element, nullptr);
 

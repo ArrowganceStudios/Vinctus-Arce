@@ -13,7 +13,7 @@ void State_Menu::Init()
 	
 	std::vector<ALLEGRO_BITMAP *> menu_bitmap { menu };
 
-	graphicEngine->DefineUI_Element_Graphic("class UI_element *", menu_bitmap); */ 
+	graphicEngine->DefineUI_Element_Graphic("class UI_element *", menu_bitmap);*/
 
 	//we need to fix this class UI_element * to use it for more than 1 object tho :D
 
@@ -112,10 +112,18 @@ void State_Menu::Update()		//	To do: handling input/UseFunction();
 	{
 		if (CurrentMenu->MarkedButton != NULL && CurrentMenu->MarkedButton->highlighted) CurrentMenu->MarkedButton->clicked = true;
 	}
-	if (CurrentMenu->MarkedButton->highlighted && CurrentMenu->MarkedButton->clicked)
+	if (!mouse[LMB] && CurrentMenu->MarkedButton != NULL && CurrentMenu->MarkedButton->clicked)
 	{
+		cout << "Action!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << endl;
 		CurrentMenu->MarkedButton->UseFunction();
+		CurrentMenu->MarkedButton->clicked = false;
 	}
+	if (CurrentMenu->MarkedButton != NULL)		// Small but fancy debug!
+	{
+		if (CurrentMenu->MarkedButton->clicked) cout << "Clicked!" << endl;
+		else cout << "Highlighted!" << endl;
+	}
+	else cout << "---" << endl;
 }
 
 void State_Menu::Render()

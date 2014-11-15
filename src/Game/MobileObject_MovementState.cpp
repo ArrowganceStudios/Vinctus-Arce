@@ -15,10 +15,4 @@ void MobileObject_MovementState::Cleanup()
 void MobileObject_MovementState::Update()
 {
 
-
-}
-
-void Render()
-{
-
 }

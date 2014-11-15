@@ -7,7 +7,6 @@
 //#include "Sprite.h"
 #include "UI/UI_element.h"
 #include <map>
-
 class GameEngine;
 
 class GraphicEngine
@@ -20,8 +19,6 @@ class GraphicEngine
 	std::map <GameObject *, Sprite *> GameObjectsMap; //should be multimaps actually so we can have few instances of same type
 	std::map <UI_element *, ALLEGRO_BITMAP *> UI_elementsMap; //same here ^
 
-	//allegro variables
-	//(smoke weed every day)
 public:
 	GraphicEngine();
 
@@ -33,6 +30,7 @@ public:
 	void RequestAnimation(GameObject *gameObject, int animationNumber);
 
 	void DefineUI_Element_Graphic(string elementsClassName, std::vector<ALLEGRO_BITMAP *> bitmaps);
+
 	void CreateUI_Element_GraphicInstance(UI_element *element);
 	void RequestUI_Element_Graphic(UI_element *element, int graphicNumber);
 

@@ -1,6 +1,14 @@
 //#include "Menu.h"
 #include "Button.h"
 
+Menu::Menu(string title, float x, float y) : UI_element(x, y), menuTitle(title)
+{
+	width = SCREEN_WIDTH;
+	height = SCREEN_HEIGHT;
+	MarkedButton = nullptr;
+	graphicEngine->CreateUI_Element_GraphicInstance(this);
+}
+
 void Menu::AddButton(string buttonText, void (*function)())
 {
 	Button *newButton = new Button(buttonText, MenuDesign::XOffset, MenuDesign::YOffset + 
