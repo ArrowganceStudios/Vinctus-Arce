@@ -7,6 +7,17 @@
 
 void State_Menu::Init()
 {	
+	//just a test
+	ALLEGRO_BITMAP *default = al_load_bitmap("../../assets/img/UI/button.png");
+	ALLEGRO_BITMAP *hover = al_load_bitmap("../../assets/img/UI/button_highlighted.png");
+	ALLEGRO_BITMAP *clicked = al_load_bitmap("../../assets/img/UI/button_clicked.png");
+
+	std::vector<ALLEGRO_BITMAP *> button_bitmaps{ default, hover, clicked };
+
+	graphicEngine->DefineUI_Element_Graphic("Button", button_bitmaps);
+
+	//end of the test
+
 	mainMenu = new Menu("Main Menu");
 	optionsMenu = new Menu("Options");
 	pauseMenu = new Menu("Surrender?");

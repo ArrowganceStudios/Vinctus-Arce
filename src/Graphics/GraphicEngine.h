@@ -1,33 +1,39 @@
 #pragma once
 #include <allegro5\allegro.h>
+#include <allegro5\allegro_primitives.h>
 #include <vector>
 #include "../GameEngine.h"
 #include "../Game/GameObject.h"
-#include "Sprite.h"
+//#include "Sprite.h"
 #include "UI/UI_element.h"
+#include <map>
 
 class GameEngine;
 
 class GraphicEngine
 {
-	int id;
-	//class pointers
-	std::vector <UI_element *> UIelementList;
-	std::vector <GameObject *> objectList; //list storing all rendered objects
-	std::vector <Sprite *> sprites; // this needs to be sorted out diffrently, using 2d arrays
+	//maps storing animations/graphics for each type of class
+	std::map <std::string, std::vector<Sprite *>> GameObjectsAnimationsMap;
+	std::map <std::string, std::vector<ALLEGRO_BITMAP *>> UI_elementsGraphicsMap;
+
+	//maps storing an actual list of UI and Game objects
+	std::map <GameObject *, Sprite *> GameObjectsMap; //should be multimaps actually
+	std::map <UI_element *, ALLEGRO_BITMAP *> UI_elementsMap; 
+
 	//allegro variables
 	//(smoke weed every day)
 public:
 	GraphicEngine();
 
 	void Init(){}; //??
-	void Render(){};
+	void Render();
 
-	void CreateGraphicInstance(GameObject *object,int id);
-	void DefineUI_Element_Graphic(UI_element *element, std::vector<ALLEGRO_BITMAP *> bitmaps);
- 	void CreateUI_Element_GraphicInstance(UI_element *element);
-	void DefineAnimation(GameObject * gameObject, std::vector<Sprite *> animations);
+	void DefineAnimation(string objectsClassName, std::vector<Sprite *> animations);
+	void CreateGraphicInstance(GameObject *object);
 	void RequestAnimation(GameObject *gameObject, int animationNumber);
+
+	void DefineUI_Element_Graphic(string elementsClassName, std::vector<ALLEGRO_BITMAP *> bitmaps);
+	void CreateUI_Element_GraphicInstance(UI_element *element);
 	void RequestUI_Element_Graphic(UI_element *element, int graphicNumber);
 
 	void Destroy(){};
