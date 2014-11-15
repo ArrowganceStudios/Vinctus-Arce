@@ -31,7 +31,7 @@ void GameEngine::Init()
 {
 	done = false;
 
-	graphicEngine = new GraphicEngine();
+	graphicEngine = ::graphicEngine;
 	input = new InputHandler();
 
 	menuState = new State_Menu();

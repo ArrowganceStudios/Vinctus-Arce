@@ -5,6 +5,7 @@
 GraphicEngine::GraphicEngine()
 {
 	al_init_primitives_addon();
+	al_init_image_addon();
 }
 
 void GraphicEngine::DefineAnimation(string objectsClassName, std::vector<Sprite *> animations)
@@ -52,6 +53,8 @@ void GraphicEngine::CreateUI_Element_GraphicInstance(UI_element *element)
 	const std::type_info& info = typeid(element);
 	string className = static_cast<string>(info.name());
 
+	cout << "name of object is: " << className << endl;
+
 	UI_elementsMap.emplace(element, nullptr);
 
 	//setting default graphic
@@ -59,6 +62,7 @@ void GraphicEngine::CreateUI_Element_GraphicInstance(UI_element *element)
 	{
 		if (graphMap.first == className)
 		{
+			cout << "graphMap.second.at(0) = " << graphMap.second.at(0) << endl;
 			UI_elementsMap[element] = graphMap.second.at(0); //if this ain't gonna work I'm gonna keel myself
 			break;
 		}
@@ -74,7 +78,8 @@ void GraphicEngine::Render()
 {
 	for (auto &UIElement : UI_elementsMap)
 	{
-		al_draw_bitmap(UIElement.second, (UIElement.first->GetX() - (UIElement.first->GetWidth() / 2)),
+		if (UIElement.second != NULL)
+			al_draw_bitmap(UIElement.second, (UIElement.first->GetX() - (UIElement.first->GetWidth() / 2)),
 			(UIElement.first->GetY() - (UIElement.first->GetHeight() / 2)), 0);
 	}
 
@@ -82,5 +87,4 @@ void GraphicEngine::Render()
 	{
 		//some animation algorithm
 	}
-	//al_draw_line(1, 2, 50, 60, al_map_rgb(255, 0, 255), 2);
 }

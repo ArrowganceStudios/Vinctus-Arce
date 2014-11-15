@@ -13,12 +13,12 @@ namespace {
 	{
 		const float YOffset = 200; //used for the coords of the first button
 		const float XOffset = SCREEN_WIDTH / 2;
-		const float ButtonSpacing = 10;
+		const float ButtonSpacing = 40;
 	}
 	
 	namespace ButtonSize
 	{
-		const int ButtonHeight = 50;
-		const int ButtonWidth = 100;
+		const float ButtonHeight = 66;
+		const float ButtonWidth = 307;
 	}
 }

@@ -8,13 +8,23 @@
 void State_Menu::Init()
 {	
 	//just a test
-	ALLEGRO_BITMAP *default = al_load_bitmap("../../assets/img/UI/button.png");
-	ALLEGRO_BITMAP *hover = al_load_bitmap("../../assets/img/UI/button_highlighted.png");
-	ALLEGRO_BITMAP *clicked = al_load_bitmap("../../assets/img/UI/button_clicked.png");
+	ALLEGRO_BITMAP *menu = nullptr;
+	menu = al_load_bitmap("assets/img/UI/Menu.jpg");
+	
+	std::vector<ALLEGRO_BITMAP *> menu_bitmap { menu };
+
+	graphicEngine->DefineUI_Element_Graphic("class UI_element *", menu_bitmap);
+
+	ALLEGRO_BITMAP *default = nullptr;
+	default = al_load_bitmap("assets/img/UI/button.png");
+	ALLEGRO_BITMAP *hover = nullptr;
+	hover = al_load_bitmap("assets/img/UI/button_highlighted.png");
+	ALLEGRO_BITMAP *clicked = nullptr;
+	clicked = al_load_bitmap("assets/img/UI/button_clicked.png");
 
 	std::vector<ALLEGRO_BITMAP *> button_bitmaps{ default, hover, clicked };
 
-	graphicEngine->DefineUI_Element_Graphic("Button", button_bitmaps);
+	graphicEngine->DefineUI_Element_Graphic("class UI_element *", button_bitmaps);
 
 	//end of the test
 
