@@ -8,12 +8,14 @@
 void State_Menu::Init()
 {	
 	//just a test
-	ALLEGRO_BITMAP *menu = nullptr;
+	/*ALLEGRO_BITMAP *menu = nullptr;
 	menu = al_load_bitmap("assets/img/UI/Menu.jpg");
 	
 	std::vector<ALLEGRO_BITMAP *> menu_bitmap { menu };
 
-	graphicEngine->DefineUI_Element_Graphic("class UI_element *", menu_bitmap);
+	graphicEngine->DefineUI_Element_Graphic("class UI_element *", menu_bitmap); */ 
+
+	//we need to fix this class UI_element * to use it for more than 1 object tho :D
 
 	ALLEGRO_BITMAP *default = nullptr;
 	default = al_load_bitmap("assets/img/UI/button.png");
@@ -24,7 +26,7 @@ void State_Menu::Init()
 
 	std::vector<ALLEGRO_BITMAP *> button_bitmaps{ default, hover, clicked };
 
-	graphicEngine->DefineUI_Element_Graphic("class UI_element *", button_bitmaps);
+	graphicEngine->DefineUI_Element_Graphic("class UI_element *", button_bitmaps); //temporary solution
 
 	//end of the test
 

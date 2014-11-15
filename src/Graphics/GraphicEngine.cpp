@@ -10,8 +10,7 @@ GraphicEngine::GraphicEngine()
 
 void GraphicEngine::DefineAnimation(string objectsClassName, std::vector<Sprite *> animations)
 {
-	//tbi <- some 2d array storing Game Objects and their list of animations
-	GameObjectsAnimationsMap.emplace(objectsClassName, animations); //not sure whether I should use typeid(*gobject) or (gobject)
+	GameObjectsAnimationsMap.emplace(objectsClassName, animations);
 }
 
 void GraphicEngine::CreateGraphicInstance(GameObject *object) 
@@ -50,10 +49,10 @@ void GraphicEngine::CreateUI_Element_GraphicInstance(UI_element *element)
 	//UI_graphicalElement = new UI_GraphicalElement();
 
 	//getting the class name
-	const std::type_info& info = typeid(element);
+	const std::type_info& info = typeid(element); //this idiet returns "class UI_element *" so we'll need to handle this in a different way
 	string className = static_cast<string>(info.name());
 
-	cout << "name of object is: " << className << endl;
+	//cout << "name of object is: " << className << endl;
 
 	UI_elementsMap.emplace(element, nullptr);
 
@@ -62,8 +61,7 @@ void GraphicEngine::CreateUI_Element_GraphicInstance(UI_element *element)
 	{
 		if (graphMap.first == className)
 		{
-			cout << "graphMap.second.at(0) = " << graphMap.second.at(0) << endl;
-			UI_elementsMap[element] = graphMap.second.at(0); //if this ain't gonna work I'm gonna keel myself
+			UI_elementsMap[element] = graphMap.second.at(0);
 			break;
 		}
 	}
@@ -71,7 +69,7 @@ void GraphicEngine::CreateUI_Element_GraphicInstance(UI_element *element)
 
 void GraphicEngine::RequestUI_Element_Graphic(UI_element *element, int graphicNumber)
 {
-
+	//hm, that isn't actually prepared for distinguishing distinc buttons ;/
 }
 
 void GraphicEngine::Render()
