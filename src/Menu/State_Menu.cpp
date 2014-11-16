@@ -31,9 +31,9 @@ void State_Menu::Init()
 	//end of the test
 
 	mainMenu = new Menu("Main Menu");
-	optionsMenu = new Menu("Options");
-	pauseMenu = new Menu("Surrender?");
-	waveMenu = new Menu("Next Wave");
+	//optionsMenu = new Menu("Options");
+	//pauseMenu = new Menu("Surrender?");
+	//waveMenu = new Menu("Next Wave");
 
 	mainMenu->AddButton("Start Game", MenuActions::StartGame);
 	mainMenu->AddButton("Options", MenuActions::Options);
@@ -51,7 +51,7 @@ void State_Menu::Init()
 	//waveMenu->AddButton("Surrender", MenuActions::Surrender);
 
 
-	menuList = {mainMenu, optionsMenu, pauseMenu, waveMenu};
+	menuList = {mainMenu/*, optionsMenu, pauseMenu, waveMenu*/};
 	SwitchToMenu("Main Menu");
 }
 

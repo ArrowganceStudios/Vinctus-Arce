@@ -16,8 +16,10 @@ class GraphicEngine
 	std::map <std::string, std::vector<ALLEGRO_BITMAP *>> UI_elementsGraphicsMap;
 
 	//maps storing an actual list of UI and Game objects
-	std::map <GameObject *, Sprite *> GameObjectsMap; //should be multimaps actually so we can have few instances of same type
-	std::map <UI_element *, ALLEGRO_BITMAP *> UI_elementsMap; //same here ^
+	std::vector <std::pair<GameObject *, Sprite *>> GameObjectsMap;
+	std::vector <std::pair<UI_element *, ALLEGRO_BITMAP *>> UI_elementsMap;
+	//std::map <GameObject *, Sprite *> GameObjectsMap; //should be multimaps actually so we can have few instances of same type
+	//std::map <UI_element *, ALLEGRO_BITMAP *> UI_elementsMap; //same here ^
 
 public:
 	GraphicEngine();

@@ -20,14 +20,14 @@ void GraphicEngine::CreateGraphicInstance(GameObject *object)
 	const std::type_info& info = typeid(object);
 	string className = static_cast<string>(info.name());
 
-	GameObjectsMap.emplace(object, nullptr);
+	//GameObjectsMap.push_back(std::make_pair(object, nullptr));
 
 	//setting default sprite
 	for (auto &graphMap : GameObjectsAnimationsMap)
 	{
 		if (graphMap.first == className)
 		{
-			GameObjectsMap[object] = graphMap.second.at(0);
+			GameObjectsMap.push_back(std::make_pair(object, graphMap.second.at(0)));
 			break;
 		}
 	}
@@ -55,14 +55,14 @@ void GraphicEngine::CreateUI_Element_GraphicInstance(UI_element *element)
 
 	//cout << "name of object is: " << className << endl;
 
-	UI_elementsMap.emplace(element, nullptr);
+	//UI_elementsMap.push_back(std::make_pair(element, nullptr));
 
 	//setting default graphic
 	for (auto &graphMap : UI_elementsGraphicsMap)
 	{
 		if (graphMap.first == className)
 		{
-			UI_elementsMap[element] = graphMap.second.at(0);
+			UI_elementsMap.push_back(std::make_pair(element, graphMap.second.at(0)));
 			break;
 		}
 	}
@@ -73,13 +73,24 @@ void GraphicEngine::RequestUI_Element_Graphic(UI_element *element, int graphicNu
 	const std::type_info& info = typeid(*element);
 	string className = static_cast<string>(info.name());
 
-	//setting default graphic
-	for (auto &graphMap : UI_elementsGraphicsMap)
+	std::pair<UI_element *, ALLEGRO_BITMAP *> *currentPair = nullptr;
+
+	for (auto &elem : UI_elementsMap)
 	{
-		if (graphMap.first == className)
+		if (elem.first == element)
+			currentPair = &elem;
+	}
+
+	if (currentPair != nullptr)
+	{
+		//setting default graphic
+		for (auto &graphMap : UI_elementsGraphicsMap)
 		{
-			UI_elementsMap[element] = graphMap.second.at(graphicNumber);
-			break;
+			if (graphMap.first == className)
+			{
+				currentPair->second = graphMap.second.at(graphicNumber);
+				break;
+			}
 		}
 	}
 }
@@ -88,7 +99,7 @@ void GraphicEngine::Render()
 {
 	for (auto &UIElement : UI_elementsMap)
 	{
-		if (UIElement.second != NULL)
+		if (UIElement.second != nullptr)
 			al_draw_bitmap(UIElement.second, (UIElement.first->GetX() - (UIElement.first->GetWidth() / 2)),
 			(UIElement.first->GetY() - (UIElement.first->GetHeight() / 2)), 0);
 	}

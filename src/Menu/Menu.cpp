@@ -5,6 +5,7 @@ Menu::Menu(string title, float x, float y) : UI_element(x, y), menuTitle(title)
 {
 	width = SCREEN_WIDTH;
 	height = SCREEN_HEIGHT;
+	z = 0;
 	MarkedButton = nullptr;
 	graphicEngine->CreateUI_Element_GraphicInstance(this);
 }

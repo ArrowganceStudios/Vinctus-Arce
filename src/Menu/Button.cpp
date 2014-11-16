@@ -5,6 +5,7 @@ Button::Button(string text, float x, float y, void(*function)()) : UI_element(x,
 {
 	width = ButtonSize::ButtonWidth;
 	height = ButtonSize::ButtonHeight;
+	z = 1;
 	highlighted = false;
 	clicked = false;
 	graphicEngine->CreateUI_Element_GraphicInstance(this);

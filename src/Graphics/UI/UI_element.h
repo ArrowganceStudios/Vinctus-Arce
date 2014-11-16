@@ -11,6 +11,7 @@ protected:
 	float x;
 	float y;
 
+	int z;
 public:
 	float GetX() const { return x; }
 	float GetY() const { return y; }
