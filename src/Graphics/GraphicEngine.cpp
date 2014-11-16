@@ -53,7 +53,7 @@ void GraphicEngine::CreateUI_Element_GraphicInstance(UI_element *element)
 	const std::type_info& info = typeid(*element); //epic motherfucking win
 	string className = static_cast<string>(info.name());
 
-	cout << "name of object is: " << className << endl;
+	//cout << "name of object is: " << className << endl;
 
 	UI_elementsMap.emplace(element, nullptr);
 
@@ -70,7 +70,18 @@ void GraphicEngine::CreateUI_Element_GraphicInstance(UI_element *element)
 
 void GraphicEngine::RequestUI_Element_Graphic(UI_element *element, int graphicNumber)
 {
-	//hm, that isn't actually prepared for distinguishing distinc buttons ;/
+	const std::type_info& info = typeid(*element);
+	string className = static_cast<string>(info.name());
+
+	//setting default graphic
+	for (auto &graphMap : UI_elementsGraphicsMap)
+	{
+		if (graphMap.first == className)
+		{
+			UI_elementsMap[element] = graphMap.second.at(graphicNumber);
+			break;
+		}
+	}
 }
 
 void GraphicEngine::Render()

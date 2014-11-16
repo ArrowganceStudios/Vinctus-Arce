@@ -7,7 +7,7 @@
 using namespace std;
 
 class Button;
-
+	
 class Menu : protected UI_element
 {
 	friend class State_Menu;

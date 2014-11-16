@@ -98,6 +98,7 @@ void State_Menu::Update()		//	To do: handling input/UseFunction();
 			(mouseY <= (CurrentMenu->buttons[i]->y + CurrentMenu->buttons[i]->height / 2)))
 		{
 			CurrentMenu->buttons[i]->highlighted = true;
+			graphicEngine->RequestUI_Element_Graphic(CurrentMenu->buttons[i], 2);
 			if (CurrentMenu->MarkedButton == NULL) CurrentMenu->MarkedButton = CurrentMenu->buttons[i];
 			break;
 		}
