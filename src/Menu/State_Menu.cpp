@@ -97,30 +97,36 @@ void State_Menu::Update()		//	To do: handling input/UseFunction();
 			(mouseY >= (CurrentMenu->buttons[i]->y - CurrentMenu->buttons[i]->height / 2)) &&
 			(mouseY <= (CurrentMenu->buttons[i]->y + CurrentMenu->buttons[i]->height / 2)))
 		{
-			CurrentMenu->buttons[i]->highlighted = true;
-			graphicEngine->RequestUI_Element_Graphic(CurrentMenu->buttons[i], 2);
-			if (CurrentMenu->MarkedButton == NULL) CurrentMenu->MarkedButton = CurrentMenu->buttons[i];
-			break;
+			if (CurrentMenu->MarkedButton != CurrentMenu->buttons[i])
+			{
+				CurrentMenu->MarkedButton = CurrentMenu->buttons[i];
+				CurrentMenu->buttons[i]->highlighted = true;
+				graphicEngine->RequestUI_Element_Graphic(CurrentMenu->buttons[i], 2);
+			}
 		}
 		else
 		{
 			CurrentMenu->buttons[i]->highlighted = false;
-			graphicEngine->RequestUI_Element_Graphic(CurrentMenu->buttons[i], 0);
-			if (CurrentMenu->MarkedButton != NULL) CurrentMenu->MarkedButton = NULL;
 			if (CurrentMenu->buttons[i]->clicked) CurrentMenu->buttons[i]->clicked = false;
+			graphicEngine->RequestUI_Element_Graphic(CurrentMenu->buttons[i], 0);
 		}
 	}
-	if (mouse[LMB])
+	if (mouse[LMB] && CurrentMenu->MarkedButton != NULL && CurrentMenu->MarkedButton->highlighted)
 	{
-		if (CurrentMenu->MarkedButton != NULL && CurrentMenu->MarkedButton->highlighted) CurrentMenu->MarkedButton->clicked = true;
+
+			CurrentMenu->MarkedButton->clicked = true;
+			graphicEngine->RequestUI_Element_Graphic(CurrentMenu->MarkedButton, 1);
 	}
-	if (!mouse[LMB] && CurrentMenu->MarkedButton != NULL && CurrentMenu->MarkedButton->clicked)
+	else if (!mouse[LMB] && CurrentMenu->MarkedButton != NULL && CurrentMenu->MarkedButton->clicked)
 	{
 		cout << "Action!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << endl;
+		graphicEngine->RequestUI_Element_Graphic(CurrentMenu->MarkedButton, 0);
 		CurrentMenu->MarkedButton->UseFunction();
 		CurrentMenu->MarkedButton->clicked = false;
-	}/*
-	if (CurrentMenu->MarkedButton != NULL)		// Small but fancy debug!
+	}
+	CurrentMenu->MarkedButton = NULL;
+	/////////////////////////////////////////////////////////////////////
+	/*if (CurrentMenu->MarkedButton != NULL)		// Small but fancy debug!
 	{
 		if (CurrentMenu->MarkedButton->clicked) cout << "Clicked!" << endl;
 		else cout << "Highlighted!" << endl;
