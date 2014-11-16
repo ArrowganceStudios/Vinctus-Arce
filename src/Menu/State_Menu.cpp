@@ -40,15 +40,15 @@ void State_Menu::Init()
 	mainMenu->AddButton("Credits", MenuActions::Credits);
 	mainMenu->AddButton("Exit", MenuActions::Exit);
 
-	optionsMenu->AddButton("Resolution", MenuActions::Resolution);
-	optionsMenu->AddButton("Sound", MenuActions::Sound);
-	optionsMenu->AddButton("Back", MenuActions::Back);
+	//optionsMenu->AddButton("Resolution", MenuActions::Resolution);
+	//optionsMenu->AddButton("Sound", MenuActions::Sound);
+	//optionsMenu->AddButton("Back", MenuActions::Back);
 	
-	pauseMenu->AddButton("Yesh", MenuActions::Yesh);
-	pauseMenu->AddButton("Nah", MenuActions::Nah);
+	//pauseMenu->AddButton("Yesh", MenuActions::Yesh);
+	//pauseMenu->AddButton("Nah", MenuActions::Nah);
 
-	waveMenu->AddButton("Continue", MenuActions::Continue);
-	waveMenu->AddButton("Surrender", MenuActions::Surrender);
+	//waveMenu->AddButton("Continue", MenuActions::Continue);
+	//waveMenu->AddButton("Surrender", MenuActions::Surrender);
 
 
 	menuList = {mainMenu, optionsMenu, pauseMenu, waveMenu};
@@ -105,6 +105,7 @@ void State_Menu::Update()		//	To do: handling input/UseFunction();
 		else
 		{
 			CurrentMenu->buttons[i]->highlighted = false;
+			graphicEngine->RequestUI_Element_Graphic(CurrentMenu->buttons[i], 0);
 			if (CurrentMenu->MarkedButton != NULL) CurrentMenu->MarkedButton = NULL;
 			if (CurrentMenu->buttons[i]->clicked) CurrentMenu->buttons[i]->clicked = false;
 		}
