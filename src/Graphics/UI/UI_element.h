@@ -4,7 +4,7 @@ class UI_element
 {
 
 protected:
-	UI_element(float x, float y) :x(x), y(y) {};
+	UI_element(float x, float y) :x(x), y(y) { visible = false; };
 	float height;
 	float width;
 
@@ -12,12 +12,20 @@ protected:
 	float y;
 
 	int z;
+
+	bool visible;
+
 public:
 	float GetX() const { return x; }
 	float GetY() const { return y; }
 
 	float GetHeight() const { return height; }
 	float GetWidth() const { return width; }
+
+	bool isVisible() const { return visible; }
+
+	void Show() { visible = true; }
+	void Hide() { visible = false; }
 
 	virtual void Polymorphic() { /*do nothing and win*/ } //this is bullshit but w/e
 };

@@ -31,36 +31,47 @@ void State_Menu::Init()
 	//end of the test
 
 	mainMenu = new Menu("Main Menu");
-	//optionsMenu = new Menu("Options");
-	//pauseMenu = new Menu("Surrender?");
-	//waveMenu = new Menu("Next Wave");
+	optionsMenu = new Menu("Options");
+	pauseMenu = new Menu("Surrender?");
+	waveMenu = new Menu("Next Wave");
 
 	mainMenu->AddButton("Start Game", MenuActions::StartGame);
 	mainMenu->AddButton("Options", MenuActions::Options);
 	mainMenu->AddButton("Credits", MenuActions::Credits);
 	mainMenu->AddButton("Exit", MenuActions::Exit);
 
-	//optionsMenu->AddButton("Resolution", MenuActions::Resolution);
-	//optionsMenu->AddButton("Sound", MenuActions::Sound);
-	//optionsMenu->AddButton("Back", MenuActions::Back);
+	optionsMenu->AddButton("Resolution", MenuActions::Resolution);
+	optionsMenu->AddButton("Sound", MenuActions::Sound);
+	optionsMenu->AddButton("Back", MenuActions::Back);
 	
-	//pauseMenu->AddButton("Yesh", MenuActions::Yesh);
-	//pauseMenu->AddButton("Nah", MenuActions::Nah);
+	pauseMenu->AddButton("Yesh", MenuActions::Yesh);
+	pauseMenu->AddButton("Nah", MenuActions::Nah);
 
-	//waveMenu->AddButton("Continue", MenuActions::Continue);
-	//waveMenu->AddButton("Surrender", MenuActions::Surrender);
+	waveMenu->AddButton("Continue", MenuActions::Continue);
+	waveMenu->AddButton("Surrender", MenuActions::Surrender);
 
 
-	menuList = {mainMenu/*, optionsMenu, pauseMenu, waveMenu*/};
+	menuList = {mainMenu, optionsMenu, pauseMenu, waveMenu};
 	SwitchToMenu("Main Menu");
 }
 
 void State_Menu::SwitchToMenu(string newMenu)
 {
+	if (CurrentMenu != nullptr)
+	{
+		CurrentMenu->Hide();
+		for (auto button : CurrentMenu->buttons)
+			button->Hide();
+	}
 	for(auto menuit : menuList)
 	{
-		if(menuit->menuTitle == newMenu)
-			CurrentMenu = menuit;	//???
+		if (menuit->menuTitle == newMenu)
+		{
+			CurrentMenu = menuit;
+			CurrentMenu->Show();
+			for (auto button : CurrentMenu->buttons)
+				button->Show();
+		}
 	}
 
 }
@@ -121,8 +132,8 @@ void State_Menu::Update()		//	To do: handling input/UseFunction();
 	{
 		cout << "Action!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << endl;
 		graphicEngine->RequestUI_Element_Graphic(CurrentMenu->MarkedButton, 0);
-		CurrentMenu->MarkedButton->UseFunction();
 		CurrentMenu->MarkedButton->clicked = false;
+		CurrentMenu->MarkedButton->UseFunction();
 	}
 	CurrentMenu->MarkedButton = NULL;
 	/////////////////////////////////////////////////////////////////////

@@ -99,7 +99,7 @@ void GraphicEngine::Render()
 {
 	for (auto &UIElement : UI_elementsMap)
 	{
-		if (UIElement.second != nullptr)
+		if (UIElement.second != nullptr && UIElement.first->isVisible())
 			al_draw_bitmap(UIElement.second, (UIElement.first->GetX() - (UIElement.first->GetWidth() / 2)),
 			(UIElement.first->GetY() - (UIElement.first->GetHeight() / 2)), 0);
 	}

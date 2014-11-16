@@ -11,12 +11,12 @@ namespace MenuActions {
 
 	void Options()
 	{
-		//gameEngine->ChangeState(new Options); 
+		gameEngine->GetMenuState()->SwitchToMenu("Options");
 	}
 
 	void Credits()
 	{
-		//gameEngine->ChangeState(new Credits);
+		//gameEngine->GetMenuState()->SwitchToMenu("Credits");
 	}
 
 	void Exit()
@@ -28,24 +28,23 @@ namespace MenuActions {
 	//Options menu
 	void Resolution()
 	{
-		//gameEngine->ChangeState(new State_Menu);
+		//gameEngine->GetMenuState()->SwitchToMenu("Resolution settings");
 	}
 
 	void Sound()
 	{
-		//gameEngine->ChangeState(new State_Menu);
+		//gameEngine->GetMenuState()->SwitchToMenu("Sound Settings");
 	}
 
 	void Back()
 	{
-		//gameEngine->ChangeState(new State_Menu);
+		gameEngine->GetMenuState()->SwitchToMenu("Main Menu");
 	}
 
 
 	//Surrender menu
 	void Yesh()
 	{
-		//gameEngine->GetMenuState()->SwitchToMenu(mainMenu);
 		gameEngine->GetMenuState()->SwitchToMenu("Main Menu");
 	}
 
@@ -63,7 +62,7 @@ namespace MenuActions {
 
 	void Surrender()
 	{
-		//gameEngine->ChangeState(new State_Menu);
+		gameEngine->GetMenuState()->SwitchToMenu("Main Menu");
 	}
 
 }
