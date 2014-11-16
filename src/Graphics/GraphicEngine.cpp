@@ -50,7 +50,7 @@ void GraphicEngine::CreateUI_Element_GraphicInstance(UI_element *element)
 	//UI_graphicalElement = new UI_GraphicalElement();
 
 	//getting the class name
-	const std::type_info& info = typeid(element); //this idiet returns "class UI_element *" so we'll need to handle this in a different way
+	const std::type_info& info = typeid(*element); //epic motherfucking win
 	string className = static_cast<string>(info.name());
 
 	cout << "name of object is: " << className << endl;

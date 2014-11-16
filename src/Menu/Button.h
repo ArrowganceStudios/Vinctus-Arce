@@ -21,4 +21,6 @@ public:
 
 
 	void UseFunction(); //debug
+
+	void Polymorphic() { cout << "I'm the best fck the rest"; }
 };

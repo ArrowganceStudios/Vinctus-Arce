@@ -8,12 +8,12 @@
 void State_Menu::Init()
 {	
 	//just a test
-	/*ALLEGRO_BITMAP *menu = nullptr;
+	ALLEGRO_BITMAP *menu = nullptr;
 	menu = al_load_bitmap("assets/img/UI/Menu.jpg");
 	
 	std::vector<ALLEGRO_BITMAP *> menu_bitmap { menu };
 
-	graphicEngine->DefineUI_Element_Graphic("class UI_element *", menu_bitmap);*/
+	graphicEngine->DefineUI_Element_Graphic("class Menu", menu_bitmap);
 
 	//we need to fix this class UI_element * to use it for more than 1 object tho :D
 
@@ -26,7 +26,7 @@ void State_Menu::Init()
 
 	std::vector<ALLEGRO_BITMAP *> button_bitmaps{ default, hover, clicked };
 
-	graphicEngine->DefineUI_Element_Graphic("class UI_element *", button_bitmaps); //temporary solution
+	graphicEngine->DefineUI_Element_Graphic("class Button", button_bitmaps); //temporary solution
 
 	//end of the test
 
@@ -117,13 +117,13 @@ void State_Menu::Update()		//	To do: handling input/UseFunction();
 		cout << "Action!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << endl;
 		CurrentMenu->MarkedButton->UseFunction();
 		CurrentMenu->MarkedButton->clicked = false;
-	}
+	}/*
 	if (CurrentMenu->MarkedButton != NULL)		// Small but fancy debug!
 	{
 		if (CurrentMenu->MarkedButton->clicked) cout << "Clicked!" << endl;
 		else cout << "Highlighted!" << endl;
 	}
-	else cout << "---" << endl;
+	else cout << "---" << endl;*/
 }
 
 void State_Menu::Render()

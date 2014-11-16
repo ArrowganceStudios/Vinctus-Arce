@@ -16,8 +16,10 @@ class Menu : protected UI_element
 	Button *MarkedButton;
 	string menuTitle;
 
+	void Polymorphic() { cout << "I'm the best fck the rest"; }
+
 public:
-	Menu(string title, float x = SCREEN_WIDTH/2, float y = SCREEN_HEIGHT/2);
+	Menu(string title, float x = 400, float y = 300); //temp soultion till we fix cir.dependency
 	void AddButton(string buttonText, void(*function)());
 	void Cleanup();
 };

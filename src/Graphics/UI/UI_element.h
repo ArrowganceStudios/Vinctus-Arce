@@ -17,4 +17,6 @@ public:
 
 	float GetHeight() const { return height; }
 	float GetWidth() const { return width; }
+
+	virtual void Polymorphic() { /*do nothing and win*/ } //this is bullshit but w/e
 };
