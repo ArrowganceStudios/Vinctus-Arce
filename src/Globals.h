@@ -22,9 +22,9 @@ namespace {
 		const float ButtonWidth = 307;
 	}
 
-	namespace BarSize
+	namespace BarSize // temporary
 	{
-		const float BarHeight = 30;
+		const float BarHeight = 20;
 		const float BarWidth = 150;
 	}
 }

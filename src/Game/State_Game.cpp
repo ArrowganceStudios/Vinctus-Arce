@@ -1,21 +1,26 @@
 #include "State_Game.h"
-#include <vector>
+#include "..\Globals.h"
+#include "GameUI.h"
 #include "allegro5\allegro.h"
+#include <vector>
 
 void State_Game::Init()
 {
-	ALLEGRO_BITMAP *healthBar = nullptr;
-	ALLEGRO_BITMAP *energyBar = nullptr;
+	
+	ALLEGRO_BITMAP *Bar = nullptr;
 	ALLEGRO_BITMAP *skillsBar = nullptr;
 
-	std::vector<ALLEGRO_BITMAP *> interFace_bitmaps { healthBar, energyBar, skillsBar };
-	//graphicEngine->DefineUI_Element_Graphic("class, interface_bitmaps ")
-	
+
+
+	std::vector<ALLEGRO_BITMAP *> bar_bitmap = { Bar };
+	graphicEngine->DefineUI_Element_Graphic("class GameUI_bar", bar_bitmap);
+
+	interFace = new GameUI();
+	interFace->AddBar();
 }
 
 void State_Game::Cleanup()
 {
-
 }
 
 void State_Game::Pause()

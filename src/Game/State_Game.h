@@ -1,9 +1,13 @@
 #pragma once
 #include "../State.h"
-#include "../Graphics/UI/UI_element.h"
+#include <vector>
+
+class GameUI;
 
 class State_Game: public State
 {
+private:
+	GameUI *interFace;
 public:
 	void Init();
 	void Cleanup();
