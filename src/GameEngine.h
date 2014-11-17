@@ -10,6 +10,7 @@
 #include "Input.h"
 #include "Graphics/GraphicEngine.h"
 #include "Menu/State_Menu.h"
+#include "Game/State_Game.h"
 #include "Menu/Menu.h"
 
 
@@ -41,7 +42,7 @@ class GameEngine
 
 	GraphicEngine *graphicEngine;
 	State_Menu *menuState;
-	State *gameState;
+	State_Game *gameState;
 
 	//allegro variables
 	ALLEGRO_DISPLAY *display;

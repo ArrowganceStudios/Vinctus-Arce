@@ -64,6 +64,7 @@ void GameEngine::Init()
 void GameEngine::StartGame()
 {
 	ChangeState(gameState);
+
 }
 
 void GameEngine::Continue()

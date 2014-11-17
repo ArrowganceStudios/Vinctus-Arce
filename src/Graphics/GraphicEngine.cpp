@@ -104,6 +104,7 @@ void GraphicEngine::Render()
 			(UIElement.first->GetY() - (UIElement.first->GetHeight() / 2)), 0);
 	}
 
+	
 	for (auto &Gobject : GameObjectsMap)
 	{
 		//some animation algorithm

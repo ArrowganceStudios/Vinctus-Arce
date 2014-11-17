@@ -112,26 +112,26 @@ void State_Menu::Update()		//	To do: handling input/UseFunction();
 			{
 				CurrentMenu->MarkedButton = CurrentMenu->buttons[i];
 				CurrentMenu->buttons[i]->highlighted = true;
-				graphicEngine->RequestUI_Element_Graphic(CurrentMenu->buttons[i], 1);
+				graphicEngine->RequestUI_Element_Graphic(CurrentMenu->buttons[i], MOUSEACTION::HOVER);
 			}
 		}
 		else
 		{
 			CurrentMenu->buttons[i]->highlighted = false;
 			if (CurrentMenu->buttons[i]->clicked) CurrentMenu->buttons[i]->clicked = false;
-			graphicEngine->RequestUI_Element_Graphic(CurrentMenu->buttons[i], 0);
+			graphicEngine->RequestUI_Element_Graphic(CurrentMenu->buttons[i], MOUSEACTION::DEFAULT);
 		}
 	}
 	if (mouse[LMB] && CurrentMenu->MarkedButton != NULL && CurrentMenu->MarkedButton->highlighted)
 	{
 
 			CurrentMenu->MarkedButton->clicked = true;
-			graphicEngine->RequestUI_Element_Graphic(CurrentMenu->MarkedButton, 2);
+			graphicEngine->RequestUI_Element_Graphic(CurrentMenu->MarkedButton, MOUSEACTION::CLICKED);
 	}
 	else if (!mouse[LMB] && CurrentMenu->MarkedButton != NULL && CurrentMenu->MarkedButton->clicked)
 	{
 		cout << "Action!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << endl;
-		graphicEngine->RequestUI_Element_Graphic(CurrentMenu->MarkedButton, 0);
+		graphicEngine->RequestUI_Element_Graphic(CurrentMenu->MarkedButton, MOUSEACTION::DEFAULT);
 		CurrentMenu->MarkedButton->clicked = false;
 		CurrentMenu->MarkedButton->UseFunction();
 	}

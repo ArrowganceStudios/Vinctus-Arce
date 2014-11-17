@@ -6,7 +6,6 @@ class GameEngine;
 class State
 {
 protected:
-	GameEngine *engine;
 	State(){}
 public:
 	virtual void Init() = 0;
