@@ -9,6 +9,11 @@ namespace MenuActions {
 		gameEngine->StartGame();
 	}
 
+	void CharacterSelection()
+	{
+		gameEngine->GetMenuState()->SwitchToMenu("Character Selection");
+	}
+
 	void Options()
 	{
 		gameEngine->GetMenuState()->SwitchToMenu("Options");

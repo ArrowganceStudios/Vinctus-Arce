@@ -18,6 +18,12 @@ void Menu::AddButton(string buttonText, void (*function)())
 	buttons.push_back(newButton);
 }
 
+void Menu::AddButton(string buttonText, float x, float y, void(*function)())
+{
+	Button *newButton = new Button(buttonText, x, y, function);
+	buttons.push_back(newButton);
+}
+
 void Menu::Cleanup()
 {
 	this->buttons.clear();

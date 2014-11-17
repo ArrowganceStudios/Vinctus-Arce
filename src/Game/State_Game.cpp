@@ -6,15 +6,6 @@
 
 void State_Game::Init()
 {
-	
-	ALLEGRO_BITMAP *Bar = nullptr;
-	ALLEGRO_BITMAP *skillsBar = nullptr;
-
-
-
-	std::vector<ALLEGRO_BITMAP *> bar_bitmap = { Bar };
-	graphicEngine->DefineUI_Element_Graphic("class GameUI_bar", bar_bitmap);
-
 	interFace = new GameUI();
 	interFace->AddBar();
 }
@@ -43,7 +34,14 @@ void State_Game::Update()
 
 }
 
-void State_Game::Render()
+void State_Game::LoadResources()
 {
+	//Graphics
+	//bars
+	ALLEGRO_BITMAP *Bar = nullptr;
+	ALLEGRO_BITMAP *skillsBar = nullptr;
 
+	std::vector<ALLEGRO_BITMAP *> bar_bitmap = { Bar };
+	graphicEngine->DefineUI_Element_Graphic("class GameUI_bar", bar_bitmap);
+	//Sounds
 }

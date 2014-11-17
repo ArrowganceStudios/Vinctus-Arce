@@ -1,41 +1,18 @@
-//#include "State_Menu.h"
 #include "../Globals.h"
-//#include "../GameEngine.h"
-//#include "../Graphics/GraphicEngine.h"
 #include "../InputMap.h"
 #include "MenuActions.h"
 
 void State_Menu::Init()
 {	
-	//just a test
-	ALLEGRO_BITMAP *menu = nullptr;
-	menu = al_load_bitmap("assets/img/UI/Menu.jpg");
-	
-	std::vector<ALLEGRO_BITMAP *> menu_bitmap { menu };
-
-	graphicEngine->DefineUI_Element_Graphic("class Menu", menu_bitmap);
-
-	//we need to fix this class UI_element * to use it for more than 1 object tho :D
-
-	ALLEGRO_BITMAP *default = nullptr;
-	default = al_load_bitmap("assets/img/UI/button.png");
-	ALLEGRO_BITMAP *hover = nullptr;
-	hover = al_load_bitmap("assets/img/UI/button_highlighted.png");
-	ALLEGRO_BITMAP *clicked = nullptr;
-	clicked = al_load_bitmap("assets/img/UI/button_clicked.png");
-
-	std::vector<ALLEGRO_BITMAP *> button_bitmaps{ default, hover, clicked };
-
-	graphicEngine->DefineUI_Element_Graphic("class Button", button_bitmaps); //temporary solution
-
-	//end of the test
+	LoadResources();
 
 	mainMenu = new Menu("Main Menu");
+	characterSelectionMenu = new Menu("Character Selection");
 	optionsMenu = new Menu("Options");
 	pauseMenu = new Menu("Surrender?");
 	waveMenu = new Menu("Next Wave");
 
-	mainMenu->AddButton("Start Game", MenuActions::StartGame);
+	mainMenu->AddButton("Start Game", MenuActions::CharacterSelection);
 	mainMenu->AddButton("Options", MenuActions::Options);
 	mainMenu->AddButton("Credits", MenuActions::Credits);
 	mainMenu->AddButton("Exit", MenuActions::Exit);
@@ -50,8 +27,13 @@ void State_Menu::Init()
 	waveMenu->AddButton("Continue", MenuActions::Continue);
 	waveMenu->AddButton("Surrender", MenuActions::Surrender);
 
+	//characterSelectionMenu->AddClassIconBig("Warrior", MenuActions::WarriorClassSelected); //this will be derived from button probably
+	//characterSelectionMenu->AddClassIconBig("Mage", MenuActions::MageClassSelected);
+	//characterSelectionMenu->AddClassIconBig("Ranger", MenuActions::RangerClassSelected);
+	characterSelectionMenu->AddButton("Begin", 570, 520, MenuActions::StartGame);
+	characterSelectionMenu->AddButton("Back", 240, 520, MenuActions::Back);
 
-	menuList = {mainMenu, optionsMenu, pauseMenu, waveMenu};
+	menuList = {mainMenu, characterSelectionMenu, optionsMenu, pauseMenu, waveMenu};
 	SwitchToMenu("Main Menu");
 }
 
@@ -101,7 +83,9 @@ void State_Menu::HandleEvents()
 
 void State_Menu::Update()		//	To do: handling input/UseFunction();
 {
-	for (int i = 0; i < CurrentMenu->buttons.size(); i++)
+	using ::ButtonState; //zis is kruszal!
+
+	for (unsigned int i = 0; i < CurrentMenu->buttons.size(); i++)
 	{
 		if ((mouseX >= (CurrentMenu->buttons[i]->x - CurrentMenu->buttons[i]->width / 2)) &&
 			(mouseX <= (CurrentMenu->buttons[i]->x + CurrentMenu->buttons[i]->width / 2)) &&
@@ -112,26 +96,26 @@ void State_Menu::Update()		//	To do: handling input/UseFunction();
 			{
 				CurrentMenu->MarkedButton = CurrentMenu->buttons[i];
 				CurrentMenu->buttons[i]->highlighted = true;
-				graphicEngine->RequestUI_Element_Graphic(CurrentMenu->buttons[i], MOUSEACTION::HOVER);
+				graphicEngine->RequestUI_Element_Graphic(CurrentMenu->buttons[i], Hover);
 			}
 		}
 		else
 		{
 			CurrentMenu->buttons[i]->highlighted = false;
 			if (CurrentMenu->buttons[i]->clicked) CurrentMenu->buttons[i]->clicked = false;
-			graphicEngine->RequestUI_Element_Graphic(CurrentMenu->buttons[i], MOUSEACTION::DEFAULT);
+			graphicEngine->RequestUI_Element_Graphic(CurrentMenu->buttons[i], Default);
 		}
 	}
 	if (mouse[LMB] && CurrentMenu->MarkedButton != NULL && CurrentMenu->MarkedButton->highlighted)
 	{
 
 			CurrentMenu->MarkedButton->clicked = true;
-			graphicEngine->RequestUI_Element_Graphic(CurrentMenu->MarkedButton, MOUSEACTION::CLICKED);
+			graphicEngine->RequestUI_Element_Graphic(CurrentMenu->MarkedButton, Clicked);
 	}
 	else if (!mouse[LMB] && CurrentMenu->MarkedButton != NULL && CurrentMenu->MarkedButton->clicked)
 	{
-		cout << "Action!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << endl;
-		graphicEngine->RequestUI_Element_Graphic(CurrentMenu->MarkedButton, MOUSEACTION::DEFAULT);
+		//cout << "Action!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << endl;
+		graphicEngine->RequestUI_Element_Graphic(CurrentMenu->MarkedButton, Clicked);
 		CurrentMenu->MarkedButton->clicked = false;
 		CurrentMenu->MarkedButton->UseFunction();
 	}
@@ -145,7 +129,28 @@ void State_Menu::Update()		//	To do: handling input/UseFunction();
 	else cout << "---" << endl;*/
 }
 
-void State_Menu::Render()
+void State_Menu::LoadResources()
 {
-	//graphicEngine->CreateGraphicInstance(??, ??)
+	//Graphics
+	//menu
+	ALLEGRO_BITMAP *menu = nullptr;
+	menu = al_load_bitmap("assets/img/UI/Menu.jpg");
+
+	std::vector<ALLEGRO_BITMAP *> menu_bitmap{ menu };
+
+	graphicEngine->DefineUI_Element_Graphic("class Menu", menu_bitmap);
+
+	//buttons
+	ALLEGRO_BITMAP *default = nullptr;
+	default = al_load_bitmap("assets/img/UI/button.png");
+	ALLEGRO_BITMAP *hover = nullptr;
+	hover = al_load_bitmap("assets/img/UI/button_highlighted.png");
+	ALLEGRO_BITMAP *clicked = nullptr;
+	clicked = al_load_bitmap("assets/img/UI/button_clicked.png");
+
+	std::vector<ALLEGRO_BITMAP *> button_bitmaps{ default, hover, clicked };
+
+	graphicEngine->DefineUI_Element_Graphic("class Button", button_bitmaps);
+
+	//Sounds
 }

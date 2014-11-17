@@ -8,6 +8,3 @@ extern bool mouse[2];
 
 extern float mouseX;
 extern float mouseY;
-
-
-enum MOUSEACTION { DEFAULT, HOVER, CLICKED };

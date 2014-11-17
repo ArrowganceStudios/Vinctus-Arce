@@ -5,6 +5,7 @@
 namespace MenuActions {
 	//Main menu
 	void StartGame();
+	void CharacterSelection();
 	void Options();
 	void Credits();
 	void Exit();

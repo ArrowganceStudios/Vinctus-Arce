@@ -1,5 +1,4 @@
 #include "../GameEngine.h"
-//#include "GraphicEngine.h"
 #include "UI/UI_GraphicalElement.h"
 #include <iostream>
 
@@ -78,7 +77,10 @@ void GraphicEngine::RequestUI_Element_Graphic(UI_element *element, int graphicNu
 	for (auto &elem : UI_elementsMap)
 	{
 		if (elem.first == element)
+		{
 			currentPair = &elem;
+			break;
+		}
 	}
 
 	if (currentPair != nullptr)

@@ -21,5 +21,6 @@ class Menu : protected UI_element
 public:
 	Menu(string title, float x = 400, float y = 300); //temp soultion till we fix cir.dependency
 	void AddButton(string buttonText, void(*function)());
+	void AddButton(string buttonText, float x, float y, void(*function)());
 	void Cleanup();
 };

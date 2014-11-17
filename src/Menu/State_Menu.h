@@ -14,9 +14,12 @@ private:
 	vector<Menu *> menuList;
 
 	Menu *mainMenu;
+	Menu *characterSelectionMenu;
 	Menu *optionsMenu;
 	Menu *pauseMenu;
 	Menu *waveMenu;
+
+	void LoadResources();
 
 public:
 	State_Menu(){};
@@ -31,6 +34,6 @@ public:
 
 	void HandleEvents();
 	void Update();
-	void Render();
+	void Render() {};
 
 };

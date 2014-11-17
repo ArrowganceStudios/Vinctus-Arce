@@ -5,6 +5,7 @@ class UI_element
 
 protected:
 	UI_element(float x, float y) :x(x), y(y) { visible = false; };
+	UI_element(float x, float y, float h, float w) :x(x), y(y), height(h), width(w) { visible = false; };
 	float height;
 	float width;
 

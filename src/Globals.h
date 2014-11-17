@@ -27,4 +27,11 @@ namespace {
 		const float BarHeight = 20;
 		const float BarWidth = 150;
 	}
+
+	enum ButtonState
+	{
+		Default,
+		Hover,
+		Clicked
+	};
 }
