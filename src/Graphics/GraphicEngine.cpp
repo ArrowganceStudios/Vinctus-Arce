@@ -115,17 +115,36 @@ void GraphicEngine::Render()
 
 void GraphicEngine::DestroyUI_ElementGraphicInstance(UI_element *element)
 {
-	const std::type_info& info = typeid(*element); 
-	string className = static_cast<string>(info.name());
+	for (auto &ui_element : UI_elementsMap)
+	{
+		if (ui_element.first == element)
+		{
+			delete element;
+		}
+	}
+}
 
+void GraphicEngine::DestroyUI_ElementGraphic(string className)
+{
 	for (auto &graphMap : UI_elementsGraphicsMap)
 	{
 		if (graphMap.first == className)
 		{
-			UI_elementsMap.clear(); //??
-			UI_elementsMap.shrink_to_fit();
+			for (auto bitmap : graphMap.second)
+			{
+				al_destroy_bitmap(bitmap);
+			}
 			break;
 		}
 	}
 
+	//UI_elementsGraphicsMap.erase(className);
+}
+
+void GraphicEngine::CleanUpUIMaps()
+{
+	UI_elementsGraphicsMap.clear();
+
+	UI_elementsMap.clear();
+	//UI_elementsMap.shrink_to_fit();
 }

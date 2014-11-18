@@ -165,7 +165,7 @@ void GameEngine::Destroy()
 	//project objects destroy
 	graphicEngine->Destroy(); //bitmaps
 
-	delete graphicEngine;
+	delete graphicEngine; //some error here, it has shown size of the graphic map as some 4 * 10^6 O.o
 	//allegro vars destroy
 	//al_destroy_font(font18);
 	al_destroy_display(display);

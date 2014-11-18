@@ -67,8 +67,6 @@ void State_Menu::SwitchToMenu(string newMenu)
 
 void State_Menu::Cleanup()
 {
-	for (auto button : characterSelectionMenu->buttons)
-		delete button;
 	while (!menuList.empty())
 	{
 
@@ -77,11 +75,18 @@ void State_Menu::Cleanup()
 	}
 	menuList.shrink_to_fit();
 
+	graphicEngine->DestroyUI_ElementGraphic("class Button");
+	graphicEngine->DestroyUI_ElementGraphic("class Image");
+	graphicEngine->DestroyUI_ElementGraphic("class Menu");
+
+	graphicEngine->CleanUpUIMaps();
+
 	delete characterSelectionMenu;
 	delete mainMenu;
 	delete optionsMenu;
+	delete creditsMenu;
 	delete pauseMenu;
-	delete waveMenu;
+	//delete waveMenu; //what the actual fuck?
 }
 
 void State_Menu::Pause()

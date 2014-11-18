@@ -31,9 +31,19 @@ void Menu::AddImage(float x, float y, float w, float h, const int id)
 
 void Menu::Cleanup()
 {
-	this->buttons.clear();
-	buttons.shrink_to_fit();
-	for (auto button : this->buttons)
+	for (auto button : buttons)
 		graphicEngine->DestroyUI_ElementGraphicInstance(button);
+	
+	for (auto image : images)
+		graphicEngine->DestroyUI_ElementGraphicInstance(image);
+
+	graphicEngine->DestroyUI_ElementGraphicInstance(this);
+
+	if (buttons.size())
+		buttons.clear();
+
+	if (images.size())
+	images.clear();
+
 	//delete
 }

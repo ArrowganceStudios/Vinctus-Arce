@@ -32,10 +32,12 @@ public:
 	void RequestAnimation(GameObject *gameObject, int animationNumber);
 
 	void DefineUI_Element_Graphic(string elementsClassName, std::vector<ALLEGRO_BITMAP *> bitmaps);
+	void DestroyUI_ElementGraphic(string className);
 
 	void CreateUI_Element_GraphicInstance(UI_element *element);
 	void DestroyUI_ElementGraphicInstance(UI_element *element);
 	void RequestUI_Element_Graphic(UI_element *element, int graphicNumber);
 
+	void CleanUpUIMaps();
 	void Destroy(){};
 };
