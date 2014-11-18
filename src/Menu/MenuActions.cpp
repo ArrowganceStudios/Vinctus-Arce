@@ -21,7 +21,7 @@ namespace MenuActions {
 
 	void Credits()
 	{
-		//gameEngine->GetMenuState()->SwitchToMenu("Credits");
+		gameEngine->GetMenuState()->SwitchToMenu("Credits");
 	}
 
 	void Exit()

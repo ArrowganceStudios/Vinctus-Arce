@@ -1,5 +1,4 @@
-//#include "Menu.h"
-#include "Button.h"
+#include "Menu.h"
 
 Menu::Menu(string title, float x, float y) : UI_element(x, y), menuTitle(title)
 {
@@ -22,6 +21,12 @@ void Menu::AddButton(string buttonText, float x, float y, void(*function)())
 {
 	Button *newButton = new Button(buttonText, x, y, function);
 	buttons.push_back(newButton);
+}
+
+void Menu::AddImage(float x, float y, float w, float h, const int id)
+{
+	Image *newImage = new Image(x, y, w, h, id);
+	images.push_back(newImage);
 }
 
 void Menu::Cleanup()

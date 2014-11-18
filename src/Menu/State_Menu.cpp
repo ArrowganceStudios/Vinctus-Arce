@@ -9,6 +9,7 @@ void State_Menu::Init()
 	mainMenu = new Menu("Main Menu");
 	characterSelectionMenu = new Menu("Character Selection");
 	optionsMenu = new Menu("Options");
+	creditsMenu = new Menu("Credits");
 	pauseMenu = new Menu("Surrender?");
 	waveMenu = new Menu("Next Wave");
 
@@ -21,6 +22,8 @@ void State_Menu::Init()
 	optionsMenu->AddButton("Sound", MenuActions::Sound);
 	optionsMenu->AddButton("Back", MenuActions::Back);
 	
+	creditsMenu->AddImage(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 800, 600, 0);
+
 	pauseMenu->AddButton("Yesh", MenuActions::Yesh);
 	pauseMenu->AddButton("Nah", MenuActions::Nah);
 
@@ -33,7 +36,7 @@ void State_Menu::Init()
 	characterSelectionMenu->AddButton("Begin", 570, 520, MenuActions::StartGame);
 	characterSelectionMenu->AddButton("Back", 240, 520, MenuActions::Back);
 
-	menuList = {mainMenu, characterSelectionMenu, optionsMenu, pauseMenu, waveMenu};
+	menuList = {mainMenu, characterSelectionMenu, optionsMenu, creditsMenu, pauseMenu, waveMenu};
 	SwitchToMenu("Main Menu");
 }
 
@@ -44,6 +47,8 @@ void State_Menu::SwitchToMenu(string newMenu)
 		CurrentMenu->Hide();
 		for (auto button : CurrentMenu->buttons)
 			button->Hide();
+		for (auto image : CurrentMenu->images)
+			image->Hide();
 	}
 	for(auto menuit : menuList)
 	{
@@ -53,6 +58,8 @@ void State_Menu::SwitchToMenu(string newMenu)
 			CurrentMenu->Show();
 			for (auto button : CurrentMenu->buttons)
 				button->Show();
+			for (auto image : CurrentMenu->images)
+				image->Show();
 		}
 	}
 
@@ -161,6 +168,14 @@ void State_Menu::LoadResources()
 	std::vector<ALLEGRO_BITMAP *> button_bitmaps{ default, hover, clicked };
 
 	graphicEngine->DefineUI_Element_Graphic("class Button", button_bitmaps);
+
+	//credits graphic
+	ALLEGRO_BITMAP *arrowgance = nullptr;
+	arrowgance = al_load_bitmap("assets/img/media/arrowgance.jpg");
+
+	std::vector<ALLEGRO_BITMAP *> arrowgance_bitmap{ arrowgance };
+
+	graphicEngine->DefineUI_Element_Graphic("class Image", arrowgance_bitmap);
 
 	//Sounds
 }
