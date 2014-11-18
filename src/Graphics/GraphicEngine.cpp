@@ -112,3 +112,20 @@ void GraphicEngine::Render()
 		//some animation algorithm
 	}
 }
+
+void GraphicEngine::DestroyUI_ElementGraphicInstance(UI_element *element)
+{
+	const std::type_info& info = typeid(*element); 
+	string className = static_cast<string>(info.name());
+
+	for (auto &graphMap : UI_elementsGraphicsMap)
+	{
+		if (graphMap.first == className)
+		{
+			UI_elementsMap.clear(); //??
+			UI_elementsMap.shrink_to_fit();
+			break;
+		}
+	}
+
+}

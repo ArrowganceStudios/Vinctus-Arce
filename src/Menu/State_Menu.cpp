@@ -60,11 +60,16 @@ void State_Menu::SwitchToMenu(string newMenu)
 
 void State_Menu::Cleanup()
 {
+	for (auto button : characterSelectionMenu->buttons)
+		delete button;
 	while (!menuList.empty())
 	{
+
 		menuList.back()->Cleanup();
-		menuList.pop_back();
+		menuList.clear();
 	}
+	menuList.shrink_to_fit();
+
 	delete characterSelectionMenu;
 	delete mainMenu;
 	delete optionsMenu;

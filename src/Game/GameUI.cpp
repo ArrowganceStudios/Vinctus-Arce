@@ -10,4 +10,5 @@ void GameUI::AddBar(float x, float y)
 void GameUI::Cleanup()
 {
 	this->bars.clear();
+	bars.shrink_to_fit();
 }

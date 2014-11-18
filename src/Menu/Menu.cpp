@@ -27,4 +27,8 @@ void Menu::AddButton(string buttonText, float x, float y, void(*function)())
 void Menu::Cleanup()
 {
 	this->buttons.clear();
+	buttons.shrink_to_fit();
+	for (auto button : this->buttons)
+		graphicEngine->DestroyUI_ElementGraphicInstance(button);
+	//delete
 }
