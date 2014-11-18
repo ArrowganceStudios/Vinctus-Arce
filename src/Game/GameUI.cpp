@@ -1,9 +1,9 @@
 #include "GameUI.h"
 
 
-void GameUI::AddBar()
+void GameUI::AddBar(float x, float y)
 {
-		GameUI_bar *bar = new GameUI_bar(10, 20 * bars.size());
+		GameUI_bar *bar = new GameUI_bar(x, y);
 		bars.push_back(bar);
 }
 

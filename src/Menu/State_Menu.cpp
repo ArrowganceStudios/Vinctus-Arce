@@ -65,6 +65,11 @@ void State_Menu::Cleanup()
 		menuList.back()->Cleanup();
 		menuList.pop_back();
 	}
+	delete characterSelectionMenu;
+	delete mainMenu;
+	delete optionsMenu;
+	delete pauseMenu;
+	delete waveMenu;
 }
 
 void State_Menu::Pause()
@@ -115,7 +120,7 @@ void State_Menu::Update()		//	To do: handling input/UseFunction();
 	else if (!mouse[LMB] && CurrentMenu->MarkedButton != NULL && CurrentMenu->MarkedButton->clicked)
 	{
 		//cout << "Action!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << endl;
-		graphicEngine->RequestUI_Element_Graphic(CurrentMenu->MarkedButton, Clicked);
+		graphicEngine->RequestUI_Element_Graphic(CurrentMenu->MarkedButton, Default);
 		CurrentMenu->MarkedButton->clicked = false;
 		CurrentMenu->MarkedButton->UseFunction();
 	}

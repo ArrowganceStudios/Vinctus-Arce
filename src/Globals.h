@@ -24,8 +24,8 @@ namespace {
 
 	namespace BarSize // temporary
 	{
-		const float BarHeight = 20;
-		const float BarWidth = 150;
+		const float BarHeight = 66;
+		const float BarWidth = 307;
 	}
 
 	enum ButtonState
