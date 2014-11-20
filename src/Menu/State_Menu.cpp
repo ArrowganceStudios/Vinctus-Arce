@@ -86,7 +86,7 @@ void State_Menu::Cleanup()
 	delete optionsMenu;
 	delete creditsMenu;
 	delete pauseMenu;
-	//delete waveMenu; //what the actual fuck?
+	//delete waveMenu;
 }
 
 void State_Menu::Pause()

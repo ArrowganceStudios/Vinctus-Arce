@@ -75,7 +75,7 @@ public:
 	void Destroy();
 
 	void Continue();
-	void Quit() { done = true; }
+	void Quit();
 	
 	bool Done() const;
 

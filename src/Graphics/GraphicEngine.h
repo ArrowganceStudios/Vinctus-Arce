@@ -39,5 +39,5 @@ public:
 	void RequestUI_Element_Graphic(UI_element *element, int graphicNumber);
 
 	void CleanUpUIMaps();
-	void Destroy(){};
+	void Destroy();
 };

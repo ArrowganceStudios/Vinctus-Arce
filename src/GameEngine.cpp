@@ -73,26 +73,26 @@ void GameEngine::Continue()
 
 void GameEngine::Escaper() //this should be done in seperate class if I'm correct?
 {
-	if(event.type == ALLEGRO_EVENT_KEY_DOWN)
+	if(event.type == ALLEGRO_EVENT_KEY_DOWN) /////// do we need this?
 	{
 		switch(event.keyboard.keycode)
 		{
 		case ALLEGRO_KEY_ESCAPE:
-			done = true;
+			Quit();
 			break;
 		}
 	}
-	else if(event.type == ALLEGRO_EVENT_KEY_UP)
+	else if (event.type == ALLEGRO_EVENT_KEY_UP)
 	{
-		switch(event.keyboard.keycode)
+		switch (event.keyboard.keycode)
 		{
 		case ALLEGRO_KEY_ESCAPE:
-			done = true;
+			Quit();
 			break;
 		}
 	}
 	else if (event.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
-		done = true;
+		Quit();
 }
 
 void GameEngine::ChangeState(State* state) {
@@ -163,13 +163,13 @@ void GameEngine::Flush()
 void GameEngine::Destroy()
 {	
 	//project objects destroy
-	graphicEngine->Destroy(); //bitmaps
-
+	//graphicEngine->Destroy(); //bitmap
+	Flush();
 	delete graphicEngine; //some error here, it has shown size of the graphic map as some 4 * 10^6 O.o
 	//allegro vars destroy
 	//al_destroy_font(font18);
 	al_destroy_display(display);
-	al_destroy_event_queue(eventQueue);
+	//al_destroy_event_queue(eventQueue);
 	al_destroy_timer(timer);
 }
 
@@ -177,3 +177,9 @@ bool GameEngine::Done() const
 {
 	return !done;
 };
+
+void GameEngine::Quit()
+{
+	Destroy();
+	done = true; 
+}

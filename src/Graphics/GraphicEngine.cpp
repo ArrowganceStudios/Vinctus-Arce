@@ -146,5 +146,16 @@ void GraphicEngine::CleanUpUIMaps()
 	UI_elementsGraphicsMap.clear();
 
 	UI_elementsMap.clear();
-	//UI_elementsMap.shrink_to_fit();
+	UI_elementsMap.shrink_to_fit();
+}
+
+void GraphicEngine::Destroy()
+{
+	//CleanUpUIMaps();
+	/*DestroyUI_ElementGraphic("class Button");
+	DestroyUI_ElementGraphic("class Menu");
+	DestroyUI_ElementGraphic("class GameUI_bar");
+	DestroyUI_ElementGraphic("class Image");*/
+
+
 }

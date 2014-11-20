@@ -41,9 +41,11 @@ void Menu::Cleanup()
 
 	if (buttons.size())
 		buttons.clear();
+		buttons.shrink_to_fit();
 
 	if (images.size())
-	images.clear();
+		images.clear();
+		images.shrink_to_fit();
 
 	//delete
 }
