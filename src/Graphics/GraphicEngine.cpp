@@ -151,11 +151,11 @@ void GraphicEngine::CleanUpUIMaps()
 
 void GraphicEngine::Destroy()
 {
-	//CleanUpUIMaps();
-	/*DestroyUI_ElementGraphic("class Button");
+	DestroyUI_ElementGraphic("class Button");
 	DestroyUI_ElementGraphic("class Menu");
 	DestroyUI_ElementGraphic("class GameUI_bar");
-	DestroyUI_ElementGraphic("class Image");*/
+	DestroyUI_ElementGraphic("class Image");
+	CleanUpUIMaps();
 
 
 }

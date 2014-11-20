@@ -1,6 +1,5 @@
 #include "../GameEngine.h"
 #include "MenuActions.h"
-//#include "../Menu/State_Menu.h"
 
 namespace MenuActions {
 	//Main menu

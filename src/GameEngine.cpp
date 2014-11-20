@@ -163,13 +163,11 @@ void GameEngine::Flush()
 void GameEngine::Destroy()
 {	
 	//project objects destroy
-	//graphicEngine->Destroy(); //bitmap
-	Flush();
-	delete graphicEngine; //some error here, it has shown size of the graphic map as some 4 * 10^6 O.o
+	graphicEngine->Destroy(); //bitmap
 	//allegro vars destroy
 	//al_destroy_font(font18);
 	al_destroy_display(display);
-	//al_destroy_event_queue(eventQueue);
+	al_destroy_event_queue(eventQueue);
 	al_destroy_timer(timer);
 }
 
@@ -180,6 +178,5 @@ bool GameEngine::Done() const
 
 void GameEngine::Quit()
 {
-	Destroy();
-	done = true; 
+	done = true;
 }
