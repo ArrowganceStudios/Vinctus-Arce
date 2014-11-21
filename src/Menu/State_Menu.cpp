@@ -11,7 +11,7 @@ void State_Menu::Init()
 	optionsMenu = new Menu("Options");
 	creditsMenu = new Menu("Credits");
 	pauseMenu = new Menu("Surrender?");
-	waveMenu = new Menu("Next Wave");
+	waveMenu = new Menu("Wave Menu");
 
 	mainMenu->AddButton("Start Game", MenuActions::CharacterSelection);
 	mainMenu->AddButton("Options", MenuActions::Options);
@@ -36,7 +36,7 @@ void State_Menu::Init()
 	characterSelectionMenu->AddButton("Begin", 570, 520, MenuActions::StartGame);
 	characterSelectionMenu->AddButton("Back", 240, 520, MenuActions::Back);
 
-	menuList = {mainMenu, characterSelectionMenu, optionsMenu, creditsMenu, pauseMenu, waveMenu};
+	menuList = { mainMenu, characterSelectionMenu, optionsMenu, creditsMenu, waveMenu, pauseMenu };
 	SwitchToMenu("Main Menu");
 }
 
@@ -67,26 +67,26 @@ void State_Menu::SwitchToMenu(string newMenu)
 
 void State_Menu::Cleanup()
 {
-	while (!menuList.empty())
+	for (auto &menu : menuList)
 	{
-
-		menuList.back()->Cleanup();
-		menuList.clear();
+		menu->Cleanup();
 	}
-	menuList.shrink_to_fit();
+
+	//menuList.clear();
+	//menuList.shrink_to_fit();
 
 	graphicEngine->DestroyUI_ElementGraphic("class Button");
 	graphicEngine->DestroyUI_ElementGraphic("class Image");
 	graphicEngine->DestroyUI_ElementGraphic("class Menu");
-
+	
 	graphicEngine->CleanUpUIMaps();
-
+	
 	delete characterSelectionMenu;
 	delete mainMenu;
 	delete optionsMenu;
 	delete creditsMenu;
 	delete pauseMenu;
-	//delete waveMenu;
+	delete waveMenu;
 }
 
 void State_Menu::Pause()

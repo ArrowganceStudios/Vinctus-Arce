@@ -12,6 +12,6 @@ void GameUI::Cleanup()
 	for (auto bar : bars)
 		graphicEngine->DestroyUI_ElementGraphicInstance(bar);
 	if (bars.size())
-		this->bars.clear();
+		bars.clear();
 	bars.shrink_to_fit();
 }

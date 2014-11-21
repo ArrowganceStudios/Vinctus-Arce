@@ -115,12 +115,16 @@ void GraphicEngine::Render()
 
 void GraphicEngine::DestroyUI_ElementGraphicInstance(UI_element *element)
 {
+	vector<std::pair<UI_element *, ALLEGRO_BITMAP *>>::iterator pos = UI_elementsMap.begin();
 	for (auto &ui_element : UI_elementsMap)
 	{
+		
 		if (ui_element.first == element)
 		{
-			delete element;
+			UI_elementsMap.erase(pos);
+			break;
 		}
+		pos++;
 	}
 }
 
@@ -137,8 +141,6 @@ void GraphicEngine::DestroyUI_ElementGraphic(string className)
 			break;
 		}
 	}
-
-	//UI_elementsGraphicsMap.erase(className);
 }
 
 void GraphicEngine::CleanUpUIMaps()
@@ -151,11 +153,12 @@ void GraphicEngine::CleanUpUIMaps()
 
 void GraphicEngine::Destroy()
 {
-	DestroyUI_ElementGraphic("class Button");
-	DestroyUI_ElementGraphic("class Menu");
-	DestroyUI_ElementGraphic("class GameUI_bar");
-	DestroyUI_ElementGraphic("class Image");
+	for (auto &graphMap : UI_elementsGraphicsMap)
+	{
+		for (auto bitmap : graphMap.second)
+		{
+			if(bitmap != nullptr) al_destroy_bitmap(bitmap);
+		}
+	}
 	CleanUpUIMaps();
-
-
 }

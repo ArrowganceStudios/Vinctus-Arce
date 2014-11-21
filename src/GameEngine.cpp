@@ -82,7 +82,7 @@ void GameEngine::Escaper() //this should be done in seperate class if I'm correc
 			break;
 		}
 	}
-	else if (event.type == ALLEGRO_EVENT_KEY_UP)
+	else if (event.type == ALLEGRO_EVENT_KEY_UP) //I'd rather ask whether we need that
 	{
 		switch (event.keyboard.keycode)
 		{
