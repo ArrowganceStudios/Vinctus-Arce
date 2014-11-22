@@ -173,7 +173,7 @@ void State_Menu::LoadResources()
 	graphicEngine->DefineUI_Element_Graphic("class Image", "assets/img/media/arrowgance.jpg");
 
 	//fonts
-	graphicEngine->textManager->DefineFont("Morpheius", "assets/img/UI/Morpheius_dark.png", 7, 72, 108, -30);
+	graphicEngine->textManager->DefineFont("Morpheius", "assets/img/UI/Morpheius_vDark.png", 7, 72, 108, -30);
 
 	//Sounds
 }

@@ -5,6 +5,8 @@
 
 using namespace std;
 
+extern GraphicEngine *graphicEngine;
+
 class GraphicEngine;
 
 class Text : protected UI_element
