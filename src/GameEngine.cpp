@@ -44,7 +44,13 @@ void GameEngine::Init()
 	al_init(); //Initialises the allegro library
 	al_install_keyboard();
 	al_install_mouse();
-    
+	
+	al_set_new_display_flags(ALLEGRO_RESIZABLE);
+	al_set_new_display_option(ALLEGRO_VSYNC, 1, ALLEGRO_SUGGEST);
+	al_set_new_bitmap_flags(ALLEGRO_MIN_LINEAR);
+	al_set_new_display_option(ALLEGRO_SAMPLE_BUFFERS, 1, ALLEGRO_SUGGEST);
+	al_set_new_display_option(ALLEGRO_SAMPLES, 6, ALLEGRO_SUGGEST);
+
     display = al_create_display(WIDTH, HEIGHT);
 	al_set_window_title(display, "Vinctus Arce");
     
