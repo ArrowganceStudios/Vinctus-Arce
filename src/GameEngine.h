@@ -81,4 +81,5 @@ public:
 
 	ALLEGRO_EVENT_QUEUE * GetEventQueue() const { return eventQueue; }
 	ALLEGRO_EVENT * GetEvent() { return &event; }
+	ALLEGRO_DISPLAY * GetDisplay() { return display; }
 };

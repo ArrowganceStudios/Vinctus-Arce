@@ -50,12 +50,7 @@ void State_Game::LoadResources()
 {
 	//Graphics
 	//bars
-	ALLEGRO_BITMAP *Bar = nullptr;
-	ALLEGRO_BITMAP *skillsBar = nullptr;
+	graphicEngine->DefineUI_Element_Graphic("class GameUI_bar", "assets/img/UI/button.png");
 
-
-	Bar = al_load_bitmap("assets/img/UI/button.png");
-	std::vector<ALLEGRO_BITMAP *> bar_bitmap = { Bar };
-	graphicEngine->DefineUI_Element_Graphic("class GameUI_bar", bar_bitmap);
 	//Sounds
 }

@@ -2,8 +2,11 @@
 #include <string>
 #include "../Globals.h"
 #include "../Graphics/UI/UI_element.h"
+#include "../Graphics/UI/Text.h"
 
 using namespace std;
+
+class Text;
 
 class Button : protected UI_element
 {
@@ -16,8 +19,13 @@ class Button : protected UI_element
 
 	string text;
 
+	Text *buttonText;
+
 public:
 	Button(string text, float x, float y, void(*function)());
+	~Button();
+
+	Text * GetText() const { return buttonText; }
 
 	void UseFunction(); //debug
 

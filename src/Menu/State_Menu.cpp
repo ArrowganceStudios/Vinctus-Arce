@@ -46,7 +46,10 @@ void State_Menu::SwitchToMenu(string newMenu)
 	{
 		CurrentMenu->Hide();
 		for (auto button : CurrentMenu->buttons)
+		{
 			button->Hide();
+			button->GetText()->Hide();
+		}
 		for (auto image : CurrentMenu->images)
 			image->Hide();
 	}
@@ -57,7 +60,10 @@ void State_Menu::SwitchToMenu(string newMenu)
 			CurrentMenu = menuit;
 			CurrentMenu->Show();
 			for (auto button : CurrentMenu->buttons)
+			{
 				button->Show();
+				button->GetText()->Show();
+			}
 			for (auto image : CurrentMenu->images)
 				image->Show();
 		}
@@ -78,7 +84,8 @@ void State_Menu::Cleanup()
 	graphicEngine->DestroyUI_ElementGraphic("class Button");
 	graphicEngine->DestroyUI_ElementGraphic("class Image");
 	graphicEngine->DestroyUI_ElementGraphic("class Menu");
-	
+	graphicEngine->DestroyUI_ElementGraphic("class Text");
+
 	graphicEngine->CleanUpUIMaps();
 	
 	delete characterSelectionMenu;
@@ -155,32 +162,18 @@ void State_Menu::LoadResources()
 {
 	//Graphics
 	//menu
-	ALLEGRO_BITMAP *menu = nullptr;
-	menu = al_load_bitmap("assets/img/UI/Menu.jpg");
-
-	std::vector<ALLEGRO_BITMAP *> menu_bitmap{ menu };
-
-	graphicEngine->DefineUI_Element_Graphic("class Menu", menu_bitmap);
+	graphicEngine->DefineUI_Element_Graphic("class Menu", "assets/img/UI/Menu.jpg");
 
 	//buttons
-	ALLEGRO_BITMAP *default = nullptr;
-	default = al_load_bitmap("assets/img/UI/button.png");
-	ALLEGRO_BITMAP *hover = nullptr;
-	hover = al_load_bitmap("assets/img/UI/button_highlighted.png");
-	ALLEGRO_BITMAP *clicked = nullptr;
-	clicked = al_load_bitmap("assets/img/UI/button_clicked.png");
-
-	std::vector<ALLEGRO_BITMAP *> button_bitmaps{ default, hover, clicked };
-
-	graphicEngine->DefineUI_Element_Graphic("class Button", button_bitmaps);
+	graphicEngine->DefineUI_Element_Graphic("class Button", "assets/img/UI/button.png");
+	graphicEngine->DefineUI_Element_Graphic("class Button", "assets/img/UI/button_highlighted.png");
+	graphicEngine->DefineUI_Element_Graphic("class Button", "assets/img/UI/button_clicked.png");
 
 	//credits graphic
-	ALLEGRO_BITMAP *arrowgance = nullptr;
-	arrowgance = al_load_bitmap("assets/img/media/arrowgance.jpg");
+	graphicEngine->DefineUI_Element_Graphic("class Image", "assets/img/media/arrowgance.jpg");
 
-	std::vector<ALLEGRO_BITMAP *> arrowgance_bitmap{ arrowgance };
-
-	graphicEngine->DefineUI_Element_Graphic("class Image", arrowgance_bitmap);
+	//fonts
+	graphicEngine->textManager->DefineFont("Morpheius", "assets/img/UI/Morpheius_dark.png", 7, 72, 108, -30);
 
 	//Sounds
 }

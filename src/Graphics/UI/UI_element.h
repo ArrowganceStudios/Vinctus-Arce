@@ -20,6 +20,8 @@ public:
 	float GetX() const { return x; }
 	float GetY() const { return y; }
 
+	int GetZ() const { return z; }
+
 	float GetHeight() const { return height; }
 	float GetWidth() const { return width; }
 

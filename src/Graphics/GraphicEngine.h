@@ -6,8 +6,11 @@
 #include "../Game/GameObject.h"
 //#include "Sprite.h"
 #include "UI/UI_element.h"
+#include "UI/TextManager.h"
 #include <map>
+
 class GameEngine;
+class TextManager;
 
 class GraphicEngine
 {
@@ -15,14 +18,15 @@ class GraphicEngine
 	std::map <std::string, std::vector<Sprite *>> GameObjectsAnimationsMap;
 	std::map <std::string, std::vector<ALLEGRO_BITMAP *>> UI_elementsGraphicsMap;
 
-	//maps storing an actual list of UI and Game objects
+	//maps storing an actual list of UI and Game objects and text instances
 	std::vector <std::pair<GameObject *, Sprite *>> GameObjectsMap;
 	std::vector <std::pair<UI_element *, ALLEGRO_BITMAP *>> UI_elementsMap;
-	//std::map <GameObject *, Sprite *> GameObjectsMap; //should be multimaps actually so we can have few instances of same type
-	//std::map <UI_element *, ALLEGRO_BITMAP *> UI_elementsMap; //same here ^
 
 public:
 	GraphicEngine();
+	~GraphicEngine() { delete textManager; };
+
+	TextManager *textManager;
 
 	void Init(){}; //??
 	void Render();
@@ -31,7 +35,8 @@ public:
 	void CreateGraphicInstance(GameObject *object);
 	void RequestAnimation(GameObject *gameObject, int animationNumber);
 
-	void DefineUI_Element_Graphic(string elementsClassName, std::vector<ALLEGRO_BITMAP *> bitmaps);
+	void DefineUI_Element_Graphic(string elementsClassName, string pathName);
+	void DefineUI_Element_Graphic(string elementsClassName, ALLEGRO_BITMAP *bitmap);
 	void DestroyUI_ElementGraphic(string className);
 
 	void CreateUI_Element_GraphicInstance(UI_element *element);

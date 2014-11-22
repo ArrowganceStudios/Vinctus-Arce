@@ -2,25 +2,37 @@
 
 using namespace std;
 
-ALLEGRO_BITMAP* Font::Create_Text(std::string text, float scale = 1)
+ALLEGRO_BITMAP * Font::CreateText(string text, float scale = 1)
 {
 	ALLEGRO_BITMAP *output;
 	int size = text.size();
-	output = al_create_bitmap(scale*size*(X_CharSize + X_Offset), Y_CharSize * scale);
+
+	int bitmapWidth = static_cast <int> (static_cast <float> (scale*size*(X_CharSize + X_Offset)));
+	int bitmapHeight = static_cast <int> (static_cast <float> (Y_CharSize * scale));
+
+	output = al_create_bitmap(bitmapWidth, bitmapHeight);
+
 	al_set_target_bitmap(output);
 	int k;
 	bool offset = false;
 
 	for (int i = 0; i < text.length(); i++)
 	{
-		if (i == 0) offset = false;
+		if (i == 0) offset = false; //is that necessary?
 		else offset = true;
 		
 		k = GetCharFromTileset(text.at(i));
-		
-		al_draw_tinted_scaled_rotated_bitmap_region(font_set, k%columns * X_CharSize, k/columns * Y_CharSize, X_CharSize, Y_CharSize,
-			al_map_rgb(255, 255, 255), 0, 0, i * X_CharSize * scale + offset * i * X_Offset * scale, 0, scale, scale, 0, 0);
+
+		float sx = k % columns * X_CharSize;
+		float sy = k / columns * Y_CharSize;
+		float dx = static_cast <float> (i * X_CharSize) * scale + static_cast <float > (offset * i * X_Offset) * scale;
+
+		al_draw_tinted_scaled_rotated_bitmap_region(font_set, sx, sy, X_CharSize, Y_CharSize,
+			al_map_rgb(255, 255, 255), 0, 0, dx, 0, scale, scale, 0, 0);
 	}
+
+	al_set_target_bitmap(al_get_backbuffer(gameEngine->GetDisplay()));
+
 	return output;
 }
 
