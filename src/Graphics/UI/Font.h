@@ -22,7 +22,8 @@ class Font
 
 	int X_Offset;
 
-	int GetCharFromTileset(char &c);
+	int EvaluateOutputSize(std::string text, float scale);
+	int GetCharFromTileset(char &c, int &offset);
 
 public:
 	Font(const char *filename, int col, int Xchar, int Ychar, int off) : 
