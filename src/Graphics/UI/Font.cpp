@@ -6,13 +6,13 @@ ALLEGRO_BITMAP * Font::CreateText(string text, float scale = 1)
 {
 	ALLEGRO_BITMAP *output;
 	int stringSize = text.size();
-	bool doOffset = false;
+	bool doOffset = true;
 	int valOffset = 0;
 	int curOffset = 0;
 	int letter;
 
 	//int bitmapWidth = static_cast <int> (static_cast <float> (scale*stringSize*(X_CharSize + X_Offset)));
-	int bitmapWidth = EvaluateOutputSize(text, scale);
+	int bitmapWidth =  EvaluateOutputSize(text, scale);
 	int bitmapHeight = static_cast <int> (static_cast <float> (Y_CharSize * scale));
 
 	output = al_create_bitmap(bitmapWidth, bitmapHeight);
@@ -21,14 +21,11 @@ ALLEGRO_BITMAP * Font::CreateText(string text, float scale = 1)
 
 	for (int i = 0; i < text.length(); i++)
 	{
-		if (i == 0) doOffset = false; //is that necessary?
-		else doOffset = true;
-		
 		letter = GetCharFromTileset(text.at(i), valOffset);
 
 		float sx = letter % columns * X_CharSize;
 		float sy = letter / columns * Y_CharSize;
-		float dx = static_cast <float> (i * X_CharSize) * scale + static_cast <float > (doOffset * i * X_Offset + curOffset) * scale;
+		float dx = static_cast <float> (i * X_CharSize) * scale + static_cast <float> (doOffset * i * X_Offset + curOffset) * scale;
 
 		al_draw_tinted_scaled_rotated_bitmap_region(font_set, sx, sy, X_CharSize, Y_CharSize,
 			al_map_rgb(255, 255, 255), 0, 0, dx, 0, scale, scale, 0, 0);
@@ -49,7 +46,7 @@ int Font::EvaluateOutputSize(string text, float scale)
 		size += scale * (X_CharSize + X_Offset + offset);
 		int letter = GetCharFromTileset(text.at(i), offset);	//this variable is completely unused, but needed
 	}
-	return size - scale * X_Offset / 3;
+	return size - scale * X_Offset/1.5;
 	//return size + scale * abs(offset);
 }
 int Font::GetCharFromTileset(char &c, int &offset)
@@ -109,7 +106,7 @@ int Font::GetCharFromTileset(char &c, int &offset)
 		break;
 	case 'K':
 	case 'k':
-		offset = 5;
+		offset = -10;
 		return 10;
 		break;
 	case 'L':

@@ -22,7 +22,8 @@ void State_Menu::Init()
 	optionsMenu->AddButton("Sound", MenuActions::Sound);
 	optionsMenu->AddButton("Back", MenuActions::Back);
 	
-	creditsMenu->AddImage(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 800, 600, 0);
+	creditsMenu->AddImage(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 530, 190, 0);
+	creditsMenu->AddButton("Back", SCREEN_WIDTH / 2, SCREEN_HEIGHT - 100, MenuActions::Back);
 
 	pauseMenu->AddButton("Yesh", MenuActions::Yesh);
 	pauseMenu->AddButton("Nah", MenuActions::Nah);
@@ -173,7 +174,7 @@ void State_Menu::LoadResources()
 	graphicEngine->DefineUI_Element_Graphic("class Image", "assets/img/media/arrowgance.jpg");
 
 	//fonts
-	graphicEngine->textManager->DefineFont("Morpheius", "assets/img/UI/Morpheius_vDark.png", 7, 72, 108, -30);
+	graphicEngine->textManager->DefineFont("Morpheius", "assets/img/UI/Morpheius_vDark.png",  7, 72, 108, -30);
 
 	//Sounds
 }
