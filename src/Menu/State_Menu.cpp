@@ -34,7 +34,7 @@ void State_Menu::Init()
 	//characterSelectionMenu->AddClassIconBig("Warrior", MenuActions::WarriorClassSelected); //this will be derived from button probably
 	//characterSelectionMenu->AddClassIconBig("Mage", MenuActions::MageClassSelected);
 	//characterSelectionMenu->AddClassIconBig("Ranger", MenuActions::RangerClassSelected);
-	characterSelectionMenu->AddButton("Begin", 570, 520, MenuActions::StartGame);
+	characterSelectionMenu->AddButton("Begin", 570, 520,/* MenuActions::StartGame*/ nullptr);
 	characterSelectionMenu->AddButton("Back", 240, 520, MenuActions::Back);
 
 	menuList = { mainMenu, characterSelectionMenu, optionsMenu, creditsMenu, waveMenu, pauseMenu };

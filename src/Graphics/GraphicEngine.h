@@ -24,7 +24,7 @@ class GraphicEngine
 
 public:
 	GraphicEngine();
-	~GraphicEngine() { if(textManager != nullptr) delete textManager; };
+	~GraphicEngine() { if(textManager != nullptr) delete &textManager; };
 
 	TextManager *textManager;
 

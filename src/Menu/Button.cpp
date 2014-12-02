@@ -24,5 +24,5 @@ Button::~Button()
 //Debug methods
 void Button::UseFunction()
 {
-	(*action)();
+	if (action != nullptr)(*action)();
 }
