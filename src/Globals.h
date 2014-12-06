@@ -22,11 +22,38 @@ namespace {
 		const float ButtonWidth = 307;
 	}
 
+	namespace ClassSelectionIconSize
+	{
+		const float IconHeight = 265;
+		const float IconWidth = 263;
+	}
+
 	namespace BarSize // temporary
 	{
 		const float BarHeight = 66;
 		const float BarWidth = 307;
 	}
+
+	enum ClassID
+	{
+		Warrior,
+		Ranger,
+		Mage
+	};
+
+	enum ClassIconGraphic
+	{
+		Disabled,
+		WarriorNormal,
+		WarriorHovered,
+		WarriorClicked,
+		RangerNormal,
+		RangerHovered,
+		RangerClicked,
+		MageNormal,
+		MageHovered,
+		MageClicked
+	};
 
 	enum ButtonState
 	{

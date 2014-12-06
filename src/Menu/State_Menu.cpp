@@ -1,6 +1,8 @@
 #include "../Globals.h"
 #include "../InputMap.h"
 #include "MenuActions.h"
+#include "MenuButton.h"
+#include "ClassSelectionIcon.h"
 
 void State_Menu::Init()
 {	
@@ -31,9 +33,9 @@ void State_Menu::Init()
 	waveMenu->AddButton("Continue", MenuActions::Continue);
 	waveMenu->AddButton("Surrender", MenuActions::Surrender);
 
-	//characterSelectionMenu->AddClassIconBig("Warrior", MenuActions::WarriorClassSelected); //this will be derived from button probably
-	//characterSelectionMenu->AddClassIconBig("Mage", MenuActions::MageClassSelected);
-	//characterSelectionMenu->AddClassIconBig("Ranger", MenuActions::RangerClassSelected);
+	characterSelectionMenu->AddClassIconBig(ClassIconGraphic::WarriorClicked, nullptr);
+	characterSelectionMenu->AddClassIconBig(ClassIconGraphic::Disabled, nullptr);
+	characterSelectionMenu->AddClassIconBig(ClassIconGraphic::Disabled, nullptr);
 	characterSelectionMenu->AddButton("Begin", 570, 520,/* MenuActions::StartGame*/ nullptr);
 	characterSelectionMenu->AddButton("Back", 240, 520, MenuActions::Back);
 
@@ -43,30 +45,44 @@ void State_Menu::Init()
 
 void State_Menu::SwitchToMenu(string newMenu)
 {
+	//this should be handled in a different way imo, like using some UI_element loop or smth
+	//also - ClassIconBig handling and slider handling needs to be included as well.
+
 	if (CurrentMenu != nullptr)
 	{
 		CurrentMenu->Hide();
+
 		for (auto button : CurrentMenu->buttons)
 		{
 			button->Hide();
 			button->GetText()->Hide();
 		}
+
 		for (auto image : CurrentMenu->images)
 			image->Hide();
+
+		for (auto icon : CurrentMenu->classIcons)
+			icon->Hide();
 	}
+
 	for(auto menuit : menuList)
 	{
 		if (menuit->menuTitle == newMenu)
 		{
 			CurrentMenu = menuit;
 			CurrentMenu->Show();
+
 			for (auto button : CurrentMenu->buttons)
 			{
 				button->Show();
 				button->GetText()->Show();
 			}
+
 			for (auto image : CurrentMenu->images)
 				image->Show();
+
+			for (auto icon : CurrentMenu->classIcons)
+				icon->Show();
 		}
 	}
 
@@ -75,26 +91,20 @@ void State_Menu::SwitchToMenu(string newMenu)
 void State_Menu::Cleanup()
 {
 	for (auto &menu : menuList)
-	{
 		menu->Cleanup();
-	}
 
-	//menuList.clear();
-	//menuList.shrink_to_fit();
+	//imo this should be handled differently, cba deleting every new element we add here tbh.
 
-	graphicEngine->DestroyUI_ElementGraphic("class Button");
+	graphicEngine->DestroyUI_ElementGraphic("class ClassSelectionIcon");
+	graphicEngine->DestroyUI_ElementGraphic("class MenuButton");
 	graphicEngine->DestroyUI_ElementGraphic("class Image");
 	graphicEngine->DestroyUI_ElementGraphic("class Menu");
 	graphicEngine->DestroyUI_ElementGraphic("class Text");
 
 	graphicEngine->CleanUpUIMaps();
 	
-	delete characterSelectionMenu;
-	delete mainMenu;
-	delete optionsMenu;
-	delete creditsMenu;
-	delete pauseMenu;
-	delete waveMenu;
+	for (auto menu : menuList)
+		if(menu != nullptr) delete menu;
 }
 
 void State_Menu::Pause()
@@ -111,8 +121,9 @@ void State_Menu::HandleEvents()
 
 }
 
-void State_Menu::Update()		//	To do: handling input/UseFunction();
+void State_Menu::Update()
 {
+	//This should be moved to InputHandler
 	using ::ButtonState; //zis is kruszal!
 
 	for (unsigned int i = 0; i < CurrentMenu->buttons.size(); i++)
@@ -166,9 +177,15 @@ void State_Menu::LoadResources()
 	graphicEngine->DefineUI_Element_Graphic("class Menu", "assets/img/UI/Menu.jpg");
 
 	//buttons
-	graphicEngine->DefineUI_Element_Graphic("class Button", "assets/img/UI/button.png");
-	graphicEngine->DefineUI_Element_Graphic("class Button", "assets/img/UI/button_highlighted.png");
-	graphicEngine->DefineUI_Element_Graphic("class Button", "assets/img/UI/button_clicked.png");
+	graphicEngine->DefineUI_Element_Graphic("class MenuButton", "assets/img/UI/button.png");
+	graphicEngine->DefineUI_Element_Graphic("class MenuButton", "assets/img/UI/button_highlighted.png");
+	graphicEngine->DefineUI_Element_Graphic("class MenuButton", "assets/img/UI/button_clicked.png");
+
+	//class icons
+	graphicEngine->DefineUI_Element_Graphic("class ClassSelectionIcon", "assets/img/UI/LockedCrest.png");
+	graphicEngine->DefineUI_Element_Graphic("class ClassSelectionIcon", "assets/img/UI/WarriorCrestNormal.png");
+	graphicEngine->DefineUI_Element_Graphic("class ClassSelectionIcon", "assets/img/UI/WarriorCrestHovered.png");
+	graphicEngine->DefineUI_Element_Graphic("class ClassSelectionIcon", "assets/img/UI/WarriorCrestClicked.png");
 
 	//credits graphic
 	graphicEngine->DefineUI_Element_Graphic("class Image", "assets/img/media/arrowgance.jpg");

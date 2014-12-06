@@ -2,7 +2,6 @@
 
 class UI_element
 {
-
 protected:
 	UI_element(float x, float y) :x(x), y(y) { visible = false; };
 	UI_element(float x, float y, float h, float w) :x(x), y(y), height(h), width(w) { visible = false; };
@@ -30,5 +29,5 @@ public:
 	void Show() { visible = true; }
 	void Hide() { visible = false; }
 
-	virtual void Polymorphic() { /*do nothing and win*/ } //this is bullshit but w/e
+	virtual void Polymorphic() {}
 };
