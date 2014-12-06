@@ -2,7 +2,9 @@
 
 MobileObject::MobileObject()
 {
-	//TBI
+	MobileObject::x = 0;
+	MobileObject::y = 0;
+	MobileObject::velocity = 0;
 }
 
 void MobileObject::Init(float x, float y, float velocity)

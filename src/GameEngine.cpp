@@ -19,7 +19,6 @@ GameEngine::~GameEngine()
 	delete Collider;
 	delete mainMenu;
 	delete logicHandler;*/
-	//delete menuState;
 	delete graphicEngine;
 	delete gameState;
 	delete menuState;

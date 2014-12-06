@@ -6,7 +6,7 @@ bool mouse[2] = { false, false };
 float mouseX = 0;
 float mouseY = 0;
 
-void InputHandler::Init()
+void InputHandler::Init() // Will it be implemented ?
 {
 
 }
