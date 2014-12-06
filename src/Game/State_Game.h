@@ -1,5 +1,6 @@
 #pragma once
 #include "../State.h"
+#include "Scene\Layer.h"
 #include <vector>
 
 class GameUI;
@@ -9,6 +10,7 @@ class State_Game: public State
 private:
 	GameUI *interFace;
 
+	std::vector<Layer*> GameScene;
 	void State_Game::LoadResources();
 
 public:

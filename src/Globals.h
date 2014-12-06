@@ -34,6 +34,12 @@ namespace {
 		const float BarWidth = 307;
 	}
 
+	namespace TileSize // temporary
+	{
+		const float tileHeight = 80;
+		const float tileWidth = 60;
+	}
+
 	enum ClassID
 	{
 		Warrior,

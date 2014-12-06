@@ -12,7 +12,7 @@ ObjectHandler::ObjectHandler()
 
 }
 
-template<class Type> void ObjectHandler::CreateObject()
+template<class Type> void ObjectHandler::CreateObject()	// shouldn't there be an argument what kind of object we want to create?
 {
 	
 	if (std::is_same<Type, MobileObject>::value)
