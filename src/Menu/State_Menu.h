@@ -11,7 +11,7 @@ class Menu;
 class State_Menu : public State
 {
 private:
-	vector<Menu *> menuList;
+	std::vector<Menu *> menuList;
 
 	Menu *mainMenu;
 	Menu *characterSelectionMenu;
@@ -26,7 +26,7 @@ public:
 	State_Menu(){};
 
 	Menu *CurrentMenu;
-	void SwitchToMenu(string newMenu);
+	void SwitchToMenu(std::string newMenu);
 
 	void Init();
 	void Cleanup();

@@ -31,13 +31,13 @@ public:
 	void Init(){}; //??
 	void Render();
 
-	void DefineAnimation(string objectsClassName, std::vector<Sprite *> animations);
+	void DefineAnimation(std::string objectsClassName, std::vector<Sprite *> animations);
 	void CreateGraphicInstance(GameObject *object);
 	void RequestAnimation(GameObject *gameObject, int animationNumber);
 
-	void DefineUI_Element_Graphic(string elementsClassName, string pathName);
-	void DefineUI_Element_Graphic(string elementsClassName, ALLEGRO_BITMAP *bitmap);
-	void DestroyUI_ElementGraphic(string className);
+	void DefineUI_Element_Graphic(std::string elementsClassName, std::string pathName);
+	void DefineUI_Element_Graphic(std::string elementsClassName, ALLEGRO_BITMAP *bitmap);
+	void DestroyUI_ElementGraphic(std::string className);
 
 	void CreateUI_Element_GraphicInstance(UI_element *element);
 	void DestroyUI_ElementGraphicInstance(UI_element *element);

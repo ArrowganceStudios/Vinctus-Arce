@@ -1,8 +1,13 @@
 #pragma once
 #include "GameEngine.h"
+#include "Singleton.h"
+#include "Game/ObjectHandler.h"
 
 extern GameEngine *gameEngine;
 extern GraphicEngine *graphicEngine;
+//typedef Singleton<GameEngine> gameEngine;
+//typedef Singleton<GraphicEngine> graphicEngine;
+typedef Singleton<ObjectHandler> objectHandler; 
 
 namespace {
 	

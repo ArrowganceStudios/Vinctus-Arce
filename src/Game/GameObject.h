@@ -4,7 +4,6 @@
 #include <allegro5\allegro.h>
 #include "../Graphics/Sprite.h"
 
-using namespace std;
 
 class Sprite;
 
@@ -17,7 +16,7 @@ protected:
 	float x;
 	float y;
 
-	vector<Sprite *> animations; // ??? <- I think that this should be just sent to Graphic Engine, and handled there.
+	std::vector<Sprite *> animations; // ??? <- I think that this should be just sent to Graphic Engine, and handled there.
 public:
 	GameObject();
 

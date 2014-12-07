@@ -1,33 +1,37 @@
 #pragma once
 #include <vector>
-#include "../Globals.h"
+//#include "../Globals.h"
+#include "../Singleton.h"
+
+
 
 
 class GameObject;
-class ObjectHandler
+class ObjectHandler : public Singleton <ObjectHandler>
 {
 private:
-	static ObjectHandler *objectHandler;
+	friend Singleton < ObjectHandler > ;
+	//static ObjectHandler *objectHandler;
 	std::vector <GameObject *> objects;
+protected:
 	ObjectHandler();
-	~ObjectHandler() { if (objectHandler != NULL) delete objectHandler; }
 public:
 	template <class Type> 
 	void CreateObject();
 
-	void Debug();
-	void ObjectHandler::CleanUp();
-
 	template <class Type>
 	void DestroyObject(const Type *objectToDestroy);
 
-	static ObjectHandler& GetObjectHandler()
+	void SpawnObject();
+	void ObjectHandler::CleanUp();
+
+
+	/*static ObjectHandler& GetObjectHandler()
 	{
 		if (objectHandler == NULL) objectHandler = new ObjectHandler(); //lazy initialization of one instance
 		return *objectHandler;
-	}
+	}*/
 
-	
 
 };
 

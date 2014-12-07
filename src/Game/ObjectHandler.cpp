@@ -4,8 +4,7 @@
 #include <iostream>
 
 
-
-ObjectHandler* ObjectHandler::objectHandler = nullptr; //this definition is needed, without it we get unrsolved link external 2001
+//ObjectHandler* ObjectHandler::instance = nullptr; //this definition is needed, without it we get unrsolved link external 2001
 
 ObjectHandler::ObjectHandler()
 {
@@ -31,17 +30,17 @@ template<class Type> void ObjectHandler::DestroyObject(const Type *objectToDestr
 {
 	auto it = std::find(objects.begin(), objects.end(), objectToDestroy);
 	objects.erase(it);
+	objects.shrink_to_fit();
 	delete objectToDestroy;
 }
 
-void ObjectHandler::Debug()
+void ObjectHandler::SpawnObject()
 {
-	cout << "We have " << objects.size() << " game objects" << endl;
+	std::cout << objects.size();
 }
 
 void ObjectHandler::CleanUp()
 {
-	cout << "Doing some cleaning here, do not disturb" << endl;
 	if (objects.size())
 		objects.clear();
 	objects.shrink_to_fit();
