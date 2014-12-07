@@ -8,6 +8,7 @@ class Map
 	friend class MapLayer;
 public:
 	void GenerateMap(ALLEGRO_BITMAP *mapFile);
+	char GetTileTypeFromColor(ALLEGRO_COLOR color);
 
 	float mapWidth;
 	float mapHeight;

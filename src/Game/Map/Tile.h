@@ -12,6 +12,7 @@ private:
 
 	static ALLEGRO_BITMAP *tileSet;
 public:
-	Tile(char type, bool collidable) : type(type), collidable(collidable){};
-	char GetType(){ return type; }
+	Tile(char type);
+	char GetType() const { return type; }
+	bool GetCollidable() const { return collidable; }
 };

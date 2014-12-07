@@ -8,7 +8,7 @@ char MapLayer::GetTileTypeAtCoords(float x, float y)
 		int tileX = x / TileSize::tileWidth;
 		int tileY = y / TileSize::tileHeight;
 		
-		return myLevel->tileMap[x].at(y)->GetType();
+		return myLevel->tileMap[tileX].at(tileY)->GetType();
 	}
 	else return 0;
 }
