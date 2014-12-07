@@ -6,20 +6,20 @@
 #include "Graphics/GraphicEngine.h"
 #include "Game/State_Game.h"
 
-GameEngine::GameEngine(int w, int h, float fps):WIDTH(w), HEIGHT(h), FPS(fps) 
+GameEngine::GameEngine()
 {
-	
+
 }
 
 GameEngine::~GameEngine()
 {
-	/*delete objectHandler;
-	delete mapHandler;
+	
+	/*delete mapHandler;
 	delete Camera;
 	delete Collider;
 	delete mainMenu;
 	delete logicHandler;*/
-	delete graphicEngine;
+
 	delete gameState;
 	delete menuState;
 	delete input;
@@ -29,7 +29,6 @@ void GameEngine::Init()
 {
 	done = false;
 
-	graphicEngine = ::graphicEngine;
 	input = new InputHandler();
 
 	menuState = new State_Menu();
@@ -37,7 +36,7 @@ void GameEngine::Init()
 
 	states = { reinterpret_cast<State *>(menuState), gameState };
 
-	graphicEngine->Init();
+	graphicEngine::Instance().Init();
 	input->Init();
 
 	al_init(); //Initialises the allegro library
@@ -152,7 +151,7 @@ void GameEngine::Render()
 	{
 		render = false;
 		
-		graphicEngine->Render();
+		graphicEngine::Instance().Render();
 
 		al_flip_display();
 		al_clear_to_color(al_map_rgb(0,0,0));
@@ -167,8 +166,8 @@ void GameEngine::Flush()
 
 void GameEngine::Destroy()
 {	
-	//project objects destroy
-	graphicEngine->Destroy(); //bitmap
+	//project objects destroy4
+	graphicEngine::Instance().Destroy(); //bitmap
 	//allegro vars destroy
 	//al_destroy_font(font18);
 	al_destroy_display(display);

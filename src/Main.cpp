@@ -5,21 +5,20 @@
 
 using namespace std;
 
-extern GameEngine *gameEngine;
 
 int main()
 {
-	gameEngine->Init();
+	gameEngine::Instance().Init();
 
-	while(gameEngine->Done())
+	while(gameEngine::Instance().Done())
 	{
-		gameEngine->Escaper();
-		gameEngine->Update();
-		gameEngine->Render();
-		gameEngine->Flush();
+		gameEngine::Instance().Escaper();
+		gameEngine::Instance().Update();
+		gameEngine::Instance().Render();
+		gameEngine::Instance().Flush();
 	}
 
-	gameEngine->Destroy();
+	gameEngine::Instance().Destroy();
 	
 	return 0;
 }

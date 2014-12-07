@@ -4,6 +4,6 @@ Image::Image(float x, float y, float w, float h, const int graphicId) :UI_elemen
 {
 	z = 1;
 
-	graphicEngine->CreateUI_Element_GraphicInstance(this);
-	graphicEngine->RequestUI_Element_Graphic(this, graphicId);
+	graphicEngine::Instance().CreateUI_Element_GraphicInstance(this);
+	graphicEngine::Instance().RequestUI_Element_Graphic(this, graphicId);
 }

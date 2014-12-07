@@ -32,7 +32,7 @@ ALLEGRO_BITMAP * Font::CreateText(string text, float scale = 1)
 		curOffset += valOffset;
 	}
 
-	al_set_target_bitmap(al_get_backbuffer(gameEngine->GetDisplay()));
+	al_set_target_bitmap(al_get_backbuffer(gameEngine::Instance().GetDisplay()));
 
 	return output;
 }

@@ -11,7 +11,7 @@ void GameObject::Init(float x, float y)
 	GameObject::x = x;
 	GameObject::y = y;
 
-	//graphicEngine->DefineAnimations(this, animations); //needs to be implemented
+	//graphicEngine::Instance().DefineAnimations(this, animations); //needs to be implemented
 }
 
 void GameObject::DefineAnimation(int maxFrame, int curFrame, int frameCount, int frameDelay, int frameWidth, int frameHeight,

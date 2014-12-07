@@ -8,5 +8,5 @@ GameUI_bar::GameUI_bar(float x, float y) : UI_element(x, y)
 
 	z = 1;
 
-	graphicEngine->CreateUI_Element_GraphicInstance(this);
+	graphicEngine::Instance().CreateUI_Element_GraphicInstance(this);
 }

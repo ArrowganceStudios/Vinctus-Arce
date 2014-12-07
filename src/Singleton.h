@@ -16,5 +16,3 @@ public:
 	}
 
 };
-
-//template <class T> T* Singleton<T>::instance = NULL;

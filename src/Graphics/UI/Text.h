@@ -5,8 +5,6 @@
 
 using namespace std;
 
-extern GraphicEngine *graphicEngine;
-
 class GraphicEngine;
 
 class Text : protected UI_element
@@ -17,5 +15,5 @@ class Text : protected UI_element
 	static int textID;
 public:
 	Text(string text, string fontName, float scale, float x, float y);
-	~Text() { graphicEngine->DestroyUI_ElementGraphicInstance(this); };
+	~Text() { graphicEngine::Instance().DestroyUI_ElementGraphicInstance(this); };
 };

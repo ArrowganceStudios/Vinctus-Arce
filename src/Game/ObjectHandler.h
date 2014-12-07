@@ -11,7 +11,6 @@ class ObjectHandler : public Singleton <ObjectHandler>
 {
 private:
 	friend Singleton < ObjectHandler > ;
-	//static ObjectHandler *objectHandler;
 	std::vector <GameObject *> objects;
 protected:
 	ObjectHandler();

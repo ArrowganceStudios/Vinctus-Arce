@@ -5,68 +5,68 @@ namespace MenuActions {
 	//Main menu
 	void StartGame()
 	{
-		gameEngine->StartGame();
+		gameEngine::Instance().StartGame();
 	}
 
 	void CharacterSelection()
 	{
-		gameEngine->GetMenuState()->SwitchToMenu("Character Selection");
+		gameEngine::Instance().GetMenuState()->SwitchToMenu("Character Selection");
 	}
 
 	void Options()
 	{
-		gameEngine->GetMenuState()->SwitchToMenu("Options");
+		gameEngine::Instance().GetMenuState()->SwitchToMenu("Options");
 	}
 
 	void Credits()
 	{
-		gameEngine->GetMenuState()->SwitchToMenu("Credits");
+		gameEngine::Instance().GetMenuState()->SwitchToMenu("Credits");
 	}
 
 	void Exit()
 	{
-		gameEngine->Quit();
+		gameEngine::Instance().Quit();
 	}
 
 
 	//Options menu
 	void Resolution()
 	{
-		//gameEngine->GetMenuState()->SwitchToMenu("Resolution settings");
+		//gameEngine::Instance().GetMenuState()->SwitchToMenu("Resolution settings");
 	}
 
 	void Sound()
 	{
-		//gameEngine->GetMenuState()->SwitchToMenu("Sound Settings");
+		//gameEngine::Instance().GetMenuState()->SwitchToMenu("Sound Settings");
 	}
 
 	void Back()
 	{
-		gameEngine->GetMenuState()->SwitchToMenu("Main Menu");
+		gameEngine::Instance().GetMenuState()->SwitchToMenu("Main Menu");
 	}
 
 
 	//Surrender menu
 	void Yesh()
 	{
-		gameEngine->GetMenuState()->SwitchToMenu("Main Menu");
+		gameEngine::Instance().GetMenuState()->SwitchToMenu("Main Menu");
 	}
 
 	void Nah()
 	{
-		//gameEngine->Nah();
+		//gameEngine::Instance().Nah();
 	}
 
 
 	//Wave menu
 	void Continue()
 	{
-		gameEngine->Continue();
+		gameEngine::Instance().Continue();
 	}
 
 	void Surrender()
 	{
-		gameEngine->GetMenuState()->SwitchToMenu("Main Menu");
+		gameEngine::Instance().GetMenuState()->SwitchToMenu("Main Menu");
 	}
 
 }

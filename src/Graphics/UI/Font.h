@@ -6,7 +6,6 @@
 #include <allegro5\allegro_image.h>
 #include "../../GameEngine.h"
 
-extern GameEngine *gameEngine;
 
 class GraphicEngine;
 class GameEngine;

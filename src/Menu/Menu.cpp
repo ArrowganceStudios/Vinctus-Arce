@@ -8,7 +8,7 @@ Menu::Menu(string title, float x, float y) : UI_element(x, y), menuTitle(title)
 	height = SCREEN_HEIGHT;
 	z = 0;
 	MarkedButton = nullptr;
-	graphicEngine->CreateUI_Element_GraphicInstance(this);
+	graphicEngine::Instance().CreateUI_Element_GraphicInstance(this);
 }
 
 void Menu::AddButton(string buttonText, void (*function)())
@@ -42,15 +42,15 @@ void Menu::AddClassIconBig(int graphicID, void(*function)() = nullptr)
 void Menu::Cleanup()
 {
 	for (auto button : buttons)
-		graphicEngine->DestroyUI_ElementGraphicInstance(button);
+		graphicEngine::Instance().DestroyUI_ElementGraphicInstance(button);
 	
 	for (auto image : images)
-		graphicEngine->DestroyUI_ElementGraphicInstance(image);
+		graphicEngine::Instance().DestroyUI_ElementGraphicInstance(image);
 
 	for (auto classIcon : classIcons)
-		graphicEngine->DestroyUI_ElementGraphicInstance(classIcon);
+		graphicEngine::Instance().DestroyUI_ElementGraphicInstance(classIcon);
 
-	graphicEngine->DestroyUI_ElementGraphicInstance(this);
+	graphicEngine::Instance().DestroyUI_ElementGraphicInstance(this);
 
 	if (buttons.size())
 		buttons.clear();

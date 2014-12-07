@@ -12,19 +12,21 @@
 #include "Menu/State_Menu.h"
 #include "Game/State_Game.h"
 #include "Menu/Menu.h"
+#include "Singleton.h"
 
 
 //class State;
 class InputHandler;
 
-class GameEngine
+class GameEngine : public Singleton <GameEngine>
 {	
 	friend class InputHandler;
+	friend Singleton < GameEngine > ;
 	
 	//consts
-	const int WIDTH;
-	const int HEIGHT;
-	const float FPS;
+	const int WIDTH = 800;  // to be changed
+	const int HEIGHT = 600;
+	const float FPS = 60.0f;
 
 	//primitive inits
 	bool done;
@@ -32,7 +34,6 @@ class GameEngine
 
 	//Handlers inits
 	/*
-	ObjectHandler *objectHandler;
 	MapHandler *mapHandler;
 	CameraInstance *Camera;
 	CollisionDetector *Collider;
@@ -40,7 +41,6 @@ class GameEngine
 	*/
 	InputHandler *input;
 
-	GraphicEngine *graphicEngine;
 	State_Menu *menuState;
 	State_Game *gameState;
 
@@ -52,10 +52,10 @@ class GameEngine
 	//ALLEGRO_FONT *font18;
 
 	std::vector <State*> states;
-
-public:
-	GameEngine(int w, int h, float fps);
+protected:
+	GameEngine();
 	~GameEngine();
+public:
 
 	State_Menu * GetMenuState() { return menuState; }
 
