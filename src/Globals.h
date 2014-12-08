@@ -45,6 +45,14 @@ namespace {
 		const float tileWidth = 60;
 	}
 
+	namespace Slider
+	{
+		const float sliderBarWidth = 243;
+		const float sliderBarHeight = 13;
+		const float sliderWidth = 30;
+		const float sliderHeight = 70;
+	}
+
 	enum ClassID
 	{
 		Warrior,

@@ -20,7 +20,6 @@ void GraphicEngine::CreateGraphicInstance(GameObject *object)
 	const std::type_info& info = typeid(object);
 	string className = static_cast<string>(info.name());
 
-	cout << className;
 	//setting default sprite
 	for (auto &graphMap : GameObjectsAnimationsMap)
 	{
@@ -94,6 +93,7 @@ void GraphicEngine::CreateUIElement_GraphicInstance(UIElement *element)
 	//getting the class name
 	const std::type_info& info = typeid(*element);
 	string className = static_cast<string>(info.name());
+
 
 	//setting default graphic
 	for (auto &graphMap : UIElementsGraphicsMap)

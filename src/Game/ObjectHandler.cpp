@@ -23,19 +23,23 @@ template<class Type> void ObjectHandler::CreateObject()
 		StaticObject *object = new StaticObject();
 		objects.push_back(object);
 	}
+	 
+
 }
 
 template<class Type> void ObjectHandler::DestroyObject(const Type *objectToDestroy)
 {
-	auto it = std::find(objects.begin(), objects.end(), objectToDestroy);
+	auto it = GetIterator(objectToDestroy);
 	objects.erase(it);
 	objects.shrink_to_fit();
+	objectToDestroy->SetAlive(false);
 	delete objectToDestroy;
 }
 
 void ObjectHandler::SpawnObject()
 {
-	
+	for (auto object : objects)
+		object->SetAlive(true);
 }
 
 void ObjectHandler::CleanUp()
@@ -43,6 +47,12 @@ void ObjectHandler::CleanUp()
 	if (objects.size())
 		objects.clear();
 	objects.shrink_to_fit();
+}
+
+
+std::vector <GameObject*>::iterator ObjectHandler::GetIterator(GameObject * object)
+{
+	return std::find(objects.begin(), objects.end(), object);
 }
 
 template void ObjectHandler::CreateObject<MobileObject>(); //it is needed, without it we get unrsolved link external 2019 -_-

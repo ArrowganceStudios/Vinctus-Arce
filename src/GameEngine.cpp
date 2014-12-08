@@ -17,7 +17,7 @@ GameEngine::~GameEngine()
 	/*delete mapHandler;
 	delete Camera;
 	delete Collider;
-	delete mainMenu;
+	delete mainMenu;  // i don't think it will be needed
 	delete logicHandler;*/
 
 	delete gameState;

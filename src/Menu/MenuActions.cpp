@@ -32,18 +32,20 @@ namespace MenuActions {
 	//Options menu
 	void Resolution()
 	{
-		//gameEngine::Instance().GetMenuState()->SwitchToMenu("Resolution settings");
+		gameEngine::Instance().GetMenuState()->SwitchToMenu("Resolution Settings");
 	}
 
 	void Sound()
 	{
 		//gameEngine::Instance().GetMenuState()->SwitchToMenu("Sound Settings");
 	}
-
+	
 	void Back()
 	{
 		gameEngine::Instance().GetMenuState()->SwitchToMenu("Main Menu");
 	}
+
+
 
 
 	//Surrender menu

@@ -23,7 +23,6 @@ public:
 	void Init(float x, float y);
 
 	void virtual Update() {};
-	void virtual Render() {}; // I doubt it's gonna be needed since we are having a GraphicEngine
 	
 	void DefineAnimation(int maxFrame, int curFrame, int frameCount, int frameDelay, int frameWidth, int framHeight,
 		int animationColumns, ALLEGRO_BITMAP *image = NULL); //defining a sprite, and adding it to the vector of animations.

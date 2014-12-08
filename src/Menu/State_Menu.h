@@ -16,6 +16,7 @@ private:
 	Menu *mainMenu;
 	Menu *characterSelectionMenu;
 	Menu *optionsMenu;
+	Menu *resolutionMenu;
 	Menu *creditsMenu;
 	Menu *pauseMenu;
 	Menu *waveMenu;
