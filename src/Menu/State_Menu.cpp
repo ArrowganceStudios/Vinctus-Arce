@@ -197,7 +197,7 @@ void State_Menu::LoadResources()
 
 	//slider
 	graphicEngine::Instance().DefineUIElement_Graphic("class Image", "assets/img/UI/Slider.jpg");
-	graphicEngine::Instance().DefineUIElement_Graphic("class Image", "assets/img/UI/SliderBar.jpg");
+	graphicEngine::Instance().DefineUIElement_Graphic("class Image", "assets/img/UI/SliderBar.png");
 
 	//fonts
 	graphicEngine::Instance().textManager->DefineFont("Morpheius", "assets/img/UI/Morpheius_vDark.png", 7, 72, 108, -30);
