@@ -20,6 +20,7 @@ void GraphicEngine::CreateGraphicInstance(GameObject *object)
 	const std::type_info& info = typeid(object);
 	string className = static_cast<string>(info.name());
 
+	cout << className;
 	//setting default sprite
 	for (auto &graphMap : GameObjectsAnimationsMap)
 	{
@@ -62,57 +63,57 @@ void GraphicEngine::RequestAnimation(GameObject *gameObject, int animationNumber
 	}
 }
 
-void GraphicEngine::DefineUI_Element_Graphic(string elementsClassName, string pathName)
+void GraphicEngine::DefineUIElement_Graphic(string elementsClassName, string pathName)
 {
 	ALLEGRO_BITMAP *newBitmap = al_load_bitmap(pathName.c_str()); //c_str() is used to convert to the const char
 
-	if (UI_elementsGraphicsMap.find(elementsClassName) != UI_elementsGraphicsMap.end()) //if the class already exists
+	if (UIElementsGraphicsMap.find(elementsClassName) != UIElementsGraphicsMap.end()) //if the class already exists
 	{
-		UI_elementsGraphicsMap[elementsClassName].push_back(newBitmap); //then add bitmap to it
+		UIElementsGraphicsMap[elementsClassName].push_back(newBitmap); //then add bitmap to it
 		return;
 	}
 	//else
 	vector <ALLEGRO_BITMAP *> newBitmapVector = { newBitmap }; //make a vector of bitmap(s)
-	UI_elementsGraphicsMap.emplace(elementsClassName, newBitmapVector); //and create a new element in map
+	UIElementsGraphicsMap.emplace(elementsClassName, newBitmapVector); //and create a new element in map
 }
 
-void GraphicEngine::DefineUI_Element_Graphic(string elementsClassName, ALLEGRO_BITMAP *bitmap)
+void GraphicEngine::DefineUIElement_Graphic(string elementsClassName, ALLEGRO_BITMAP *bitmap)
 {
-	if (UI_elementsGraphicsMap.find(elementsClassName) != UI_elementsGraphicsMap.end()) //if the class already exists
+	if (UIElementsGraphicsMap.find(elementsClassName) != UIElementsGraphicsMap.end()) //if the class already exists
 	{
-		UI_elementsGraphicsMap[elementsClassName].push_back(bitmap); //then add bitmap to it
+		UIElementsGraphicsMap[elementsClassName].push_back(bitmap); //then add bitmap to it
 		return;
 	}
 	//else
 	vector <ALLEGRO_BITMAP *> newBitmapVector = { bitmap }; //make a vector of bitmap(s)
-	UI_elementsGraphicsMap.emplace(elementsClassName, newBitmapVector); //and create a new element in map
+	UIElementsGraphicsMap.emplace(elementsClassName, newBitmapVector); //and create a new element in map
 }
 
-void GraphicEngine::CreateUI_Element_GraphicInstance(UI_element *element)
+void GraphicEngine::CreateUIElement_GraphicInstance(UIElement *element)
 {
 	//getting the class name
 	const std::type_info& info = typeid(*element);
 	string className = static_cast<string>(info.name());
 
 	//setting default graphic
-	for (auto &graphMap : UI_elementsGraphicsMap)
+	for (auto &graphMap : UIElementsGraphicsMap)
 	{
 		if (graphMap.first == className)
 		{
-			UI_elementsMap.push_back(std::make_pair(element, graphMap.second.at(0)));
+			UIElementsMap.push_back(std::make_pair(element, graphMap.second.at(0)));
 			break;
 		}
 	}
 }
 
-void GraphicEngine::RequestUI_Element_Graphic(UI_element *element, int graphicNumber)
+void GraphicEngine::RequestUIElement_Graphic(UIElement *element, int graphicNumber)
 {
 	const std::type_info& info = typeid(*element);
 	string className = static_cast<string>(info.name());
 
-	std::pair<UI_element *, ALLEGRO_BITMAP *> *currentPair = nullptr;
+	std::pair<UIElement *, ALLEGRO_BITMAP *> *currentPair = nullptr;
 
-	for (auto &elem : UI_elementsMap)
+	for (auto &elem : UIElementsMap)
 	{
 		if (elem.first == element)
 		{
@@ -123,7 +124,7 @@ void GraphicEngine::RequestUI_Element_Graphic(UI_element *element, int graphicNu
 
 	if (currentPair != nullptr)
 	{
-		for (auto &graphMap : UI_elementsGraphicsMap)
+		for (auto &graphMap : UIElementsGraphicsMap)
 		{
 			if (graphMap.first == className)
 			{
@@ -142,7 +143,7 @@ void GraphicEngine::Render()
 	}
 	for (int i = 0; i < 3; i++)
 	{
-		for (auto &UIElement : UI_elementsMap)
+		for (auto &UIElement : UIElementsMap)
 		{
 			if (UIElement.second != nullptr && UIElement.first->isVisible() && UIElement.first->GetZ() == i)
 				al_draw_bitmap(UIElement.second, (UIElement.first->GetX() - (UIElement.first->GetWidth() / 2)),
@@ -151,24 +152,24 @@ void GraphicEngine::Render()
 	}
 }
 
-void GraphicEngine::DestroyUI_ElementGraphicInstance(UI_element *element)
+void GraphicEngine::DestroyUIElementGraphicInstance(UIElement *element)
 {
-	vector<std::pair<UI_element *, ALLEGRO_BITMAP *>>::iterator pos = UI_elementsMap.begin();
-	for (auto &ui_element : UI_elementsMap)
+	vector<std::pair<UIElement *, ALLEGRO_BITMAP *>>::iterator pos = UIElementsMap.begin();
+	for (auto &UIElement : UIElementsMap)
 	{
 		
-		if (ui_element.first == element)
+		if (UIElement.first == element)
 		{
-			UI_elementsMap.erase(pos);
+			UIElementsMap.erase(pos);
 			break;
 		}
 		pos++;
 	}
 }
 
-void GraphicEngine::DestroyUI_ElementGraphic(string className)
+void GraphicEngine::DestroyUIElementGraphic(string className)
 {
-	for (auto &graphMap : UI_elementsGraphicsMap)
+	for (auto &graphMap : UIElementsGraphicsMap)
 	{
 		if (graphMap.first == className)
 		{
@@ -183,15 +184,15 @@ void GraphicEngine::DestroyUI_ElementGraphic(string className)
 
 void GraphicEngine::CleanUpUIMaps()
 {
-	UI_elementsGraphicsMap.clear();
+	UIElementsGraphicsMap.clear();
 
-	UI_elementsMap.clear();
-	UI_elementsMap.shrink_to_fit();
+	UIElementsMap.clear();
+	UIElementsMap.shrink_to_fit();
 }
 
 void GraphicEngine::Destroy()
 {
-	for (auto &graphMap : UI_elementsGraphicsMap)
+	for (auto &graphMap : UIElementsGraphicsMap)
 	{
 		for (auto bitmap : graphMap.second)
 		{

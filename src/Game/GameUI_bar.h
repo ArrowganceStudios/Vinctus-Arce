@@ -1,7 +1,7 @@
 #pragma once
-#include "..\Graphics\UI\UI_element.h"
+#include "..\Graphics\UI\UIElement.h"
 
-class GameUI_bar : public UI_element
+class GameUI_bar : public UIElement
 {
 
 public:

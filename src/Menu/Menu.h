@@ -10,7 +10,7 @@ class ClassSelectionIcon;
 class MenuButton;
 class Image;
 	
-class Menu : protected UI_element
+class Menu : protected UIElement
 {
 	friend class State_Menu;
 	

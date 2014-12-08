@@ -2,7 +2,7 @@
 
 int Text::textID = 0;
 
-Text::Text(string text, string fontName, float scale, float x, float y) : UI_element(x, y)
+Text::Text(string text, string fontName, float scale, float x, float y) : UIElement(x, y)
 {
 	ALLEGRO_BITMAP *textBitamp = graphicEngine::Instance().textManager->CreateText(text, fontName, scale);
 	width = al_get_bitmap_width(textBitamp);
@@ -10,9 +10,9 @@ Text::Text(string text, string fontName, float scale, float x, float y) : UI_ele
 
 	z = 2;
 
-	graphicEngine::Instance().DefineUI_Element_Graphic("class Text", textBitamp);
-	graphicEngine::Instance().CreateUI_Element_GraphicInstance(this);
-	graphicEngine::Instance().RequestUI_Element_Graphic(this, textID);
+	graphicEngine::Instance().DefineUIElement_Graphic("class Text", textBitamp);
+	graphicEngine::Instance().CreateUIElement_GraphicInstance(this);
+	graphicEngine::Instance().RequestUIElement_Graphic(this, textID);
 
 	textID++;
 }

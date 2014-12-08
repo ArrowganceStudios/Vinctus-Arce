@@ -11,9 +11,8 @@ ObjectHandler::ObjectHandler()
 
 }
 
-template<class Type> void ObjectHandler::CreateObject()	// shouldn't there be an argument what kind of object we want to create?
+template<class Type> void ObjectHandler::CreateObject()	
 {
-	
 	if (std::is_same<Type, MobileObject>::value)
 	{
 		MobileObject *object = new MobileObject();
@@ -36,7 +35,7 @@ template<class Type> void ObjectHandler::DestroyObject(const Type *objectToDestr
 
 void ObjectHandler::SpawnObject()
 {
-	std::cout << objects.size();
+	
 }
 
 void ObjectHandler::CleanUp()

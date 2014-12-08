@@ -1,9 +1,9 @@
 #pragma once
-#include "UI_element.h"
+#include "UIElement.h"
 #include "../../Globals.h"
-//class UI_element;
+//class UIElement;
 
-class Image : protected UI_element
+class Image : protected UIElement
 {
 	friend class Menu;
 	friend class State_Menu;

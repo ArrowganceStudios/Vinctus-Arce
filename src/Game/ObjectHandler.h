@@ -25,13 +25,6 @@ public:
 	void ObjectHandler::CleanUp();
 
 
-	/*static ObjectHandler& GetObjectHandler()
-	{
-		if (objectHandler == NULL) objectHandler = new ObjectHandler(); //lazy initialization of one instance
-		return *objectHandler;
-	}*/
-
-
 };
 
 

@@ -2,13 +2,13 @@
 #include "MenuButton.h"
 #include "ClassSelectionIcon.h"
 
-Menu::Menu(string title, float x, float y) : UI_element(x, y), menuTitle(title)
+Menu::Menu(string title, float x, float y) : UIElement(x, y), menuTitle(title)
 {
 	width = SCREEN_WIDTH;
 	height = SCREEN_HEIGHT;
 	z = 0;
 	MarkedButton = nullptr;
-	graphicEngine::Instance().CreateUI_Element_GraphicInstance(this);
+	graphicEngine::Instance().CreateUIElement_GraphicInstance(this);
 }
 
 void Menu::AddButton(string buttonText, void (*function)())
@@ -42,15 +42,15 @@ void Menu::AddClassIconBig(int graphicID, void(*function)() = nullptr)
 void Menu::Cleanup()
 {
 	for (auto button : buttons)
-		graphicEngine::Instance().DestroyUI_ElementGraphicInstance(button);
+		graphicEngine::Instance().DestroyUIElementGraphicInstance(button);
 	
 	for (auto image : images)
-		graphicEngine::Instance().DestroyUI_ElementGraphicInstance(image);
+		graphicEngine::Instance().DestroyUIElementGraphicInstance(image);
 
 	for (auto classIcon : classIcons)
-		graphicEngine::Instance().DestroyUI_ElementGraphicInstance(classIcon);
+		graphicEngine::Instance().DestroyUIElementGraphicInstance(classIcon);
 
-	graphicEngine::Instance().DestroyUI_ElementGraphicInstance(this);
+	graphicEngine::Instance().DestroyUIElementGraphicInstance(this);
 
 	if (buttons.size())
 		buttons.clear();

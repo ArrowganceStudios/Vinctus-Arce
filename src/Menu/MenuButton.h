@@ -2,11 +2,11 @@
 #include "Button.h"
 #include "../Graphics/UI/Text.h"
 #include "../Globals.h"
-#include "../Graphics/UI/UI_element.h"
+#include "../Graphics/UI/UIElement.h"
 
 class Text;
 
-class MenuButton : protected UI_element, public Button
+class MenuButton : protected UIElement, public Button
 {
 	friend class Menu;
 	friend class State_Menu;

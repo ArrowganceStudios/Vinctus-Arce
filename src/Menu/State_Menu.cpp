@@ -45,7 +45,7 @@ void State_Menu::Init()
 
 void State_Menu::SwitchToMenu(string newMenu)
 {
-	//this should be handled in a different way imo, like using some UI_element loop or smth
+	//this should be handled in a different way imo, like using some UIElement loop or smth
 	//also - ClassIconBig handling and slider handling needs to be included as well.
 
 	if (CurrentMenu != nullptr)
@@ -95,11 +95,11 @@ void State_Menu::Cleanup()
 
 	//imo this should be handled differently, cba deleting every new element we add here tbh.
 
-	graphicEngine::Instance().DestroyUI_ElementGraphic("class ClassSelectionIcon");
-	graphicEngine::Instance().DestroyUI_ElementGraphic("class MenuButton");
-	graphicEngine::Instance().DestroyUI_ElementGraphic("class Image");
-	graphicEngine::Instance().DestroyUI_ElementGraphic("class Menu");
-	graphicEngine::Instance().DestroyUI_ElementGraphic("class Text");
+	graphicEngine::Instance().DestroyUIElementGraphic("class ClassSelectionIcon");
+	graphicEngine::Instance().DestroyUIElementGraphic("class MenuButton");
+	graphicEngine::Instance().DestroyUIElementGraphic("class Image");
+	graphicEngine::Instance().DestroyUIElementGraphic("class Menu");
+	graphicEngine::Instance().DestroyUIElementGraphic("class Text");
 
 	graphicEngine::Instance().CleanUpUIMaps();
 	
@@ -137,26 +137,26 @@ void State_Menu::Update()
 			{
 				CurrentMenu->MarkedButton = CurrentMenu->buttons[i];
 				CurrentMenu->buttons[i]->highlighted = true;
-				graphicEngine::Instance().RequestUI_Element_Graphic(CurrentMenu->buttons[i], Hover);
+				graphicEngine::Instance().RequestUIElement_Graphic(CurrentMenu->buttons[i], Hover);
 			}
 		}
 		else
 		{
 			CurrentMenu->buttons[i]->highlighted = false;
 			if (CurrentMenu->buttons[i]->clicked) CurrentMenu->buttons[i]->clicked = false;
-			graphicEngine::Instance().RequestUI_Element_Graphic(CurrentMenu->buttons[i], Default);
+			graphicEngine::Instance().RequestUIElement_Graphic(CurrentMenu->buttons[i], Default);
 		}
 	}
 	if (mouse[LMB] && CurrentMenu->MarkedButton != NULL && CurrentMenu->MarkedButton->highlighted)
 	{
 
 			CurrentMenu->MarkedButton->clicked = true;
-			graphicEngine::Instance().RequestUI_Element_Graphic(CurrentMenu->MarkedButton, Clicked);
+			graphicEngine::Instance().RequestUIElement_Graphic(CurrentMenu->MarkedButton, Clicked);
 	}
 	else if (!mouse[LMB] && CurrentMenu->MarkedButton != NULL && CurrentMenu->MarkedButton->clicked)
 	{
 		//cout << "Action!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << endl;
-		graphicEngine::Instance().RequestUI_Element_Graphic(CurrentMenu->MarkedButton, Default);
+		graphicEngine::Instance().RequestUIElement_Graphic(CurrentMenu->MarkedButton, Default);
 		CurrentMenu->MarkedButton->clicked = false;
 		CurrentMenu->MarkedButton->UseFunction();
 	}
@@ -174,21 +174,21 @@ void State_Menu::LoadResources()
 {
 	//Graphics
 	//menu
-	graphicEngine::Instance().DefineUI_Element_Graphic("class Menu", "assets/img/UI/Menu.jpg");
+	graphicEngine::Instance().DefineUIElement_Graphic("class Menu", "assets/img/UI/Menu.jpg");
 
 	//buttons
-	graphicEngine::Instance().DefineUI_Element_Graphic("class MenuButton", "assets/img/UI/button.png");
-	graphicEngine::Instance().DefineUI_Element_Graphic("class MenuButton", "assets/img/UI/button_highlighted.png");
-	graphicEngine::Instance().DefineUI_Element_Graphic("class MenuButton", "assets/img/UI/button_clicked.png");
+	graphicEngine::Instance().DefineUIElement_Graphic("class MenuButton", "assets/img/UI/button.png");
+	graphicEngine::Instance().DefineUIElement_Graphic("class MenuButton", "assets/img/UI/button_highlighted.png");
+	graphicEngine::Instance().DefineUIElement_Graphic("class MenuButton", "assets/img/UI/button_clicked.png");
 
 	//class icons
-	graphicEngine::Instance().DefineUI_Element_Graphic("class ClassSelectionIcon", "assets/img/UI/LockedCrest.png");
-	graphicEngine::Instance().DefineUI_Element_Graphic("class ClassSelectionIcon", "assets/img/UI/WarriorCrestNormal.png");
-	graphicEngine::Instance().DefineUI_Element_Graphic("class ClassSelectionIcon", "assets/img/UI/WarriorCrestHovered.png");
-	graphicEngine::Instance().DefineUI_Element_Graphic("class ClassSelectionIcon", "assets/img/UI/WarriorCrestClicked.png");
+	graphicEngine::Instance().DefineUIElement_Graphic("class ClassSelectionIcon", "assets/img/UI/LockedCrest.png");
+	graphicEngine::Instance().DefineUIElement_Graphic("class ClassSelectionIcon", "assets/img/UI/WarriorCrestNormal.png");
+	graphicEngine::Instance().DefineUIElement_Graphic("class ClassSelectionIcon", "assets/img/UI/WarriorCrestHovered.png");
+	graphicEngine::Instance().DefineUIElement_Graphic("class ClassSelectionIcon", "assets/img/UI/WarriorCrestClicked.png");
 
 	//credits graphic
-	graphicEngine::Instance().DefineUI_Element_Graphic("class Image", "assets/img/media/arrowgance.jpg");
+	graphicEngine::Instance().DefineUIElement_Graphic("class Image", "assets/img/media/arrowgance.jpg");
 
 	//fonts
 	graphicEngine::Instance().textManager->DefineFont("Morpheius", "assets/img/UI/Morpheius_vDark.png", 7, 72, 108, -30);
