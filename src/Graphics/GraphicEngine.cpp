@@ -66,6 +66,8 @@ void GraphicEngine::DefineUIElement_Graphic(string elementsClassName, string pat
 {
 	ALLEGRO_BITMAP *newBitmap = al_load_bitmap(pathName.c_str()); //c_str() is used to convert to the const char
 
+	if (!newBitmap) std::cerr << "Couldn't load image named " << pathName << std::endl;
+
 	if (UIElementsGraphicsMap.find(elementsClassName) != UIElementsGraphicsMap.end()) //if the class already exists
 	{
 		UIElementsGraphicsMap[elementsClassName].push_back(newBitmap); //then add bitmap to it
