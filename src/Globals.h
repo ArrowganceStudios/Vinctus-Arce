@@ -45,7 +45,7 @@ namespace {
 		const float tileWidth = 60;
 	}
 
-	namespace SliderDimension
+	namespace Slider
 	{
 		const float sliderBarWidth = 243;
 		const float sliderBarHeight = 13;
