@@ -40,8 +40,8 @@ void State_Menu::Init()
 	characterSelectionMenu->AddButton("Begin", 570, 520,/* MenuActions::StartGame*/ nullptr);
 	characterSelectionMenu->AddButton("Back", 240, 520, MenuActions::Back);
 
-	resolutionMenu->AddImage(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, SliderDimension::sliderBarWidth, SliderDimension::sliderBarHeight, 2);
-	resolutionMenu->AddImage(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, SliderDimension::sliderWidth, SliderDimension::sliderHeight, 1);
+	resolutionMenu->AddImage(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, SliderDimension::sliderBarWidth, SliderDimension::sliderBarHeight, 1);
+	resolutionMenu->AddImage(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, SliderDimension::sliderWidth, SliderDimension::sliderHeight, 2);
 	resolutionMenu->AddButton("Back", SCREEN_WIDTH / 2, SCREEN_HEIGHT - 100, MenuActions::Options);
 
 	menuList = { mainMenu, characterSelectionMenu, optionsMenu, resolutionMenu, creditsMenu, waveMenu, pauseMenu };
@@ -196,8 +196,8 @@ void State_Menu::LoadResources()
 	graphicEngine::Instance().DefineUIElement_Graphic("class Image", "assets/img/media/arrowgance.jpg");
 
 	//slider
-	graphicEngine::Instance().DefineUIElement_Graphic("class Image", "assets/img/UI/Slider.png");
 	graphicEngine::Instance().DefineUIElement_Graphic("class Image", "assets/img/UI/SliderBar.png");
+	graphicEngine::Instance().DefineUIElement_Graphic("class Image", "assets/img/UI/Slider.png");
 
 	//fonts
 	graphicEngine::Instance().textManager->DefineFont("Morpheius", "assets/img/UI/Morpheius_vDark.png", 7, 72, 108, -30);
