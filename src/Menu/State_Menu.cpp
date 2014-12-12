@@ -99,42 +99,7 @@ void State_Menu::HandleEvents()
 
 void State_Menu::Update()
 {
-	//This still should be moved to InputHandler
-	using ::ButtonState; //zis is kruszal!
-
-	for (unsigned int i = 0; i < CurrentMenu->buttons.size(); i++)
-	{
-		//mouse pointer is in range
-		if ((mouseX >= (CurrentMenu->buttons[i]->x - CurrentMenu->buttons[i]->width / 2)) &&
-			(mouseX <= (CurrentMenu->buttons[i]->x + CurrentMenu->buttons[i]->width / 2)) &&
-			(mouseY >= (CurrentMenu->buttons[i]->y - CurrentMenu->buttons[i]->height / 2)) &&
-			(mouseY <= (CurrentMenu->buttons[i]->y + CurrentMenu->buttons[i]->height / 2)))
-		{
-			//denoting currently mouseovered button as MakredButton, setting state to highlight state
-			if (CurrentMenu->MarkedButton != CurrentMenu->buttons[i])
-			{
-				CurrentMenu->MarkedButton = CurrentMenu->buttons[i];
-				CurrentMenu->buttons[i]->SetHighlightedState();
-			}
-			//set clicked state if the button has been highlighted and left mouse button has been used on it
-			if (mouse[LMB] && CurrentMenu->MarkedButton != NULL && CurrentMenu->MarkedButton->IsHighlighted())
-			{
-				CurrentMenu->MarkedButton->SetClickedState();
-			}
-			//set to normal state and use button's function if the mouse button has been realised during the clicked state
-			else if (!mouse[LMB] && CurrentMenu->MarkedButton != NULL && CurrentMenu->MarkedButton->IsClicked())
-			{
-				CurrentMenu->MarkedButton->SetNormalState();
-				CurrentMenu->MarkedButton->UseFunction();
-			}
-		}
-		//set to normal state if mouse is no longer inside the button's boundary
-		else
-		{
-			CurrentMenu->buttons[i]->SetNormalState();
-		}
-	}
-	CurrentMenu->MarkedButton = NULL;
+	for (auto button : CurrentMenu->buttons) button->Update();
 }
 
 void State_Menu::LoadResources()

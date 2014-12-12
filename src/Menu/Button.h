@@ -1,4 +1,5 @@
 #pragma once
+#include "../InputMap.h"
 
 using namespace std;
 

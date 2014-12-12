@@ -23,16 +23,26 @@ void MenuButton::SetClickedState()
 	graphicEngine::Instance().RequestUIElement_Graphic(this, Clicked);
 }
 
-MenuButton::MenuButton(string text, float x, float y, void(*function)()) : UIElement(x, y), Button(*function), text(text)
+bool MenuButton::IsHighlighted()
 {
-	width = ButtonSize::ButtonWidth;
-	height = ButtonSize::ButtonHeight;
+	if ((mouseX >= (this->x - this->width / 2)) &&
+		(mouseX <= (this->x + this->width / 2)) &&
+		(mouseY >= (this->y - this->height / 2)) &&
+		(mouseY <= (this->y + this->height / 2)))
+	{
+		if (!IsClicked()) SetHighlightedState();
+		return true;
+	}
+	else
+	{
+		SetNormalState();
+		return false;
+	}
+}
 
-	z = 1;
-
-	buttonText = new Text(text, "Morpheius", 0.5, x, y);
-
-	graphicEngine::Instance().CreateUIElement_GraphicInstance(this);
+bool MenuButton::IsClicked()
+{
+	return clicked;
 }
 
 void MenuButton::Hide()
@@ -45,6 +55,31 @@ void MenuButton::Show()
 {
 	visible = true;
 	buttonText->Show();
+}
+
+void MenuButton::Update()
+{
+	if (IsHighlighted())
+	{
+		if (mouse[LMB] && !IsClicked()) SetClickedState();
+		if (!mouse[LMB] && IsClicked())
+		{
+			UseFunction();
+			SetNormalState();
+		}
+	}
+}
+
+MenuButton::MenuButton(string text, float x, float y, void(*function)()) : UIElement(x, y), Button(*function), text(text)
+{
+	width = ButtonSize::ButtonWidth;
+	height = ButtonSize::ButtonHeight;
+
+	z = 1;
+
+	buttonText = new Text(text, "Morpheius", 0.5, x, y);
+
+	graphicEngine::Instance().CreateUIElement_GraphicInstance(this);
 }
 
 MenuButton::~MenuButton()

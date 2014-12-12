@@ -21,8 +21,8 @@ public:
 	void SetHighlightedState();
 	void SetClickedState();
 
-	bool IsHighlighted() const { return highlighted; }
-	bool IsClicked() const { return clicked; }
+	bool IsHighlighted();
+	bool IsClicked();
 
 	Text * GetText() const { return buttonText; }
 
@@ -30,4 +30,6 @@ public:
 	void Show();
 
 	void Polymorphic() {};
+
+	void Update();
 };
