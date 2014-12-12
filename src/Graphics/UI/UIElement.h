@@ -26,8 +26,9 @@ public:
 
 	bool isVisible() const { return visible; }
 
-	void Show() { visible = true; }
-	void Hide() { visible = false; }
+	virtual void Show() { visible = true; }
+
+	virtual void Hide() { visible = false; }
 
 	virtual void Polymorphic() {}
 };

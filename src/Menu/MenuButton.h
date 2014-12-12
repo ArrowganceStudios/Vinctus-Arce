@@ -6,9 +6,8 @@
 
 class Text;
 
-class MenuButton : protected UIElement, public Button
+class MenuButton : public UIElement, public Button
 {
-	friend class Menu;
 	friend class State_Menu;
 
 	string text;
@@ -18,7 +17,17 @@ public:
 	MenuButton(string text, float x, float y, void(*function)());
 	~MenuButton();
 
+	void SetNormalState();
+	void SetHighlightedState();
+	void SetClickedState();
+
+	bool IsHighlighted() const { return highlighted; }
+	bool IsClicked() const { return clicked; }
+
 	Text * GetText() const { return buttonText; }
+
+	void Hide();
+	void Show();
 
 	void Polymorphic() {};
 };

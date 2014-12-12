@@ -4,9 +4,7 @@ using namespace std;
 
 class Button
 {
-	friend class Menu;
-	friend class State_Menu;
-
+protected:
 	void (*action)();
 	bool highlighted;
 	bool clicked;

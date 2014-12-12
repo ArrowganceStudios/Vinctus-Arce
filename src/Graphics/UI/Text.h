@@ -7,7 +7,7 @@ using namespace std;
 
 class GraphicEngine;
 
-class Text : protected UIElement
+class Text : public UIElement
 {
 	friend class Button;
 	friend class State_Menu;

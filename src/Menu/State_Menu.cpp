@@ -50,24 +50,9 @@ void State_Menu::Init()
 
 void State_Menu::SwitchToMenu(string newMenu)
 {
-	//this should be handled in a different way imo, like using some UIElement loop or smth
-	//also - ClassIconBig handling and slider handling needs to be included as well.
-
 	if (CurrentMenu != nullptr)
 	{
 		CurrentMenu->Hide();
-
-		for (auto button : CurrentMenu->buttons)
-		{
-			button->Hide();
-			button->GetText()->Hide();
-		}
-
-		for (auto image : CurrentMenu->images)
-			image->Hide();
-
-		for (auto icon : CurrentMenu->classIcons)
-			icon->Hide();
 	}
 
 	for(auto menuit : menuList)
@@ -76,18 +61,6 @@ void State_Menu::SwitchToMenu(string newMenu)
 		{
 			CurrentMenu = menuit;
 			CurrentMenu->Show();
-
-			for (auto button : CurrentMenu->buttons)
-			{
-				button->Show();
-				button->GetText()->Show();
-			}
-
-			for (auto image : CurrentMenu->images)
-				image->Show();
-
-			for (auto icon : CurrentMenu->classIcons)
-				icon->Show();
 		}
 	}
 
@@ -98,13 +71,11 @@ void State_Menu::Cleanup()
 	for (auto &menu : menuList)
 		menu->Cleanup();
 
-	//imo this should be handled differently, cba deleting every new element we add here tbh.
+	vector <string> UIGraphicsToBeDeleted = { "class ClassSelectionIcon", "class MenuButton", "class Image",
+		"class Menu", "class Text" };
 
-	graphicEngine::Instance().DestroyUIElementGraphic("class ClassSelectionIcon");
-	graphicEngine::Instance().DestroyUIElementGraphic("class MenuButton");
-	graphicEngine::Instance().DestroyUIElementGraphic("class Image");
-	graphicEngine::Instance().DestroyUIElementGraphic("class Menu");
-	graphicEngine::Instance().DestroyUIElementGraphic("class Text");
+	for (auto &graphic : UIGraphicsToBeDeleted)
+		graphicEngine::Instance().DestroyUIElementGraphic(graphic);
 
 	graphicEngine::Instance().CleanUpUIMaps();
 	
@@ -128,51 +99,42 @@ void State_Menu::HandleEvents()
 
 void State_Menu::Update()
 {
-	//This should be moved to InputHandler
+	//This still should be moved to InputHandler
 	using ::ButtonState; //zis is kruszal!
 
 	for (unsigned int i = 0; i < CurrentMenu->buttons.size(); i++)
 	{
+		//mouse pointer is in range
 		if ((mouseX >= (CurrentMenu->buttons[i]->x - CurrentMenu->buttons[i]->width / 2)) &&
 			(mouseX <= (CurrentMenu->buttons[i]->x + CurrentMenu->buttons[i]->width / 2)) &&
 			(mouseY >= (CurrentMenu->buttons[i]->y - CurrentMenu->buttons[i]->height / 2)) &&
 			(mouseY <= (CurrentMenu->buttons[i]->y + CurrentMenu->buttons[i]->height / 2)))
 		{
+			//denoting currently mouseovered button as MakredButton, setting state to highlight state
 			if (CurrentMenu->MarkedButton != CurrentMenu->buttons[i])
 			{
 				CurrentMenu->MarkedButton = CurrentMenu->buttons[i];
-				CurrentMenu->buttons[i]->highlighted = true;
-				graphicEngine::Instance().RequestUIElement_Graphic(CurrentMenu->buttons[i], Hover);
+				CurrentMenu->buttons[i]->SetHighlightedState();
+			}
+			//set clicked state if the button has been highlighted and left mouse button has been used on it
+			if (mouse[LMB] && CurrentMenu->MarkedButton != NULL && CurrentMenu->MarkedButton->IsHighlighted())
+			{
+				CurrentMenu->MarkedButton->SetClickedState();
+			}
+			//set to normal state and use button's function if the mouse button has been realised during the clicked state
+			else if (!mouse[LMB] && CurrentMenu->MarkedButton != NULL && CurrentMenu->MarkedButton->IsClicked())
+			{
+				CurrentMenu->MarkedButton->SetNormalState();
+				CurrentMenu->MarkedButton->UseFunction();
 			}
 		}
+		//set to normal state if mouse is no longer inside the button's boundary
 		else
 		{
-			CurrentMenu->buttons[i]->highlighted = false;
-			if (CurrentMenu->buttons[i]->clicked) CurrentMenu->buttons[i]->clicked = false;
-			graphicEngine::Instance().RequestUIElement_Graphic(CurrentMenu->buttons[i], Default);
+			CurrentMenu->buttons[i]->SetNormalState();
 		}
 	}
-	if (mouse[LMB] && CurrentMenu->MarkedButton != NULL && CurrentMenu->MarkedButton->highlighted)
-	{
-
-			CurrentMenu->MarkedButton->clicked = true;
-			graphicEngine::Instance().RequestUIElement_Graphic(CurrentMenu->MarkedButton, Clicked);
-	}
-	else if (!mouse[LMB] && CurrentMenu->MarkedButton != NULL && CurrentMenu->MarkedButton->clicked)
-	{
-		//cout << "Action!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << endl;
-		graphicEngine::Instance().RequestUIElement_Graphic(CurrentMenu->MarkedButton, Default);
-		CurrentMenu->MarkedButton->clicked = false;
-		CurrentMenu->MarkedButton->UseFunction();
-	}
 	CurrentMenu->MarkedButton = NULL;
-	/////////////////////////////////////////////////////////////////////
-	/*if (CurrentMenu->MarkedButton != NULL)		// Small but fancy debug!
-	{
-		if (CurrentMenu->MarkedButton->clicked) cout << "Clicked!" << endl;
-		else cout << "Highlighted!" << endl;
-	}
-	else cout << "---" << endl;*/
 }
 
 void State_Menu::LoadResources()

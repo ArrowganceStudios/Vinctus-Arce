@@ -39,6 +39,36 @@ void Menu::AddClassIconBig(int graphicID, void(*function)() = nullptr)
 	classIcons.push_back(newClassIcon);
 }
 
+void Menu::Hide()
+{
+	visible = false;
+
+	//hiding it's contents
+	for (auto button : buttons)
+		button->Hide();
+
+	for (auto image : images)
+		image->Hide();
+
+	for (auto icon : classIcons)
+		icon->Hide();
+}
+
+void Menu::Show()
+{
+	visible = true;
+
+	//hiding it's contents
+	for (auto button : buttons)
+		button->Show();
+
+	for (auto image : images)
+		image->Show();
+
+	for (auto icon : classIcons)
+		icon->Show();
+}
+
 void Menu::Cleanup()
 {
 	for (auto button : buttons)
