@@ -6,21 +6,21 @@ void MenuButton::SetNormalState()
 {
 	highlighted = false;
 	clicked = false;
-	graphicEngine::Instance().RequestUIElement_Graphic(this, Default);
+	graphicEngine::Instance().RequestGraphic(this, Default);
 
 }
 
 void MenuButton::SetHighlightedState()
 {
 	highlighted = true;
-	graphicEngine::Instance().RequestUIElement_Graphic(this, Hover);
+	graphicEngine::Instance().RequestGraphic(this, Hover);
 }
 
 void MenuButton::SetClickedState()
 {
 	highlighted = false;
 	clicked = true;
-	graphicEngine::Instance().RequestUIElement_Graphic(this, Clicked);
+	graphicEngine::Instance().RequestGraphic(this, Clicked);
 }
 
 bool MenuButton::IsHighlighted()
@@ -79,7 +79,7 @@ MenuButton::MenuButton(string text, float x, float y, void(*function)()) : UIEle
 
 	buttonText = new Text(text, "Morpheius", 0.5, x, y);
 
-	graphicEngine::Instance().CreateUIElement_GraphicInstance(this);
+	graphicEngine::Instance().CreateGraphicInstance(this);
 }
 
 MenuButton::~MenuButton()

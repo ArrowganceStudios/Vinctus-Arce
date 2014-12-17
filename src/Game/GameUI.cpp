@@ -10,7 +10,7 @@ void GameUI::AddBar(float x, float y)
 void GameUI::Cleanup()
 {
 	for (auto bar : bars)
-		graphicEngine::Instance().DestroyUIElementGraphicInstance(bar);
+		graphicEngine::Instance().DestroyGraphicInstance(bar);
 	if (bars.size())
 		bars.clear();
 	bars.shrink_to_fit();

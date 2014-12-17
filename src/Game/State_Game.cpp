@@ -20,7 +20,7 @@ void State_Game::Init()
 
 void State_Game::Cleanup()
 {
-	graphicEngine::Instance().DestroyUIElementGraphic("class GameUI_bar");
+	graphicEngine::Instance().DestroyGraphic("class GameUI_bar");
 
 	graphicEngine::Instance().CleanUpUIMaps();
 	interFace->Cleanup();
@@ -43,14 +43,14 @@ void State_Game::HandleEvents()
 
 void State_Game::Update()
 {
-//	graphicEngine::Instance().RequestUIElement_Graphic()
+//	graphicEngine::Instance().RequestGraphic()
 }
 
 void State_Game::LoadResources()
 {
 	//Graphics
 	//bars
-	graphicEngine::Instance().DefineUIElement_Graphic("class GameUI_bar", "assets/img/UI/button.png");
+	graphicEngine::Instance().DefineGraphic("class GameUI_bar", "assets/img/UI/button.png");
 
 	//Sounds
 }

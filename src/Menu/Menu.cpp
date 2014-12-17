@@ -8,7 +8,7 @@ Menu::Menu(string title, float x, float y) : UIElement(x, y), menuTitle(title)
 	height = SCREEN_HEIGHT;
 	z = 0;
 	MarkedButton = nullptr;
-	graphicEngine::Instance().CreateUIElement_GraphicInstance(this);
+	graphicEngine::Instance().CreateGraphicInstance(this);
 }
 
 void Menu::AddButton(string buttonText, void (*function)())
@@ -72,15 +72,15 @@ void Menu::Show()
 void Menu::Cleanup()
 {
 	for (auto button : buttons)
-		graphicEngine::Instance().DestroyUIElementGraphicInstance(button);
+		graphicEngine::Instance().DestroyGraphicInstance(button);
 	
 	for (auto image : images)
-		graphicEngine::Instance().DestroyUIElementGraphicInstance(image);
+		graphicEngine::Instance().DestroyGraphicInstance(image);
 
 	for (auto classIcon : classIcons)
-		graphicEngine::Instance().DestroyUIElementGraphicInstance(classIcon);
+		graphicEngine::Instance().DestroyGraphicInstance(classIcon);
 
-	graphicEngine::Instance().DestroyUIElementGraphicInstance(this);
+	graphicEngine::Instance().DestroyGraphicInstance(this);
 
 	if (buttons.size())
 		buttons.clear();

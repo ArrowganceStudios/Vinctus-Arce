@@ -75,7 +75,7 @@ void State_Menu::Cleanup()
 		"class Menu", "class Text" };
 
 	for (auto &graphic : UIGraphicsToBeDeleted)
-		graphicEngine::Instance().DestroyUIElementGraphic(graphic);
+		graphicEngine::Instance().DestroyGraphic(graphic);
 
 	graphicEngine::Instance().CleanUpUIMaps();
 	
@@ -106,25 +106,25 @@ void State_Menu::LoadResources()
 {
 	//Graphics
 	//menu
-	graphicEngine::Instance().DefineUIElement_Graphic("class Menu", "assets/img/UI/Menu.jpg");
+	graphicEngine::Instance().DefineGraphic("class Menu", "assets/img/UI/Menu.jpg");
 
 	//buttons
-	graphicEngine::Instance().DefineUIElement_Graphic("class MenuButton", "assets/img/UI/button.png");
-	graphicEngine::Instance().DefineUIElement_Graphic("class MenuButton", "assets/img/UI/button_highlighted.png");
-	graphicEngine::Instance().DefineUIElement_Graphic("class MenuButton", "assets/img/UI/button_clicked.png");
+	graphicEngine::Instance().DefineGraphic("class MenuButton", "assets/img/UI/button.png");
+	graphicEngine::Instance().DefineGraphic("class MenuButton", "assets/img/UI/button_highlighted.png");
+	graphicEngine::Instance().DefineGraphic("class MenuButton", "assets/img/UI/button_clicked.png");
 
 	//class icons
-	graphicEngine::Instance().DefineUIElement_Graphic("class ClassSelectionIcon", "assets/img/UI/LockedCrest.png");
-	graphicEngine::Instance().DefineUIElement_Graphic("class ClassSelectionIcon", "assets/img/UI/WarriorCrestNormal.png");
-	graphicEngine::Instance().DefineUIElement_Graphic("class ClassSelectionIcon", "assets/img/UI/WarriorCrestHovered.png");
-	graphicEngine::Instance().DefineUIElement_Graphic("class ClassSelectionIcon", "assets/img/UI/WarriorCrestClicked.png");
+	graphicEngine::Instance().DefineGraphic("class ClassSelectionIcon", "assets/img/UI/LockedCrest.png");
+	graphicEngine::Instance().DefineGraphic("class ClassSelectionIcon", "assets/img/UI/WarriorCrestNormal.png");
+	graphicEngine::Instance().DefineGraphic("class ClassSelectionIcon", "assets/img/UI/WarriorCrestHovered.png");
+	graphicEngine::Instance().DefineGraphic("class ClassSelectionIcon", "assets/img/UI/WarriorCrestClicked.png");
 
 	//credits graphic
-	graphicEngine::Instance().DefineUIElement_Graphic("class Image", "assets/img/media/arrowgance.jpg");
+	graphicEngine::Instance().DefineGraphic("class Image", "assets/img/media/arrowgance.jpg");
 
 	//slider
-	graphicEngine::Instance().DefineUIElement_Graphic("class Image", "assets/img/UI/SliderBar.png");
-	graphicEngine::Instance().DefineUIElement_Graphic("class Image", "assets/img/UI/Slider.png");
+	graphicEngine::Instance().DefineGraphic("class Image", "assets/img/UI/SliderBar.png");
+	graphicEngine::Instance().DefineGraphic("class Image", "assets/img/UI/Slider.png");
 
 	//fonts
 	graphicEngine::Instance().textManager->DefineFont("Morpheius", "assets/img/UI/Morpheius_vDark.png", 7, 72, 108, -30);

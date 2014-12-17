@@ -10,9 +10,9 @@ Text::Text(string text, string fontName, float scale, float x, float y) : UIElem
 
 	z = 2;
 
-	graphicEngine::Instance().DefineUIElement_Graphic("class Text", textBitamp);
-	graphicEngine::Instance().CreateUIElement_GraphicInstance(this);
-	graphicEngine::Instance().RequestUIElement_Graphic(this, textID);
+	graphicEngine::Instance().DefineGraphic("class Text", textBitamp);
+	graphicEngine::Instance().CreateGraphicInstance(this);
+	graphicEngine::Instance().RequestGraphic(this, textID);
 
 	textID++;
 }

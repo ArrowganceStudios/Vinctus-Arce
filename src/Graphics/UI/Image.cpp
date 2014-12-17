@@ -4,6 +4,6 @@ Image::Image(float x, float y, float w, float h, const int graphicId) :UIElement
 {
 	z = 1;
 
-	graphicEngine::Instance().CreateUIElement_GraphicInstance(this);
-	graphicEngine::Instance().RequestUIElement_Graphic(this, graphicId);
+	graphicEngine::Instance().CreateGraphicInstance(this);
+	graphicEngine::Instance().RequestGraphic(this, graphicId);
 }

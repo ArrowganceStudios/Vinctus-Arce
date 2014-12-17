@@ -6,6 +6,6 @@ ClassSelectionIcon::ClassSelectionIcon(float x, float y, void(*function)() = nul
 	width = ClassSelectionIconSize::IconWidth;
 	height = ClassSelectionIconSize::IconHeight;
 
-	graphicEngine::Instance().CreateUIElement_GraphicInstance(this);
-	graphicEngine::Instance().RequestUIElement_Graphic(this, graphicID);
+	graphicEngine::Instance().CreateGraphicInstance(this);
+	graphicEngine::Instance().RequestGraphic(this, graphicID);
 }

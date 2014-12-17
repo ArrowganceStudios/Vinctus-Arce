@@ -15,5 +15,5 @@ class Text : public UIElement
 	static int textID;
 public:
 	Text(string text, string fontName, float scale, float x, float y);
-	~Text() { graphicEngine::Instance().DestroyUIElementGraphicInstance(this); };
+	~Text() { graphicEngine::Instance().DestroyGraphicInstance(this); };
 };

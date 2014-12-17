@@ -3,11 +3,12 @@
 #include <vector>
 #include <allegro5\allegro.h>
 #include "../Graphics/Sprite.h"
+#include "../Graphics/AnimatedGraphic.h"
 
 
 class Sprite;
 
-class GameObject
+class GameObject : AnimatedGraphic
 {
 private:
 	bool alive;
