@@ -6,7 +6,7 @@
 class Map
 {
 	friend class MapLayer;
-public:
+private:
 	void GenerateMap(ALLEGRO_BITMAP *mapFile);
 	char GetTileTypeFromColor(ALLEGRO_COLOR color);
 

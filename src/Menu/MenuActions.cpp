@@ -28,6 +28,10 @@ namespace MenuActions {
 		gameEngine::Instance().Quit();
 	}
 
+	void ReadyToChangeState()
+	{
+		gameEngine::Instance().GetMenuState()->ReadyToLaunchGame();
+	}
 
 	//Options menu
 	void Resolution()

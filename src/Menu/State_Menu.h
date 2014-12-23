@@ -21,13 +21,17 @@ private:
 	Menu *pauseMenu;
 	Menu *waveMenu;
 
+	bool startGameClicked;
+
 	void LoadResources();
 
 public:
-	State_Menu(){};
+	State_Menu() : startGameClicked(false) {};
 
 	Menu *CurrentMenu;
 	void SwitchToMenu(std::string newMenu);
+
+	void ReadyToLaunchGame() { startGameClicked = true; }
 
 	void Init();
 	void Cleanup();

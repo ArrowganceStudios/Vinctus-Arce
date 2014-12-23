@@ -72,13 +72,22 @@ void Menu::Show()
 void Menu::Cleanup()
 {
 	for (auto button : buttons)
+	{
 		graphicEngine::Instance().DestroyGraphicInstance(button);
+		delete button;
+	}
 	
 	for (auto image : images)
+	{
 		graphicEngine::Instance().DestroyGraphicInstance(image);
+		delete image;
+	}
 
 	for (auto classIcon : classIcons)
+	{
 		graphicEngine::Instance().DestroyGraphicInstance(classIcon);
+		delete classIcon;
+	}
 
 	graphicEngine::Instance().DestroyGraphicInstance(this);
 

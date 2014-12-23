@@ -8,6 +8,7 @@
 #include "UI/TextManager.h"
 #include "../Singleton.h"
 #include <map>
+#include <algorithm>
 
 class GameEngine;
 class TextManager;
@@ -22,6 +23,9 @@ class GraphicEngine : public Singleton<GraphicEngine>
 	//maps storing an actual list of UI and Game objects and text instances
 	std::vector <std::pair<AnimatedGraphic *, Sprite *>> AnimationOwnersMap;
 	std::vector <std::pair<StaticGraphic *, ALLEGRO_BITMAP *>> GraphicOwnersMap;
+
+	//Map gameMap;
+	//ViewPort viewPort;
 protected:
 	GraphicEngine();
 	~GraphicEngine() { if (textManager != nullptr) delete &textManager; };
@@ -45,6 +49,13 @@ public:
 	void DestroyGraphicInstance(StaticGraphic *owner);
 	void RequestGraphic(StaticGraphic *owner, int graphicID);
 
+	void DrawAnimatedElements();
+	void DrawStaticElements();
+	void DrawGameMap();
+
 	void CleanUpUIMaps();
 	void Destroy();
+
+	bool IsInsideDatabase(StaticGraphic* owner);
+	bool IsInsideDatabase(AnimatedGraphic* owner);
 };

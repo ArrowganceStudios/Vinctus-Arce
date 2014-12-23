@@ -37,7 +37,7 @@ void State_Menu::Init()
 	characterSelectionMenu->AddClassIconBig(ClassIconGraphic::WarriorClicked, nullptr);
 	characterSelectionMenu->AddClassIconBig(ClassIconGraphic::Disabled, nullptr);
 	characterSelectionMenu->AddClassIconBig(ClassIconGraphic::Disabled, nullptr);
-	characterSelectionMenu->AddButton("Begin", 570, 520,/* MenuActions::StartGame*/ nullptr);
+	characterSelectionMenu->AddButton("Begin", 570, 520, MenuActions::ReadyToChangeState); //this is such a bullshit omfg
 	characterSelectionMenu->AddButton("Back", 240, 520, MenuActions::Back);
 
 	resolutionMenu->AddImage(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, SliderDimension::sliderBarWidth, SliderDimension::sliderBarHeight, 1);
@@ -71,6 +71,11 @@ void State_Menu::Cleanup()
 	for (auto &menu : menuList)
 		menu->Cleanup();
 
+	CurrentMenu = nullptr;
+
+	for (auto menu : menuList)
+		if (menu != nullptr) delete menu;
+
 	vector <string> UIGraphicsToBeDeleted = { "class ClassSelectionIcon", "class MenuButton", "class Image",
 		"class Menu", "class Text" };
 
@@ -78,9 +83,8 @@ void State_Menu::Cleanup()
 		graphicEngine::Instance().DestroyGraphic(graphic);
 
 	graphicEngine::Instance().CleanUpUIMaps();
-	
-	for (auto menu : menuList)
-		if(menu != nullptr) delete menu;
+
+	cout << "cleanup has ben called" << endl;
 }
 
 void State_Menu::Pause()
@@ -99,7 +103,13 @@ void State_Menu::HandleEvents()
 
 void State_Menu::Update()
 {
-	for (auto button : CurrentMenu->buttons) button->Update();
+	if (CurrentMenu)
+		for (auto button : CurrentMenu->buttons)
+		{
+			button->Update();
+		}
+
+	if(startGameClicked) MenuActions::StartGame(); //I don't like this sort of solutions ;x
 }
 
 void State_Menu::LoadResources()

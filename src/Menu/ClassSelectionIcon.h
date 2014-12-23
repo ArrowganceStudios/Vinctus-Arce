@@ -10,5 +10,6 @@ class ClassSelectionIcon : protected UIElement, public Button
 
 public:
 	ClassSelectionIcon(float x, float y, void(*function)(), int graphicID);
+	~ClassSelectionIcon() { std::cout << "ClassIcon has been successfully deleted" << endl; }
 	void Polymorphic() {};
 };

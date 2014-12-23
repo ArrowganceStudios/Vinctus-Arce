@@ -33,6 +33,13 @@ void GraphicEngine::CreateAnimationInstance(AnimatedGraphic *owner)
 
 void GraphicEngine::RequestAnimation(AnimatedGraphic *owner, int animationNumber)
 {
+	//checking if instace exists
+	if (IsInsideDatabase(owner))
+	{
+		cerr << "Animation Instance wasn't found in the database" << endl;
+		return;
+	}
+
 	//getting name of the class of object passed
 	const std::type_info& info = typeid(*owner);
 	string className = static_cast<string>(info.name());
@@ -110,6 +117,12 @@ void GraphicEngine::CreateGraphicInstance(StaticGraphic *owner)
 
 void GraphicEngine::RequestGraphic(StaticGraphic *owner, int graphicID)
 {
+	if (IsInsideDatabase(owner))
+	{
+		cerr << "Graphic Instance wasn't found in the database" << endl;
+		return;
+	}
+
 	const std::type_info& info = typeid(*owner);
 	string className = static_cast<string>(info.name());
 
@@ -139,10 +152,21 @@ void GraphicEngine::RequestGraphic(StaticGraphic *owner, int graphicID)
 
 void GraphicEngine::Render()
 {
+	DrawAnimatedElements();
+	DrawStaticElements();
+	DrawGameMap();
+}
+
+void GraphicEngine::DrawAnimatedElements()
+{
 	for (auto &Gobject : AnimationsMap)
 	{
 		//some animation algorithm
 	}
+}
+
+void GraphicEngine::DrawStaticElements()
+{
 	for (int i = 0; i < 3; i++)
 	{
 		for (auto &UIElement : GraphicOwnersMap)
@@ -152,6 +176,14 @@ void GraphicEngine::Render()
 				(UIElement.first->GetY() - (UIElement.first->GetHeight() / 2)), 0);
 		}
 	}
+}
+
+void GraphicEngine::DrawGameMap()
+{
+	/*if (gameMap != nullptr)
+		al_draw_bitmap_region(gameMap.GetBitmap(), (viewPort.GetX() + viewPort.GetWidth() / 2), 
+		(viewPort.GetY() + viewPort.Height() / 2), viewPort.GetWidth(), viewPort.GetHeight(), SCREEN_WIDTH / 2,
+		SCREEN_HEIGHT / 2, 0);*/
 }
 
 void GraphicEngine::DestroyGraphicInstance(StaticGraphic *owner)
@@ -167,6 +199,7 @@ void GraphicEngine::DestroyGraphicInstance(StaticGraphic *owner)
 		}
 		pos++;
 	}
+	GraphicOwnersMap.shrink_to_fit();
 }
 
 void GraphicEngine::DestroyGraphic(std::string className)
@@ -202,4 +235,24 @@ void GraphicEngine::Destroy()
 		}
 	}
 	CleanUpUIMaps();
+}
+
+bool GraphicEngine::IsInsideDatabase(StaticGraphic* owner)
+{
+	auto &gmap = GraphicOwnersMap;
+	typedef pair <StaticGraphic*, ALLEGRO_BITMAP*> gPair;
+
+	auto foundOwner = std::find_if(gmap.begin(), gmap.end(), [&owner](gPair &p) { return p.first == owner; });
+
+	return foundOwner == gmap.end();
+}
+
+bool GraphicEngine::IsInsideDatabase(AnimatedGraphic* owner)
+{
+	auto &amap = AnimationOwnersMap;
+	typedef pair <AnimatedGraphic*, Sprite*> gPair;
+
+	auto foundOwner = std::find_if(amap.begin(), amap.end(), [&owner](gPair &p) { return p.first == owner; });
+
+	return foundOwner == amap.end();
 }

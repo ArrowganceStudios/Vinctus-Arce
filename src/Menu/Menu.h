@@ -24,7 +24,7 @@ class Menu : public UIElement
 
 public:
 	Menu(string title, float x = 400, float y = 300); //temp soultion till we fix cir.dependency
-	~Menu() {};
+	~Menu() { std::cout << "Menu " << menuTitle << " has been successfully deleted" << endl; };
 
 	void AddButton(string buttonText, void(*function)());
 	void AddButton(string buttonText, float x, float y, void(*function)());
