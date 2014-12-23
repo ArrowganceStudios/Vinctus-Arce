@@ -15,7 +15,7 @@ char MapLayer::GetTileTypeAtCoords(float x, float y)
 
 void MapLayer::Init()
 {
-	// myLevel = new Map(fileName);
+	myLevel = new Map("assets/img/map.png");
 }
 
 void MapLayer::Render()

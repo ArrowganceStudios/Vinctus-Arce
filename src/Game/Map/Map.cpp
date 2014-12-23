@@ -1,8 +1,10 @@
 #include "../../Globals.h"
 #include "Map.h"
 
-void Map::GenerateMap(ALLEGRO_BITMAP *mapFile)
+void Map::GenerateMap(std::string mapFilepath)
 {
+	ALLEGRO_BITMAP *mapFile = al_load_bitmap(mapFilepath.c_str());
+
 	tilesAmountX = al_get_bitmap_width(mapFile);
 	tilesAmountY = al_get_bitmap_height(mapFile);
 
@@ -12,15 +14,13 @@ void Map::GenerateMap(ALLEGRO_BITMAP *mapFile)
 	for (int i = 0; i < tilesAmountX; i++)
 	{
 		std::vector<Tile*> tileVector(tilesAmountY);
-		tileMap.push_back(tileVector);
-
 		int j = 0;
-		for (auto tileit : tileMap[i])
+		for (unsigned int j = 0; j < tileVector.size(); j++)
 		{
 			ALLEGRO_COLOR pixelColor = al_get_pixel(mapFile, i, j);
-			tileMap[i].push_back(new Tile(GetTileTypeFromColor(pixelColor)));
-			j++;
+			tileVector.at(j) = new Tile(GetTileTypeFromColor(pixelColor));
 		}
+		tileMap.push_back(tileVector);
 	}
 }
 

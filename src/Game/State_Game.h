@@ -1,5 +1,6 @@
 #pragma once
 #include "../State.h"
+#include "Scene\Layers\MapLayer.h"
 #include "Scene\Layer.h"
 #include <vector>
 
@@ -11,6 +12,9 @@ private:
 	GameUI *interFace;
 
 	std::vector<Layer*> GameScene;
+
+	MapLayer *myLevel;
+
 	void State_Game::LoadResources();
 
 public:

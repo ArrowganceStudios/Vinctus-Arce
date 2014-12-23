@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <string>
 #include <allegro5\allegro.h>
 #include "Tile.h"
 
@@ -7,7 +8,7 @@ class Map
 {
 	friend class MapLayer;
 private:
-	void GenerateMap(ALLEGRO_BITMAP *mapFile);
+	void GenerateMap(std::string mapFilepath);
 	char GetTileTypeFromColor(ALLEGRO_COLOR color);
 
 	float mapWidth;
@@ -18,6 +19,6 @@ private:
 
 	std::vector<std::vector<Tile*>> tileMap;
 public:
-	Map(ALLEGRO_BITMAP *mapFile){ GenerateMap(mapFile); }
+	Map(std::string path){ GenerateMap(path); }
 	void Init();
 };
