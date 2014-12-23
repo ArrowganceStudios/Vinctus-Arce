@@ -1,8 +1,9 @@
 #pragma once
 #include <vector>
 #include <allegro5\allegro.h>
+#include "../../Graphics/StaticGraphic.h"
 
-class Tile
+class Tile //: StaticGraphic
 {
 	friend class Map;
 private:

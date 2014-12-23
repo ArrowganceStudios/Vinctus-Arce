@@ -40,7 +40,7 @@ bool MenuButton::IsHighlighted()
 	}
 }
 
-bool MenuButton::IsClicked()
+bool MenuButton::IsClicked() const
 {
 	return clicked;
 }

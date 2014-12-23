@@ -22,14 +22,12 @@ public:
 	void SetClickedState();
 
 	bool IsHighlighted();
-	bool IsClicked();
+	bool IsClicked() const;
 
 	Text * GetText() const { return buttonText; }
 
 	void Hide();
 	void Show();
-
-	void Polymorphic() {};
 
 	void Update();
 };

@@ -18,5 +18,10 @@ public:
 	float GetVelocity() const { return velocity; }
 	float SetVelocity(float vel) { velocity = vel; }
 
+	bool CanMoveUp();
+	bool CanMoveDown();
+	bool CanMoveLeft();
+	bool CanMoveRight();
+
 	void virtual Update() {};
 };
