@@ -4,7 +4,7 @@
 #include <allegro5\allegro.h>
 #include "Tile.h"
 
-class Map
+class Map : public StaticGraphic
 {
 	friend class MapLayer;
 private:
@@ -14,11 +14,18 @@ private:
 	float mapWidth;
 	float mapHeight;
 
+	float x;
+	float y;
+
 	int tilesAmountX;
 	int tilesAmountY;
 
 	std::vector<std::vector<Tile*>> tileMap;
+	float GetX() const { return x; }
+	float GetY() const { return y; }
 public:
-	Map(std::string path){ GenerateMap(path); }
+	Map(std::string maptemplatePath, std::string tilesetPath);
+	~Map();
+	void GenerateBitmap(std::string tilesetPath);
 	void Init();
 };

@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 #include <vector>
 #include "../../Map/Map.h"
 #include "../Layer.h"
@@ -9,6 +10,6 @@ protected:
 	Map *myLevel;
 	char GetTileTypeAtCoords(float x, float y);
 public:
-	void Init();
+	void Init(std::string maptemplatePath, std::string tilesetPath);
 	void Render();
 };

@@ -8,5 +8,4 @@ protected:
 	static float y;
 public:
 	virtual void Init(){};
-	virtual void Render(){};
 };

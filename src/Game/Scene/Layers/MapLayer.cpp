@@ -13,9 +13,9 @@ char MapLayer::GetTileTypeAtCoords(float x, float y)
 	else return 0;
 }
 
-void MapLayer::Init()
+void MapLayer::Init(std::string maptemplatePath, std::string tilesetPath)
 {
-	myLevel = new Map("assets/img/map.png");
+	myLevel = new Map(maptemplatePath, tilesetPath);
 }
 
 void MapLayer::Render()

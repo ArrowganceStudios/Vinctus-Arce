@@ -7,19 +7,20 @@
 void State_Game::Init()
 {
 	LoadResources();
-	interFace = new GameUI();
 
 	myLevel = new MapLayer();
 	GameScene.push_back(myLevel);
-	myLevel->Init();
+	myLevel->Init("assets/img/map.png", "assets/img/mapTileset.png");
+	
+	interFace = new GameUI();
 
 	interFace->AddBar(BarSize::BarWidth / 2 + 20, BarSize::BarHeight / 2 + 20);
 	interFace->AddBar(SCREEN_WIDTH / 2 , SCREEN_HEIGHT - 100);
-	//interFace->Show();
-
+	
 	for (auto bar : interFace->bars) // <-----this shit is a fucking masterpiece !!
 		bar->Show();
 	
+	interFace->Hide();
 }
 
 void State_Game::Cleanup()
