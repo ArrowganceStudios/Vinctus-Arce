@@ -10,3 +10,8 @@ GameUI_bar::GameUI_bar(float x, float y) : UIElement(x, y)
 
 	graphicEngine::Instance().CreateGraphicInstance(this);
 }
+
+GameUI_bar::~GameUI_bar()
+{
+	graphicEngine::Instance().DestroyGraphicInstance(this);
+}

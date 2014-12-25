@@ -1,6 +1,11 @@
 #include "../../../Globals.h"
 #include "MapLayer.h"
 
+MapLayer::~MapLayer()
+{
+	delete myLevel;
+}
+
 char MapLayer::GetTileTypeAtCoords(float x, float y)
 {
 	if (myLevel != nullptr)

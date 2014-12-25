@@ -10,9 +10,15 @@ private:
 	friend class State_Game;
 	std::vector <GameUI_bar*> bars;
 //	GameUI_bar *currBar;
+	void ShowBars();
+	void HideBars();
 public:
-	GameUI(float x = 400, float y = 300) : UIElement(x, y) {  }
+	GameUI(float x = SCREEN_WIDTH / 2, float y = SCREEN_HEIGHT / 2) : UIElement(x, y) {  }
+	~GameUI();
 	void AddBar(float x, float y);
 	void Cleanup();
+
+	void Show();
+	void Hide();
 
 };

@@ -16,10 +16,9 @@ void State_Game::Init()
 
 	interFace->AddBar(BarSize::BarWidth / 2 + 20, BarSize::BarHeight / 2 + 20);
 	interFace->AddBar(SCREEN_WIDTH / 2 , SCREEN_HEIGHT - 100);
-	
-	for (auto bar : interFace->bars) // <-----this shit is a fucking masterpiece !!
-		bar->Show();
-	
+
+	interFace->Show();
+
 	interFace->Hide();
 }
 
@@ -28,7 +27,9 @@ void State_Game::Cleanup()
 	graphicEngine::Instance().DestroyGraphic("class GameUI_bar");
 
 	graphicEngine::Instance().CleanUpUIMaps();
-	interFace->Cleanup();
+
+	delete interFace;
+	delete myLevel;
 }
 
 void State_Game::Pause()

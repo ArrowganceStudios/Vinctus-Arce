@@ -10,6 +10,7 @@ protected:
 	Map *myLevel;
 	char GetTileTypeAtCoords(float x, float y);
 public:
+	~MapLayer();
 	void Init(std::string maptemplatePath, std::string tilesetPath);
 	void Render();
 };

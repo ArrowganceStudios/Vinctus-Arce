@@ -34,8 +34,6 @@ void GameEngine::Init()
 	menuState = new State_Menu();
 	gameState = new State_Game();
 
-	states = { reinterpret_cast<State *>(menuState), gameState };
-
 	graphicEngine::Instance().Init();
 	input->Init();
 
@@ -166,7 +164,18 @@ void GameEngine::Flush()
 
 void GameEngine::Destroy()
 {	
-	//project objects destroy4
+	//project objects destroy
+	for (auto state : states)
+	{
+		if (state != nullptr)
+		{
+			state->Cleanup();
+			delete state; //fact that it hasn't been there all the time untill now amuses me
+		}
+	}
+
+	delete input;
+
 	graphicEngine::Instance().Destroy(); //bitmap
 	//allegro vars destroy
 	//al_destroy_font(font18);

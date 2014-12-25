@@ -6,5 +6,5 @@ class GameUI_bar : public UIElement
 
 public:
 	GameUI_bar(float x, float y);
-
+	~GameUI_bar();
 };
