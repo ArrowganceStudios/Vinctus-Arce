@@ -8,6 +8,8 @@ void State_Game::Init()
 {
 	LoadResources();
 
+	isCleanedUp = false;
+
 	myLevel = new MapLayer();
 	GameScene.push_back(myLevel);
 	myLevel->Init("assets/img/map.png", "assets/img/mapTileset.png");
@@ -30,7 +32,12 @@ void State_Game::Cleanup()
 
 	delete interFace;
 	delete myLevel;
+
+	isCleanedUp = true;
 }
+
+
+
 
 void State_Game::Pause()
 {

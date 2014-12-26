@@ -8,6 +8,8 @@ void State_Menu::Init()
 {	
 	LoadResources();
 
+	isCleanedUp = false;
+
 	mainMenu = new Menu("Main Menu");
 	characterSelectionMenu = new Menu("Character Selection");
 	optionsMenu = new Menu("Options");
@@ -76,6 +78,9 @@ void State_Menu::Cleanup()
 	for (auto menu : menuList)
 		if (menu != nullptr) delete menu;
 
+		menuList.clear();
+		menuList.shrink_to_fit();
+
 	vector <string> UIGraphicsToBeDeleted = { "class ClassSelectionIcon", "class MenuButton", "class Image",
 		"class Menu", "class Text" };
 
@@ -85,6 +90,7 @@ void State_Menu::Cleanup()
 	graphicEngine::Instance().CleanUpUIMaps();
 
 	cout << "cleanup has ben called" << endl;
+	isCleanedUp = true;
 }
 
 void State_Menu::Pause()

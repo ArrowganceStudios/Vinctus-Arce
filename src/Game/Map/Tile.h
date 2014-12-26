@@ -12,6 +12,7 @@ private:
 	bool collidable;
 
 	static ALLEGRO_BITMAP *tileSet;
+	~Tile() { al_destroy_bitmap(tileSet); }
 public:
 	Tile(char type);
 	char GetType() const { return type; }

@@ -235,6 +235,9 @@ void GraphicEngine::Destroy()
 		}
 	}
 	CleanUpUIMaps();
+
+	if (textManager != nullptr)
+		delete textManager;
 }
 
 bool GraphicEngine::IsInsideDatabase(StaticGraphic* owner)

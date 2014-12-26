@@ -23,6 +23,8 @@ Map::~Map()
 {
 	graphicEngine::Instance().DestroyGraphicInstance(this);
 	graphicEngine::Instance().DestroyGraphic("class Map");
+
+
 }
 
 void Map::GenerateMap(std::string mapFilepath)

@@ -4,8 +4,6 @@
 #include "../Singleton.h"
 
 
-
-
 class GameObject;
 class ObjectHandler : public Singleton <ObjectHandler>
 {

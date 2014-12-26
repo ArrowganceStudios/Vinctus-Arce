@@ -51,6 +51,7 @@ class GameEngine : public Singleton <GameEngine>
 	ALLEGRO_TIMER *timer;
 	//ALLEGRO_FONT *font18;
 
+	std::vector <State*> activeStates;
 	std::vector <State*> states;
 protected:
 	GameEngine();

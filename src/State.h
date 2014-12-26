@@ -6,6 +6,7 @@ class GameEngine;
 class State
 {
 protected:
+	bool isCleanedUp = 0;
 	State(){}
 public:
 	virtual void Init() = 0;
@@ -16,4 +17,7 @@ public:
 	virtual void HandleEvents() = 0;
 	virtual void Update() = 0;
 	virtual void Render() = 0;
+
+
+	bool GetCleanedUp() { return isCleanedUp; }
 };

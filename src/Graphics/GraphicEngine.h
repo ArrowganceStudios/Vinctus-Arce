@@ -28,9 +28,9 @@ class GraphicEngine : public Singleton<GraphicEngine>
 	//ViewPort viewPort;
 protected:
 	GraphicEngine();
-	~GraphicEngine() { if (textManager != nullptr) delete &textManager; };
+	~GraphicEngine();
+	public:
 
-public:
 
 	TextManager *textManager;
 

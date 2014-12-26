@@ -11,19 +11,19 @@ GameEngine::GameEngine()
 
 }
 
-GameEngine::~GameEngine()
+/*GameEngine::~GameEngine()
 {
-	
-	/*delete mapHandler;
+
+	delete mapHandler;
 	delete Camera;
 	delete Collider;
 	delete mainMenu;  // i don't think it will be needed
-	delete logicHandler;*/
+	delete logicHandler;
 
 	delete gameState;
 	delete menuState;
 	delete input;
-}
+}*/
 
 void GameEngine::Init()
 {
@@ -33,6 +33,9 @@ void GameEngine::Init()
 
 	menuState = new State_Menu();
 	gameState = new State_Game();
+
+	states.push_back(menuState);
+	states.push_back(gameState);
 
 	graphicEngine::Instance().Init();
 	input->Init();
@@ -99,44 +102,44 @@ void GameEngine::Escaper() //this should be done in seperate class if I'm correc
 
 void GameEngine::ChangeState(State* state) {
     // cleanup the current state
-	if ( !states.empty() ) {
-		states.back()->Cleanup();
-		states.pop_back();
+	if (!activeStates.empty()) {
+		activeStates.back()->Cleanup();
+		activeStates.pop_back();
 	}
     
 	// store and init the new state
-	states.push_back(state);
-	states.back()->Init();
+	activeStates.push_back(state);
+	activeStates.back()->Init();
 }
 
 void GameEngine::PushState(State* state) {
     // pause current state
-	if ( !states.empty() ) {
-		states.back()->Pause();
+	if (!activeStates.empty()) {
+		activeStates.back()->Pause();
 	}
     
 	// store and init the new state
-	states.push_back(state);
-	states.back()->Init();
+	activeStates.push_back(state);
+	activeStates.back()->Init();
 }
 
 void GameEngine::PopState() {
     // cleanup the current state
-	if ( !states.empty() ) {
-		states.back()->Cleanup();
-		states.pop_back();
+	if (!activeStates.empty()) {
+		activeStates.back()->Cleanup();
+		activeStates.pop_back();
 	}
     
 	// resume previous state
-	if ( !states.empty() ) {
-		states.back()->Resume();
+	if (!activeStates.empty()) {
+		activeStates.back()->Resume();
 	}
 }
 
 void GameEngine::Update()
 {
 	input->Update(&event);
-	states.back()->Update();
+	activeStates.back()->Update();
 	if(event.type == ALLEGRO_EVENT_TIMER)
 	{
 		render = true;
@@ -165,15 +168,22 @@ void GameEngine::Flush()
 void GameEngine::Destroy()
 {	
 	//project objects destroy
+	
 	for (auto state : states)
 	{
-		if (state != nullptr)
+		if (!state->GetCleanedUp())
 		{
 			state->Cleanup();
-			delete state; //fact that it hasn't been there all the time untill now amuses me
 		}
+		delete state;
 	}
 
+	states.clear();
+	states.shrink_to_fit();
+	activeStates.clear();
+	activeStates.shrink_to_fit();
+	
+	
 	delete input;
 
 	graphicEngine::Instance().Destroy(); //bitmap

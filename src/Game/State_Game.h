@@ -18,6 +18,7 @@ private:
 	void State_Game::LoadResources();
 
 public:
+	//	~State_Game();
 	void Init();
 	void Cleanup();
     
