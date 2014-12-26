@@ -23,7 +23,12 @@ Map::~Map()
 {
 	graphicEngine::Instance().DestroyGraphicInstance(this);
 	graphicEngine::Instance().DestroyGraphic("class Map");
-
+	
+	for (int i = 0; i < tileMap.size(); i++)
+	{
+		for (int j = 0; j < tileMap[i].size(); j++)
+			delete tileMap[i][j];
+	}
 
 }
 

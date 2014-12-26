@@ -33,6 +33,9 @@ void State_Game::Cleanup()
 	delete interFace;
 	delete myLevel;
 
+	GameScene.clear();
+	GameScene.shrink_to_fit();
+
 	isCleanedUp = true;
 }
 
