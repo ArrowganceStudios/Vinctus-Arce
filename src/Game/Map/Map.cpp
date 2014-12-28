@@ -24,9 +24,9 @@ Map::~Map()
 	graphicEngine::Instance().DestroyGraphicInstance(this);
 	graphicEngine::Instance().DestroyGraphic("class Map");
 	
-	for (int i = 0; i < tileMap.size(); i++)
+	for (unsigned int i = 0; i < tileMap.size(); i++)
 	{
-		for (int j = 0; j < tileMap[i].size(); j++)
+		for (unsigned int j = 0; j < tileMap[i].size(); j++)
 			delete tileMap[i][j];
 	}
 
@@ -69,14 +69,13 @@ char Map::GetTileTypeFromColor(ALLEGRO_COLOR color)
 
 void Map::GenerateBitmap(std::string tilesetPath)
 {
-	ALLEGRO_BITMAP *output;
+	ALLEGRO_BITMAP *output = al_create_bitmap(mapWidth, mapHeight);
 	ALLEGRO_BITMAP *tileset = al_load_bitmap(tilesetPath.c_str());
-	output = al_create_bitmap(mapWidth, mapHeight);
 	al_set_target_bitmap(output);
 
-	for (int i = 0; i < tileMap.size(); i++)
+	for (unsigned int i = 0; i < tileMap.size(); i++)
 	{
-		for (int j = 0; j < tileMap[i].size(); j++)
+		for (unsigned int j = 0; j < tileMap[i].size(); j++)
 		{
 			al_draw_bitmap_region(tileset, tileWidth * tileMap[i].at(j)->GetType(), 0, tileWidth, tileHeight, i * tileWidth, j * tileHeight, 0);
 		}
