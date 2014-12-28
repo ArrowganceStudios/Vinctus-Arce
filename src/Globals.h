@@ -6,7 +6,6 @@
 
 
 typedef Singleton<GameEngine> gameEngine;
-typedef Singleton<Camera> camera;
 typedef Singleton<GraphicEngine> graphicEngine;
 typedef Singleton<ObjectHandler> objectHandler; 
 
