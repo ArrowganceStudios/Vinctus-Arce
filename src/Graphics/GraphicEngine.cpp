@@ -1,10 +1,13 @@
 #include "../GameEngine.h"
 #include <iostream>
 
+
 GraphicEngine::GraphicEngine()
 {
 	al_init_primitives_addon();
 	al_init_image_addon();
+
+	mapBitmap = nullptr;
 
 	textManager = new TextManager();
 }
@@ -180,10 +183,12 @@ void GraphicEngine::DrawStaticElements()
 
 void GraphicEngine::DrawGameMap()
 {
-	/*if (gameMap != nullptr)
-		al_draw_bitmap_region(gameMap.GetBitmap(), (viewPort.GetX() + viewPort.GetWidth() / 2), 
-		(viewPort.GetY() + viewPort.Height() / 2), viewPort.GetWidth(), viewPort.GetHeight(), SCREEN_WIDTH / 2,
-		SCREEN_HEIGHT / 2, 0);*/
+	float topLeftCornerX = camera::Instance().GetTopLeftCornerX();
+	float topLeftCornerY = camera::Instance().GetTopLeftCornerY();
+
+	if (mapBitmap != nullptr)
+	al_draw_bitmap_region(mapBitmap, topLeftCornerX, topLeftCornerY, 
+							SCREEN_WIDTH,SCREEN_HEIGHT, 0, 0, 0);
 }
 
 void GraphicEngine::DestroyGraphicInstance(StaticGraphic *owner)
@@ -238,6 +243,8 @@ void GraphicEngine::Destroy()
 
 	if (textManager != nullptr)
 		delete textManager;
+
+	al_destroy_bitmap(mapBitmap);
 }
 
 bool GraphicEngine::IsInsideDatabase(StaticGraphic* owner)

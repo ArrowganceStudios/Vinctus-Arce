@@ -83,6 +83,6 @@ void Map::GenerateBitmap(std::string tilesetPath)
 	}
 
 	al_set_target_bitmap(al_get_backbuffer(gameEngine::Instance().GetDisplay()));
-	graphicEngine::Instance().DefineGraphic("class Map", output);
+	graphicEngine::Instance().SetMapBitmap(output);
 
 }

@@ -23,9 +23,9 @@ class GraphicEngine : public Singleton<GraphicEngine>
 	//maps storing an actual list of UI and Game objects and text instances
 	std::vector <std::pair<AnimatedGraphic *, Sprite *>> AnimationOwnersMap;
 	std::vector <std::pair<StaticGraphic *, ALLEGRO_BITMAP *>> GraphicOwnersMap;
+	
+	ALLEGRO_BITMAP * mapBitmap;
 
-	//Map gameMap;
-	//ViewPort viewPort;
 protected:
 	GraphicEngine();
 	~GraphicEngine();
@@ -52,6 +52,9 @@ protected:
 	void DrawAnimatedElements();
 	void DrawStaticElements();
 	void DrawGameMap();
+
+	void SetMapBitmap(ALLEGRO_BITMAP * bitmap) { mapBitmap = bitmap; }
+	ALLEGRO_BITMAP * GetMapBitmap() { return mapBitmap; }
 
 	void CleanUpUIMaps();
 	void Destroy();
