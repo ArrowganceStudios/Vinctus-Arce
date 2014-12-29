@@ -4,6 +4,7 @@
 #include "allegro5\allegro.h"
 #include <vector>
 
+
 void State_Game::Init()
 {
 	LoadResources();
@@ -13,6 +14,8 @@ void State_Game::Init()
 	myLevel = new MapLayer();
 	GameScene.push_back(myLevel);
 	myLevel->Init("assets/img/map.png", "assets/img/mapTileset.png");
+
+	camera::Instance().Init();
 	
 	interFace = new GameUI();
 
@@ -59,7 +62,8 @@ void State_Game::HandleEvents()
 
 void State_Game::Update()
 {
-//	graphicEngine::Instance().RequestGraphic()
+	camera::Instance().Update();
+	camera::Instance().CalculateCamera();
 }
 
 void State_Game::LoadResources()

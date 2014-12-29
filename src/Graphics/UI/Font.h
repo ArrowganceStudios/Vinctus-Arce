@@ -37,7 +37,5 @@ public:
 		InitializeAlphabet(alphabet);
 	};
 
-	~Font() { al_destroy_bitmap(font_set); }
-
 	ALLEGRO_BITMAP * CreateText(std::string text, float scale);
 };

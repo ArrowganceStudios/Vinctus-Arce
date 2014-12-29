@@ -21,8 +21,7 @@ private:
 	int tilesAmountY;
 
 	std::vector<std::vector<Tile*>> tileMap;
-	float GetX() const { return x; }
-	float GetY() const { return y; }
+
 public:
 	Map(std::string maptemplatePath, std::string tilesetPath);
 	~Map();

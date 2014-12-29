@@ -3,6 +3,7 @@
 #include "Scene\Layers\MapLayer.h"
 #include "Scene\Layer.h"
 #include <vector>
+#include "Scene\Camera.h"
 
 class GameUI;
 

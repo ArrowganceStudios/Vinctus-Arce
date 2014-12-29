@@ -37,7 +37,6 @@ void GameEngine::Init()
 	states.push_back(menuState);
 	states.push_back(gameState);
 
-	graphicEngine::Instance().Init();
 	input->Init();
 
 	al_init(); //Initialises the allegro library

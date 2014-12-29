@@ -1,18 +1,29 @@
 #include "../GameEngine.h"
 #include <iostream>
 
+
 GraphicEngine::GraphicEngine()
 {
 	al_init_primitives_addon();
 	al_init_image_addon();
 
+	mapBitmap = nullptr;
+
 	textManager = new TextManager();
 }
 
-void GraphicEngine::DefineAnimation(std::string ownersClassName, std::vector<Sprite *> animations)
+void GraphicEngine::DefineAnimation(std::string ownersClassName, Sprite * animation)
 {
-	AnimationsMap.emplace(ownersClassName, animations);
+	if (AnimationsMap.find(ownersClassName) != AnimationsMap.end()) //if the class already exists
+	{
+		AnimationsMap[ownersClassName].push_back(animation); //then add sprite to it
+		return;
+	}
+	//else
+	vector <Sprite *> newSpriteVector = { animation }; //make a vector of sprites
+	AnimationsMap.emplace(ownersClassName, newSpriteVector); //and create a new element in map
 }
+
 
 void GraphicEngine::CreateAnimationInstance(AnimatedGraphic *owner)
 {
@@ -180,10 +191,28 @@ void GraphicEngine::DrawStaticElements()
 
 void GraphicEngine::DrawGameMap()
 {
-	/*if (gameMap != nullptr)
-		al_draw_bitmap_region(gameMap.GetBitmap(), (viewPort.GetX() + viewPort.GetWidth() / 2), 
-		(viewPort.GetY() + viewPort.Height() / 2), viewPort.GetWidth(), viewPort.GetHeight(), SCREEN_WIDTH / 2,
-		SCREEN_HEIGHT / 2, 0);*/
+	float topLeftCornerX = camera::Instance().GetTopLeftCornerX();
+	float topLeftCornerY = camera::Instance().GetTopLeftCornerY();
+
+	if (mapBitmap != nullptr)
+	al_draw_bitmap_region(mapBitmap, topLeftCornerX, topLeftCornerY, 
+							SCREEN_WIDTH,SCREEN_HEIGHT, 0, 0, 0);
+}
+
+void GraphicEngine::DestroyAnimationInstance(AnimatedGraphic *owner)
+{
+	vector<std::pair<AnimatedGraphic *, Sprite *>>::iterator pos = AnimationOwnersMap.begin();
+	for (auto &instance : AnimationOwnersMap)
+	{
+
+		if (instance.first == owner)
+		{
+			AnimationOwnersMap.erase(pos);
+			break;
+		}
+		pos++;
+	}
+	AnimationOwnersMap.shrink_to_fit();
 }
 
 void GraphicEngine::DestroyGraphicInstance(StaticGraphic *owner)
@@ -200,6 +229,22 @@ void GraphicEngine::DestroyGraphicInstance(StaticGraphic *owner)
 		pos++;
 	}
 	GraphicOwnersMap.shrink_to_fit();
+}
+
+
+void GraphicEngine::DestroyAnimation(std::string className)
+{
+	for (auto &animMap : AnimationsMap)
+	{
+		if (animMap.first == className)
+		{
+			for (auto sprite : animMap.second)
+			{
+				delete sprite;
+			}
+			break;
+		}
+	}
 }
 
 void GraphicEngine::DestroyGraphic(std::string className)
@@ -238,6 +283,8 @@ void GraphicEngine::Destroy()
 
 	if (textManager != nullptr)
 		delete textManager;
+
+	al_destroy_bitmap(mapBitmap);
 }
 
 bool GraphicEngine::IsInsideDatabase(StaticGraphic* owner)
