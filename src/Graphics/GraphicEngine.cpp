@@ -163,16 +163,26 @@ void GraphicEngine::RequestGraphic(StaticGraphic *owner, int graphicID)
 
 void GraphicEngine::Render()
 {
+	DrawGameMap();
 	DrawAnimatedElements();
 	DrawStaticElements();
-	DrawGameMap();
 }
 
 void GraphicEngine::DrawAnimatedElements()
 {
-	for (auto &Gobject : AnimationsMap)
+	for (int i = 0; i < 3; i++)
 	{
-		//some animation algorithm
+		for (auto &animatedObject : AnimationOwnersMap)
+		{
+			if (animatedObject.second != nullptr && animatedObject.first->IsVisible() && animatedObject.first->GetZ() == i)
+			{
+				float fx = (animatedObject.second->GetCurFrame() % animatedObject.second->GetAnimationColumns()) * animatedObject.second->GetFrameWidth();
+				float fy = (animatedObject.second->GetCurFrame() / animatedObject.second->GetAnimationColumns()) * animatedObject.second->GetFrameHeight();
+
+				al_draw_bitmap_region(animatedObject.second->GetImage(), fx, fy, animatedObject.second->GetFrameWidth(),
+					animatedObject.second->GetFrameHeight(), animatedObject.first->GetX(), animatedObject.first->GetY(), 0);
+			}
+		}
 	}
 }
 
@@ -265,6 +275,9 @@ void GraphicEngine::DestroyGraphic(std::string className)
 void GraphicEngine::CleanUpUIMaps()
 {
 	GraphicsMap.clear();
+
+	//if(mapBitmap) al_destroy_bitmap(mapBitmap);
+	//mapBitmap = nullptr;
 
 	GraphicOwnersMap.clear();
 	GraphicOwnersMap.shrink_to_fit();

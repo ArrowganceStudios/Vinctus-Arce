@@ -45,10 +45,10 @@ bool Camera::CanGoRight()
 
 void Camera::Update()
 {
-		if (key_arrows[UP] && CanGoUp())		center.y -= 1;
-		if (key_arrows[DOWN] && CanGoDown())	center.y += 1;
-		if (key_arrows[LEFT] && CanGoLeft())	center.x -= 1;
-		if (key_arrows[RIGHT] && CanGoRight())	center.x += 1;
+		if (key_arrows[UP] && CanGoUp())		center.y -= 2;
+		if (key_arrows[DOWN] && CanGoDown())	center.y += 2;
+		if (key_arrows[LEFT] && CanGoLeft())	center.x -= 2;
+		if (key_arrows[RIGHT] && CanGoRight())	center.x += 2;
 }
 
 void Camera::CalculateCamera()

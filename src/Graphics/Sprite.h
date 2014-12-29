@@ -24,4 +24,6 @@ public:
 	int GetFrameWidth() const { return frameWidth; }
 	int GetFrameHeight() const { return frameHeight; }
 	int GetAnimationColumns () const { return animationColumns; }
+
+	ALLEGRO_BITMAP * GetImage() const { return image; }
 };

@@ -67,7 +67,6 @@ void GameEngine::Init()
 void GameEngine::StartGame()
 {
 	ChangeState(gameState);
-
 }
 
 void GameEngine::Continue()
@@ -77,21 +76,16 @@ void GameEngine::Continue()
 
 void GameEngine::Escaper() //this should be done in seperate class if I'm correct?
 {
-	if(event.type == ALLEGRO_EVENT_KEY_DOWN) /////// do we need this?
+	if(event.type == ALLEGRO_EVENT_KEY_DOWN) //this thing shouldn't be here imo
 	{
 		switch(event.keyboard.keycode)
 		{
 		case ALLEGRO_KEY_ESCAPE:
-			Quit();
-			break;
-		}
-	}
-	else if (event.type == ALLEGRO_EVENT_KEY_UP) //I'd rather ask whether we need that
-	{
-		switch (event.keyboard.keycode)
-		{
-		case ALLEGRO_KEY_ESCAPE:
-			Quit();
+			if (activeStates.back() == gameState)
+			{
+				PushState(menuState);
+				menuState->SwitchToMenu("Wave Menu");
+			}
 			break;
 		}
 	}
@@ -138,9 +132,9 @@ void GameEngine::PopState() {
 void GameEngine::Update()
 {
 	input->Update(&event);
-	activeStates.back()->Update();
 	if(event.type == ALLEGRO_EVENT_TIMER)
 	{
+		activeStates.back()->Update();
 		render = true;
 	}
 }

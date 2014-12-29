@@ -33,7 +33,7 @@ void State_Menu::Init()
 	pauseMenu->AddButton("Yesh", MenuActions::Yesh);
 	pauseMenu->AddButton("Nah", MenuActions::Nah);
 
-	waveMenu->AddButton("Continue", MenuActions::Continue);
+	waveMenu->AddButton("Continue", MenuActions::ReadyToResume);
 	waveMenu->AddButton("Surrender", MenuActions::Surrender);
 
 	characterSelectionMenu->AddClassIconBig(ClassIconGraphic::WarriorClicked, nullptr);
@@ -89,6 +89,8 @@ void State_Menu::Cleanup()
 
 	graphicEngine::Instance().CleanUpUIMaps();
 
+	Text::textID = 0;
+
 	cout << "cleanup has ben called" << endl;
 	isCleanedUp = true;
 }
@@ -115,7 +117,17 @@ void State_Menu::Update()
 			button->Update();
 		}
 
-	if(startGameClicked) MenuActions::StartGame(); //I don't like this sort of solutions ;x
+	if (resumeClicked)
+	{
+		resumeClicked = false;
+		MenuActions::Continue(); //AGRHHGARAHG HATING THIS SHIT
+	}
+
+	if (startGameClicked)
+	{
+		startGameClicked = false;
+		MenuActions::StartGame(); //I don't like this sort of solutions ;x
+	}
 }
 
 void State_Menu::LoadResources()

@@ -33,6 +33,11 @@ namespace MenuActions {
 		gameEngine::Instance().GetMenuState()->ReadyToLaunchGame();
 	}
 
+	void ReadyToResume()
+	{
+		gameEngine::Instance().GetMenuState()->ReadyToResumeGame();
+	}
+
 	//Options menu
 	void Resolution()
 	{
