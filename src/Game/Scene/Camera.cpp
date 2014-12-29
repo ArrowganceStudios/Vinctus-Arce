@@ -24,24 +24,38 @@ void Camera::Init()
 
 }
 
-void Camera::Update()
+bool Camera::CanGoUp()
 {
-		if (key_arrows[UP])
-			center.y--;
-		if (key_arrows[DOWN])
-			center.y++;
-		if (key_arrows[LEFT])
-			center.x--;
-		if (key_arrows[RIGHT])
-			center.x++;
+	return (topLeftCorner.y >= 0);
 }
 
+bool Camera::CanGoDown()
+{
+	return (bottomRightCorner.y <= mapHeight);
+}
+
+bool Camera::CanGoLeft()
+{
+	return (topLeftCorner.x >= 0);
+}
+bool Camera::CanGoRight()
+{
+	return (bottomRightCorner.x <= mapWidth);
+}
+
+void Camera::Update()
+{
+		if (key_arrows[UP] && CanGoUp())		center.y -= 1;
+		if (key_arrows[DOWN] && CanGoDown())	center.y += 1;
+		if (key_arrows[LEFT] && CanGoLeft())	center.x -= 1;
+		if (key_arrows[RIGHT] && CanGoRight())	center.x += 1;
+}
 
 void Camera::CalculateCamera()
 {
 	topLeftCorner.x = center.x - SCREEN_WIDTH / 2;
 	topLeftCorner.y = center.y - SCREEN_HEIGHT / 2;
-
+	
 	bottomRightCorner.x = center.x + SCREEN_WIDTH / 2;
 	bottomRightCorner.y = center.y + SCREEN_HEIGHT / 2;
 }

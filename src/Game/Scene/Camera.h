@@ -20,6 +20,12 @@ private:
 	Point center;
 
 	ALLEGRO_BITMAP * mapBitmap;
+
+	bool CanGoUp();
+	bool CanGoDown();
+	bool CanGoLeft();
+	bool CanGoRight();
+
 protected:
 	Camera();
 public:

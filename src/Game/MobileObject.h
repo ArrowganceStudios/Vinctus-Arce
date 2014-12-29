@@ -23,5 +23,10 @@ public:
 	bool CanMoveLeft();
 	bool CanMoveRight();
 
+	void MoveUp();
+	void MoveDown();
+	void MoveLeft();
+	void MoveRight();
+
 	void virtual Update() {};
 };
