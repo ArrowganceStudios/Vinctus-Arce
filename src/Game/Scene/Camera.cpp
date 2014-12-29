@@ -26,15 +26,14 @@ void Camera::Init()
 
 void Camera::Update()
 {
-	if (key_arrows[UP])
-		center.y--;
-	else if (key_arrows[DOWN])
-		center.y++;
-	else if (key_arrows[LEFT])
-		center.x--;
-	else if (key_arrows[RIGHT])
-		center.x++;
-
+		if (key_arrows[UP])
+			center.y--;
+		if (key_arrows[DOWN])
+			center.y++;
+		if (key_arrows[LEFT])
+			center.x--;
+		if (key_arrows[RIGHT])
+			center.x++;
 }
 
 

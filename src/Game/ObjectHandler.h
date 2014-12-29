@@ -20,8 +20,6 @@ public:
 	void DestroyObject(const Type *objectToDestroy);
 
 	std::vector <GameObject*>::iterator GetIterator(GameObject * object);
-	// or if u preffer 
-	//auto GetIterator(GameObject * object);
 
 	void SpawnObject();
 	void CleanUp();

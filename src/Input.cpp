@@ -6,10 +6,6 @@ bool mouse[2] = { false, false };
 float mouseX = 0;
 float mouseY = 0;
 
-void InputHandler::Init() // Will it be implemented ?
-{
-
-}
 
 void InputHandler::Update(ALLEGRO_EVENT *event)
 {
@@ -18,12 +14,16 @@ void InputHandler::Update(ALLEGRO_EVENT *event)
 		{
 			case ALLEGRO_KEY_UP:
               	 key_arrows[UP] = true;
+				 break;
             case ALLEGRO_KEY_DOWN:
               	 key_arrows[DOWN] = true;
+				 break;
             case ALLEGRO_KEY_LEFT: 
               	 key_arrows[LEFT] = true;
+				 break;
             case ALLEGRO_KEY_RIGHT:
                	key_arrows[RIGHT] = true;
+				break;
             default:
             	break;
 		}
@@ -32,12 +32,16 @@ void InputHandler::Update(ALLEGRO_EVENT *event)
 		 {
             case ALLEGRO_KEY_UP:
                key_arrows[UP] = false;
+			   break;
             case ALLEGRO_KEY_DOWN:
                key_arrows[DOWN] = false;
+			   break;
             case ALLEGRO_KEY_LEFT: 
                key_arrows[LEFT] = false;
+			   break;
             case ALLEGRO_KEY_RIGHT:
                key_arrows[RIGHT] = false;
+			   break;
             default:
             	break;
          }

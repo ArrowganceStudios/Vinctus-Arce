@@ -4,6 +4,5 @@
 class InputHandler
 {
 public:
-	void Init();
 	void Update(ALLEGRO_EVENT *event);
 };

@@ -37,7 +37,7 @@ void GameEngine::Init()
 	states.push_back(menuState);
 	states.push_back(gameState);
 
-	input->Init();
+	
 
 	al_init(); //Initialises the allegro library
 	al_install_keyboard();
