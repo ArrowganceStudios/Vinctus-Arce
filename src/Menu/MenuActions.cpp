@@ -28,16 +28,6 @@ namespace MenuActions {
 		gameEngine::Instance().Quit();
 	}
 
-	void ReadyToChangeState()
-	{
-		gameEngine::Instance().GetMenuState()->ReadyToLaunchGame();
-	}
-
-	void ReadyToResume()
-	{
-		gameEngine::Instance().GetMenuState()->ReadyToResumeGame();
-	}
-
 	//Options menu
 	void Resolution()
 	{
@@ -77,7 +67,8 @@ namespace MenuActions {
 
 	void Surrender()
 	{
-		gameEngine::Instance().GetMenuState()->SwitchToMenu("Main Menu");
+		gameEngine::Instance().PopState(); //deleting the wave menu state
+		gameEngine::Instance().ChangeState(gameEngine::Instance().GetMenuState()); //switching from gameState to menuState
 	}
 
 }

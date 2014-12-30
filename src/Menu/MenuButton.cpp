@@ -65,7 +65,7 @@ void MenuButton::Update()
 		if (!mouse[LMB] && IsClicked())
 		{
 			SetNormalState();
-			UseFunction();
+			wasClicked = true;
 		}
 	}
 }
@@ -84,6 +84,6 @@ MenuButton::MenuButton(string text, float x, float y, void(*function)()) : UIEle
 
 MenuButton::~MenuButton()
 {
-	std::cout << "Button " << text << "have been deleted" << endl;
+	std::cout << "Button " << text << "has been deleted" << endl;
 	delete buttonText;
 }

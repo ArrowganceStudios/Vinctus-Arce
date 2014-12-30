@@ -13,6 +13,8 @@ class MenuButton : public UIElement, public Button
 	string text;
 
 	Text *buttonText;
+
+	bool wasClicked;
 public:
 	MenuButton(string text, float x, float y, void(*function)());
 	~MenuButton();
@@ -26,6 +28,8 @@ public:
 
 	Text * GetText() const { return buttonText; }
 
+	bool WasClicked() const  { return wasClicked; }
+	void SetWasClickedToFalse() { wasClicked = false; }
 	void Hide();
 	void Show();
 

@@ -9,8 +9,6 @@ namespace MenuActions {
 	void Options();
 	void Credits();
 	void Exit();
-	void ReadyToChangeState();
-	void ReadyToResume();
 
 	//Options menu
 	void Resolution();

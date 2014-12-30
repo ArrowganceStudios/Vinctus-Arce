@@ -33,13 +33,13 @@ void State_Menu::Init()
 	pauseMenu->AddButton("Yesh", MenuActions::Yesh);
 	pauseMenu->AddButton("Nah", MenuActions::Nah);
 
-	waveMenu->AddButton("Continue", MenuActions::ReadyToResume);
+	waveMenu->AddButton("Continue", MenuActions::Continue);
 	waveMenu->AddButton("Surrender", MenuActions::Surrender);
 
 	characterSelectionMenu->AddClassIconBig(ClassIconGraphic::WarriorClicked, nullptr);
 	characterSelectionMenu->AddClassIconBig(ClassIconGraphic::Disabled, nullptr);
 	characterSelectionMenu->AddClassIconBig(ClassIconGraphic::Disabled, nullptr);
-	characterSelectionMenu->AddButton("Begin", 570, 520, MenuActions::ReadyToChangeState); //this is such a bullshit omfg
+	characterSelectionMenu->AddButton("Begin", 570, 520, MenuActions::StartGame);
 	characterSelectionMenu->AddButton("Back", 240, 520, MenuActions::Back);
 
 	resolutionMenu->AddImage(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, SliderDimension::sliderBarWidth, SliderDimension::sliderBarHeight, 1);
@@ -112,21 +112,19 @@ void State_Menu::HandleEvents()
 void State_Menu::Update()
 {
 	if (CurrentMenu)
-		for (auto button : CurrentMenu->buttons)
+	{
+		MenuButton *clickedButton = nullptr;
+		for (auto &button : CurrentMenu->buttons)
 		{
 			button->Update();
+			if (button->WasClicked()) clickedButton = button;
 		}
 
-	if (resumeClicked)
-	{
-		resumeClicked = false;
-		MenuActions::Continue(); //AGRHHGARAHG HATING THIS SHIT
-	}
-
-	if (startGameClicked)
-	{
-		startGameClicked = false;
-		MenuActions::StartGame(); //I don't like this sort of solutions ;x
+		if (clickedButton)
+		{
+			clickedButton->SetWasClickedToFalse();
+			clickedButton->UseFunction();
+		}
 	}
 }
 
