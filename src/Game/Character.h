@@ -5,8 +5,10 @@
 class Character : public MobileObject
 {
 public:
-	Character();
-	~Character();
+	Character() : name("unnamed"), health(0), maxHealth(0), armor(0), level(0), maxLevel(0) {};
+	~Character() { };
+
+	void Init(float x, float y, float velocity) { MobileObject::Init(x, y, velocity); }
 
 	void SetName(std::string newName) { name = newName; }
 	std::string GetName() const { return name; }
@@ -39,4 +41,3 @@ private:
 	int level;
 	int maxLevel;
 };
-

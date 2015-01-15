@@ -4,8 +4,11 @@
 class Player : public Character
 {
 public:
-	Player() {};
-	~Player() {};
+
+	Player();
+	~Player();
+
+	void Init(float x, float y, float velocity);
 
 	void GrantXP(int xp) { experience += xp; }
 	int SetXP(int xp) { experience = xp; }
@@ -19,9 +22,14 @@ public:
 	int GetResourceAmount() const { return resource; }
 	bool HasEnoughOfResource(int cost) const { if (cost < resource) return true; else return false; }
 
+	Sprite *GetSprite() { return heroSprite; }
+
 
 private:
 	//ClassType choosenClass;
+
+	Sprite *heroSprite;
+
 	int maxExperience;
 	int experience;
 	int resource;

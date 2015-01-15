@@ -16,11 +16,13 @@ void State_Game::Init()
 	myLevel->Init("assets/img/map.png", "assets/img/mapTileset.png");
 
 	camera::Instance().Init();
-	
+
 	interFace = new GameUI();
 
 	interFace->AddBar(BarSize::BarWidth / 2 + 20, BarSize::BarHeight / 2 + 20);
 	interFace->AddBar(SCREEN_WIDTH / 2 , SCREEN_HEIGHT - 100);
+	
+	ObjectHandler::Instance().CreateObject<class Player>();
 
 	interFace->Show();
 
@@ -32,6 +34,8 @@ void State_Game::Cleanup()
 	graphicEngine::Instance().DestroyGraphic("class GameUI_bar");
 
 	graphicEngine::Instance().CleanUpUIMaps();
+
+	objectHandler::Instance().CleanUp();
 
 	delete interFace;
 	delete myLevel;
@@ -71,6 +75,10 @@ void State_Game::LoadResources()
 	//Graphics
 	//bars
 	graphicEngine::Instance().DefineGraphic("class GameUI_bar", "assets/img/UI/button.png");
+
+	
+
+	//graphicEngine::Instance().DefineAnimation("class GameUI_bar", player.GetSprite());
 
 	//Sounds
 }

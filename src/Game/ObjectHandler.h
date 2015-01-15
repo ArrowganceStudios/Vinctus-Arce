@@ -17,7 +17,7 @@ public:
 	void CreateObject();
 
 	template <class Type>
-	void DestroyObject(const Type *objectToDestroy);
+	void DestroyObject(Type *objectToDestroy);
 
 	std::vector <GameObject*>::iterator GetIterator(GameObject * object);
 

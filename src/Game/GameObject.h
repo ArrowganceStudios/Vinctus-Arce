@@ -8,7 +8,7 @@
 
 class Sprite;
 
-class GameObject : AnimatedGraphic
+class GameObject : public AnimatedGraphic
 {
 private:
 	bool alive;

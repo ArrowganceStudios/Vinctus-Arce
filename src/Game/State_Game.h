@@ -3,6 +3,7 @@
 #include "Scene\Layers\MapLayer.h"
 #include "Scene\Layer.h"
 #include <vector>
+#include "Player.h"
 #include "Scene\Camera.h"
 
 class GameUI;
@@ -15,6 +16,8 @@ private:
 	std::vector<Layer*> GameScene;
 
 	MapLayer *myLevel;
+
+	Player *player;
 
 	void State_Game::LoadResources();
 

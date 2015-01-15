@@ -1,6 +1,7 @@
 #include "ObjectHandler.h"
 #include "MobileObject.h"
 #include "StaticObject.h"
+#include "../Globals.h"
 #include <iostream>
 
 
@@ -13,21 +14,21 @@ ObjectHandler::ObjectHandler()
 
 template<class Type> void ObjectHandler::CreateObject()	
 {
-	if (std::is_same<Type, MobileObject>::value)
+	if (std::is_same<Type, Player>::value)
 	{
-		MobileObject *object = new MobileObject();
+		Player *object = new Player();
+		object->Init(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, 3);
 		objects.push_back(object);
 	}
-	if (std::is_same<Type, StaticObject>::value)
+	else if (std::is_same<Type, StaticObject>::value)
 	{
 		StaticObject *object = new StaticObject();
+		//object->Init(2, 2); 
 		objects.push_back(object);
 	}
-	 
-
 }
 
-template<class Type> void ObjectHandler::DestroyObject(const Type *objectToDestroy)
+template<class Type> void ObjectHandler::DestroyObject(Type *objectToDestroy)
 {
 	auto it = GetIterator(objectToDestroy);
 	objects.erase(it);
@@ -45,8 +46,18 @@ void ObjectHandler::SpawnObject()
 void ObjectHandler::CleanUp()
 {
 	if (objects.size())
-		objects.clear();
+	{
+		for (auto object : objects) 
+		{
+			graphicEngine::Instance().DestroyAnimationInstance(object);
+		}
+		for (unsigned int i = 0; i < objects.size(); i++) 
+		{
+			DestroyObject(objects[i]);
+		}
+	}
 	objects.shrink_to_fit();
+
 }
 
 
@@ -55,5 +66,5 @@ std::vector <GameObject*>::iterator ObjectHandler::GetIterator(GameObject * obje
 	return std::find(objects.begin(), objects.end(), object);
 }
 
-template void ObjectHandler::CreateObject<MobileObject>(); //it is needed, without it we get unrsolved link external 2019 -_-
+template void ObjectHandler::CreateObject<Player>(); //it is needed, without it we get unrsolved link external 2019 -_-
 template void ObjectHandler::CreateObject<StaticObject>();
