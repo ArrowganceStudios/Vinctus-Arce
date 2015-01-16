@@ -64,10 +64,10 @@ void State_Game::HandleEvents()
 
 void State_Game::Update()
 {
-	camera::Instance().Update();
-	camera::Instance().CalculateCamera();
-
 	objectHandler::Instance().Update();
+	camera::Instance().CalculateCamera();
+	camera::Instance().Update();
+
 }
 
 void State_Game::LoadResources()

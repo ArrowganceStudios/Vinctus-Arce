@@ -170,17 +170,29 @@ void GraphicEngine::Render()
 
 void GraphicEngine::DrawAnimatedElements()
 {
+	int xOnScreen = 0;
+	int yOnScreen = 0;
+
+	int frameWidth = 0;
+	int frameHeight = 0;
+
 	for (int i = 0; i < 3; i++)
 	{
 		for (auto &animatedObject : AnimationOwnersMap)
 		{
 			if (animatedObject.second != nullptr && animatedObject.first->IsVisible() && animatedObject.first->GetZ() == i)
 			{
+				xOnScreen = SCREEN_WIDTH /2 - camera::Instance().GetCenterX() + animatedObject.first->GetX();
+				yOnScreen = SCREEN_HEIGHT /2 - camera::Instance().GetCenterY() + animatedObject.first->GetY();
+
+				frameWidth = animatedObject.second->GetFrameWidth();
+				frameHeight = animatedObject.second->GetFrameHeight();
+
 				float fx = (animatedObject.second->GetCurFrame() % animatedObject.second->GetAnimationColumns()) * animatedObject.second->GetFrameWidth();
 				float fy = (animatedObject.second->GetCurFrame() / animatedObject.second->GetAnimationColumns()) * animatedObject.second->GetFrameHeight();
 
-				al_draw_bitmap_region(animatedObject.second->GetImage(), fx, fy, animatedObject.second->GetFrameWidth(),
-					animatedObject.second->GetFrameHeight(), animatedObject.first->GetX(), animatedObject.first->GetY(), 0);
+				al_draw_bitmap_region(animatedObject.second->GetImage(), fx, fy, frameWidth,
+					frameHeight, xOnScreen - frameWidth /2, yOnScreen - frameHeight/2, 0);
 			}
 		}
 	}

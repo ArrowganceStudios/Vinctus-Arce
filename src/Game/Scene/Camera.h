@@ -38,6 +38,9 @@ public:
 	float GetTopLeftCornerX() { return topLeftCorner.x; }
 	float GetTopLeftCornerY() { return topLeftCorner.y; }
 
+	float GetCenterX() { return center.x; }
+	float GetCenterY() { return center.y; }
+
 	void Update();
 
 	void CalculateCamera();

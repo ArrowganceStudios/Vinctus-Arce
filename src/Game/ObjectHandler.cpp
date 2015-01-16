@@ -2,6 +2,7 @@
 #include "MobileObject.h"
 #include "StaticObject.h"
 #include "../Globals.h"
+#include "allegro5\allegro.h"
 #include <iostream>
 
 
@@ -14,10 +15,13 @@ ObjectHandler::ObjectHandler()
 
 template<class Type> void ObjectHandler::CreateObject()	
 {
+	float width = al_get_bitmap_width(graphicEngine::Instance().GetMapBitmap());
+	float height = al_get_bitmap_height(graphicEngine::Instance().GetMapBitmap());
+
 	if (std::is_same<Type, Player>::value)
 	{
 		Player *object = new Player();
-		object->Init(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, 3);
+		object->Init(width/2, height/2, 3);
 		objects.push_back(object);
 
 		camera::Instance().Init(object);

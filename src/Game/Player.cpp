@@ -24,9 +24,9 @@ void Player::Init(float x, float y, float velocity)
 
 void Player::Update()
 {
-	if (key_arrows[UP])		y -= 2;
-	if (key_arrows[DOWN])	y += 2;
-	if (key_arrows[LEFT])	x -= 2;
-	if (key_arrows[RIGHT])	x += 2;
+	if (key_arrows[UP])		y -= velocity;
+	if (key_arrows[DOWN])	y += velocity;
+	if (key_arrows[LEFT])	x -= velocity;
+	if (key_arrows[RIGHT])	x += velocity;
 
 }
