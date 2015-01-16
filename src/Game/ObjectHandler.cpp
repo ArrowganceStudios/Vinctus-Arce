@@ -19,6 +19,8 @@ template<class Type> void ObjectHandler::CreateObject()
 		Player *object = new Player();
 		object->Init(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, 3);
 		objects.push_back(object);
+
+		camera::Instance().Init(object);
 	}
 	else if (std::is_same<Type, StaticObject>::value)
 	{
@@ -65,6 +67,13 @@ std::vector <GameObject*>::iterator ObjectHandler::GetIterator(GameObject * obje
 {
 	return std::find(objects.begin(), objects.end(), object);
 }
+
+void ObjectHandler::Update()
+{
+	for (auto object : objects)
+		object->Update();
+}
+
 
 template void ObjectHandler::CreateObject<Player>(); //it is needed, without it we get unrsolved link external 2019 -_-
 template void ObjectHandler::CreateObject<StaticObject>();

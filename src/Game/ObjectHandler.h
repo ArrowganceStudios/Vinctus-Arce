@@ -24,6 +24,8 @@ public:
 	void SpawnObject();
 	void CleanUp();
 
+	void Update();
+
 
 };
 

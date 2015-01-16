@@ -15,8 +15,6 @@ void State_Game::Init()
 	GameScene.push_back(myLevel);
 	myLevel->Init("assets/img/map.png", "assets/img/mapTileset.png");
 
-	camera::Instance().Init();
-
 	interFace = new GameUI();
 
 	interFace->AddBar(BarSize::BarWidth / 2 + 20, BarSize::BarHeight / 2 + 20);
@@ -68,6 +66,8 @@ void State_Game::Update()
 {
 	camera::Instance().Update();
 	camera::Instance().CalculateCamera();
+
+	objectHandler::Instance().Update();
 }
 
 void State_Game::LoadResources()

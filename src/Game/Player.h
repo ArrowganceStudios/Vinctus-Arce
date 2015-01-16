@@ -21,7 +21,7 @@ public:
 	int GetResourceAmount() const { return resource; }
 	bool HasEnoughOfResource(int cost) const { if (cost < resource) return true; else return false; }
 
-
+	virtual void Update();
 
 private:
 

@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "../Globals.h"
 #include "../Graphics/GraphicEngine.h"
+#include "../InputMap.h"
 
 
 Player::Player()
@@ -19,4 +20,13 @@ void Player::Init(float x, float y, float velocity)
 	graphicEngine::Instance().CreateAnimationInstance(this);
 	graphicEngine::Instance().RequestAnimation(this, 0);
 	Show();
+}
+
+void Player::Update()
+{
+	if (key_arrows[UP])		y -= 2;
+	if (key_arrows[DOWN])	y += 2;
+	if (key_arrows[LEFT])	x -= 2;
+	if (key_arrows[RIGHT])	x += 2;
+
 }

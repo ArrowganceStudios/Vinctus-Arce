@@ -1,6 +1,6 @@
 #include "Camera.h"
-#include "../../InputMap.h"
 #include "../../Globals.h"
+#include "../Player.h"
 
 
 Camera::Camera()
@@ -12,15 +12,17 @@ Camera::Camera()
 	mapHeight = 0;
 }
 
-void Camera::Init()
+void Camera::Init(GameObject * object)
 {
 	mapBitmap = graphicEngine::Instance().GetMapBitmap();
 
 	mapWidth = al_get_bitmap_width(mapBitmap);
 	mapHeight = al_get_bitmap_height(mapBitmap);
 
-	center.x = mapWidth / 2;
-	center.y = mapHeight / 2;
+	actor = object;
+
+	center.x = actor->GetX();
+	center.y = actor->GetY();
 
 }
 
@@ -45,10 +47,8 @@ bool Camera::CanGoRight()
 
 void Camera::Update()
 {
-		if (key_arrows[UP] && CanGoUp())		center.y -= 2;
-		if (key_arrows[DOWN] && CanGoDown())	center.y += 2;
-		if (key_arrows[LEFT] && CanGoLeft())	center.x -= 2;
-		if (key_arrows[RIGHT] && CanGoRight())	center.x += 2;
+	center.x = actor->GetX();
+	center.y = actor->GetY();
 }
 
 void Camera::CalculateCamera()

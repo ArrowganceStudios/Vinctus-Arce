@@ -1,6 +1,7 @@
 #pragma once
 #include "../../Singleton.h"
 #include <allegro5\allegro.h>
+#include "../GameObject.h"
 
 struct Point
 {
@@ -26,11 +27,13 @@ private:
 	bool CanGoLeft();
 	bool CanGoRight();
 
+	GameObject * actor;
+
 protected:
 	Camera();
 public:
 
-	void Init();
+	void Init(GameObject * object);
 
 	float GetTopLeftCornerX() { return topLeftCorner.x; }
 	float GetTopLeftCornerY() { return topLeftCorner.y; }
