@@ -14,7 +14,7 @@ protected:
 	ObjectHandler();
 public:
 	template <class Type> 
-	void CreateObject();
+	void CreateObject(float x = 0, float y = 0);
 
 	template <class Type>
 	void DestroyObject(Type *objectToDestroy);

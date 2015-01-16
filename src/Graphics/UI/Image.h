@@ -10,6 +10,6 @@ class Image : protected UIElement
 
 public:
 	Image(float x, float y, float w, float h, const int graphicId);
-	~Image() { std::cout << "Image has been succesfully deleted" << std::endl; }
+	~Image();
 	void Polymorphic() {};
 };

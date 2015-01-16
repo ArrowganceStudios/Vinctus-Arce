@@ -3,7 +3,7 @@
 #include "GameUI.h"
 #include "allegro5\allegro.h"
 #include <vector>
-
+#include "Yeti.h"
 
 void State_Game::Init()
 {
@@ -21,6 +21,8 @@ void State_Game::Init()
 	interFace->AddBar(SCREEN_WIDTH / 2 , SCREEN_HEIGHT - 100);
 	
 	ObjectHandler::Instance().CreateObject<class Player>();
+	ObjectHandler::Instance().CreateObject<class Yeti>(SCREEN_WIDTH / 2 - 50, SCREEN_HEIGHT / 2 + 50);
+	ObjectHandler::Instance().CreateObject<class Yeti>(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
 
 	interFace->Show();
 

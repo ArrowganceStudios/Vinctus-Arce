@@ -91,7 +91,10 @@ void State_Menu::Cleanup()
 
 	Text::textID = 0;
 
-	cout << "cleanup has ben called" << endl;
+#ifdef _DEBUG
+	cout << "Cleanup has ben called" << endl;
+#endif
+
 	isCleanedUp = true;
 }
 

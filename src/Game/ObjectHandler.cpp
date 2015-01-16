@@ -1,5 +1,6 @@
 #include "ObjectHandler.h"
 #include "MobileObject.h"
+#include "Yeti.h"
 #include "StaticObject.h"
 #include "../Globals.h"
 #include "allegro5\allegro.h"
@@ -13,7 +14,7 @@ ObjectHandler::ObjectHandler()
 
 }
 
-template<class Type> void ObjectHandler::CreateObject()	
+template<class Type> void ObjectHandler::CreateObject(float x, float y)	
 {
 	float width = al_get_bitmap_width(graphicEngine::Instance().GetMapBitmap());
 	float height = al_get_bitmap_height(graphicEngine::Instance().GetMapBitmap());
@@ -25,6 +26,12 @@ template<class Type> void ObjectHandler::CreateObject()
 		objects.push_back(object);
 
 		camera::Instance().Init(object);
+	}
+	else if (std::is_same<Type, Yeti>::value)
+	{
+		Yeti *object = new Yeti();
+		object->Init(x, y, 1);
+		objects.push_back(object);
 	}
 	else if (std::is_same<Type, StaticObject>::value)
 	{
@@ -78,6 +85,6 @@ void ObjectHandler::Update()
 		object->Update();
 }
 
-
-template void ObjectHandler::CreateObject<Player>(); //it is needed, without it we get unrsolved link external 2019 -_-
-template void ObjectHandler::CreateObject<StaticObject>();
+template void ObjectHandler::CreateObject<Yeti>(float x, float y);
+template void ObjectHandler::CreateObject<Player>(float x, float y); //it is needed, without it we get unrsolved link external 2019 -_-
+template void ObjectHandler::CreateObject<StaticObject>(float x, float y);

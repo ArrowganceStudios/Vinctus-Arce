@@ -103,3 +103,11 @@ void Menu::Cleanup()
 		classIcons.clear();
 	classIcons.shrink_to_fit();
 }
+
+Menu::~Menu() {
+
+#ifdef _DEBUG
+	std::cout << "Menu " << menuTitle << " has been successfully deleted" << endl;
+#endif
+
+};

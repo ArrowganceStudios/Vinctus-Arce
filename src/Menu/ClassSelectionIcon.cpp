@@ -9,3 +9,10 @@ ClassSelectionIcon::ClassSelectionIcon(float x, float y, void(*function)() = nul
 	graphicEngine::Instance().CreateGraphicInstance(this);
 	graphicEngine::Instance().RequestGraphic(this, graphicID);
 }
+
+ClassSelectionIcon::~ClassSelectionIcon() 
+{ 
+#ifdef _DEBUG
+	std::cout << "ClassIcon has been successfully deleted" << endl; 
+#endif
+}

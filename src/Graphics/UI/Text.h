@@ -15,5 +15,5 @@ class Text : public UIElement
 	static int textID;
 public:
 	Text(string text, string fontName, float scale, float x, float y);
-	~Text() { graphicEngine::Instance().DestroyGraphicInstance(this); std::cout << "ButtonText has been successfully deleted" << endl; };
+	~Text();
 };

@@ -16,3 +16,11 @@ Text::Text(string text, string fontName, float scale, float x, float y) : UIElem
 
 	textID++;
 }
+
+Text::~Text() 
+{ 
+#ifdef _DEBUG
+	std::cout << "ButtonText has been successfully deleted" << endl;
+#endif
+	graphicEngine::Instance().DestroyGraphicInstance(this); 
+}

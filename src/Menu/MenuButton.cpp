@@ -84,6 +84,8 @@ MenuButton::MenuButton(string text, float x, float y, void(*function)()) : UIEle
 
 MenuButton::~MenuButton()
 {
+#ifdef _DEBUG
 	std::cout << "Button " << text << "has been deleted" << endl;
+#endif
 	delete buttonText;
 }
