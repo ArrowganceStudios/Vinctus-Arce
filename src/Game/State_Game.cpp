@@ -73,12 +73,12 @@ void State_Game::Update()
 void State_Game::LoadResources()
 {
 	//Graphics
+	Sprite *heroSprite = new Sprite(16, 0, 0, 5, 64, 64, 4, al_load_bitmap("assets/img/custom_hero.png"));
+
+	graphicEngine::Instance().DefineAnimation("class Player", heroSprite);
+
 	//bars
 	graphicEngine::Instance().DefineGraphic("class GameUI_bar", "assets/img/UI/button.png");
-
-	
-
-	//graphicEngine::Instance().DefineAnimation("class GameUI_bar", player.GetSprite());
 
 	//Sounds
 }

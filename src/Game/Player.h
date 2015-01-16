@@ -6,7 +6,6 @@ class Player : public Character
 public:
 
 	Player();
-	~Player();
 
 	void Init(float x, float y, float velocity);
 
@@ -22,13 +21,11 @@ public:
 	int GetResourceAmount() const { return resource; }
 	bool HasEnoughOfResource(int cost) const { if (cost < resource) return true; else return false; }
 
-	Sprite *GetSprite() { return heroSprite; }
 
 
 private:
-	//ClassType choosenClass;
 
-	Sprite *heroSprite;
+	//ClassType choosenClass;
 
 	int maxExperience;
 	int experience;

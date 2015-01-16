@@ -10,19 +10,13 @@ Player::Player()
 	resource = 0;
 	maxResourceLevel = 0;
 
-	heroSprite = new Sprite(16, 0, 0, 5, 64, 64,
-		4, al_load_bitmap("assets/custom_hero.png"));
-}
-
-
-Player::~Player()
-{
-	delete heroSprite;
 }
 
 void Player::Init(float x, float y, float velocity) 
 {
 	Character::Init(x, y, velocity);
+
 	graphicEngine::Instance().CreateAnimationInstance(this);
-	
+	graphicEngine::Instance().RequestAnimation(this, 0);
+	Show();
 }

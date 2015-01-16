@@ -28,7 +28,7 @@ void GraphicEngine::DefineAnimation(std::string ownersClassName, Sprite * animat
 void GraphicEngine::CreateAnimationInstance(AnimatedGraphic *owner)
 {
 	//getting the class name
-	const std::type_info& info = typeid(owner);
+	const std::type_info& info = typeid(*owner);
 	string className = static_cast<string>(info.name());
 
 	//setting default sprite
