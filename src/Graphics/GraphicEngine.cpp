@@ -170,8 +170,8 @@ void GraphicEngine::Render()
 
 void GraphicEngine::DrawAnimatedElements()
 {
-	int xOnScreen = 0;
-	int yOnScreen = 0;
+	float xOnScreen = 0;
+	float yOnScreen = 0;
 
 	int frameWidth = 0;
 	int frameHeight = 0;
@@ -213,14 +213,15 @@ void GraphicEngine::DrawStaticElements()
 
 void GraphicEngine::DrawGameMap()
 {
-	float topLeftCornerX = camera::Instance().GetTopLeftCornerX();
-	float topLeftCornerY = camera::Instance().GetTopLeftCornerY();
-
 	if (mapBitmap != nullptr)
-	al_draw_bitmap_region(mapBitmap, topLeftCornerX, topLeftCornerY, 
-							SCREEN_WIDTH,SCREEN_HEIGHT, 0, 0, 0);
-}
+	{
+		float topLeftCornerX = camera::Instance().GetCenterX() - SCREEN_WIDTH / 2;
+		float topLeftCornerY = camera::Instance().GetCenterY() - SCREEN_HEIGHT / 2;
 
+		al_draw_bitmap_region(mapBitmap, topLeftCornerX, topLeftCornerY,
+			SCREEN_WIDTH, SCREEN_HEIGHT, 0, 0, 0);
+	}
+}
 void GraphicEngine::DestroyAnimationInstance(AnimatedGraphic *owner)
 {
 	vector<std::pair<AnimatedGraphic *, Sprite *>>::iterator pos = AnimationOwnersMap.begin();

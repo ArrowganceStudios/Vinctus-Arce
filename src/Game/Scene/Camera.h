@@ -19,6 +19,7 @@ private:
 	Point topLeftCorner;
 	Point bottomRightCorner;
 	Point center;
+	Point target;
 
 	ALLEGRO_BITMAP * mapBitmap;
 

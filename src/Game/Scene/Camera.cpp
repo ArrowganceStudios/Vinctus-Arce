@@ -48,9 +48,12 @@ bool Camera::CanGoRight()
 void Camera::Update()
 {
 	if (actor->GetX() > SCREEN_WIDTH / 2 && actor->GetX() < mapWidth - SCREEN_WIDTH / 2)
-		center.x = actor->GetX();
+		target.x = actor->GetX();
 	if (actor->GetY() > SCREEN_HEIGHT / 2 && actor->GetY() < mapHeight - SCREEN_HEIGHT / 2)
-		center.y = actor->GetY();
+		target.y = actor->GetY();
+
+		center.x += ((target.x - center.x) * 0.05);
+		center.y += ((target.y - center.y) * 0.05);
 }
 
 void Camera::CalculateCamera()

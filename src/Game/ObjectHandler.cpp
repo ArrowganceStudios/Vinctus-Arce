@@ -22,7 +22,7 @@ template<class Type> void ObjectHandler::CreateObject(float x, float y)
 	if (std::is_same<Type, Player>::value)
 	{
 		Player *object = new Player();
-		object->Init(width/2, height/2, 3);
+		object->Init(x, y, 3);
 		objects.push_back(object);
 
 		camera::Instance().Init(object);
