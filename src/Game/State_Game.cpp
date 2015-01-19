@@ -37,6 +37,8 @@ void State_Game::Cleanup()
 
 	objectHandler::Instance().CleanUp();
 
+	gameEngine::Instance().GetCollisionDetector()->Cleanup();
+
 	delete interFace;
 	delete myLevel;
 

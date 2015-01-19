@@ -28,5 +28,5 @@ float GameObject::GetDisplayedX() const
 
 float GameObject::GetDisplayedY() const
 {
-	return (SCREEN_WIDTH / 2 - camera::Instance().GetCenterY() + GetY());
+	return (SCREEN_HEIGHT / 2 - camera::Instance().GetCenterY() + GetY());
 }

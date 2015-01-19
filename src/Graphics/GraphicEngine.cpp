@@ -201,8 +201,8 @@ void GraphicEngine::DrawAnimatedElements()
 		{
 			if (animatedObject.second != nullptr && animatedObject.first->IsVisible() && animatedObject.first->GetZ() == i)
 			{
-				//xOnScreen = SCREEN_WIDTH /2 - camera::Instance().GetCenterX() + animatedObject.first->GetX();
-				//yOnScreen = SCREEN_HEIGHT /2 - camera::Instance().GetCenterY() + animatedObject.first->GetY();
+				xOnScreen = SCREEN_WIDTH /2 - camera::Instance().GetCenterX() + animatedObject.first->GetX();
+				yOnScreen = SCREEN_HEIGHT /2 - camera::Instance().GetCenterY() + animatedObject.first->GetY();
 
 				frameWidth = animatedObject.second->GetFrameWidth();
 				frameHeight = animatedObject.second->GetFrameHeight();
@@ -210,8 +210,8 @@ void GraphicEngine::DrawAnimatedElements()
 				auto object = reinterpret_cast<GameObject*>(animatedObject.first);
 		
 				//I'd love to know if this is more correct than previous method o.O
-				xOnScreen = object->GetDisplayedX();
-				yOnScreen = object->GetDisplayedY();
+				//xOnScreen = object->GetDisplayedX();
+				//yOnScreen = object->GetDisplayedY();
 
 				float fx = (animatedObject.second->GetCurFrame() % animatedObject.second->GetAnimationColumns()) * animatedObject.second->GetFrameWidth();
 				float fy = (animatedObject.second->GetCurFrame() / animatedObject.second->GetAnimationColumns()) * animatedObject.second->GetFrameHeight();

@@ -12,6 +12,7 @@ public:
 	void Update();
 	void RenderHitboxes();
 	void EnableHitboxDisplay(bool display);
+	void Cleanup();
 
 	bool IsHitboxDisplayEnabled() const { return display; }
 private:

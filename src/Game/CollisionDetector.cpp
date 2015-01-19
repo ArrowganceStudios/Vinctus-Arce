@@ -36,6 +36,11 @@ void CollisionDetector::EnableHitboxDisplay(bool display)
 	CollisionDetector::display = display;
 }
 
+void CollisionDetector::Cleanup()
+{
+	hitboxList.clear();
+}
+
 float CollisionDetector::Hitbox::GetDisplayedX() const
 { 
 	return owner->GetDisplayedX(); 
