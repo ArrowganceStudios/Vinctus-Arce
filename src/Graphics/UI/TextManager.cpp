@@ -7,6 +7,8 @@ void TextManager::DefineFont(string fontName, string filePath, int col, int Xcha
 	if (fonts.find(fontName) != fonts.end())
 	{
 		cerr << "Font already exists!" << endl;
+		delete newFont;
+
 		return;
 	}
 
@@ -22,4 +24,11 @@ ALLEGRO_BITMAP * TextManager::CreateText(string text, string fontName, float sca
 		return nullptr;
 		cerr << "Font wasn't found" << endl;
 	}
+}
+
+TextManager::~TextManager() 
+{ 
+	if (fonts.size()) 
+		for (auto &elem : fonts) 
+			if (elem.second != nullptr) delete elem.second; 
 }

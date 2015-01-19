@@ -8,6 +8,7 @@
 #include <vector>
 #include "State.h"
 #include "Input.h"
+#include "Game\CollisionDetector.h"
 #include "Graphics/GraphicEngine.h"
 #include "Menu/State_Menu.h"
 #include "Game/State_Game.h"
@@ -36,10 +37,10 @@ class GameEngine : public Singleton <GameEngine>
 	/*
 	MapHandler *mapHandler;
 	CameraInstance *Camera;
-	CollisionDetector *Collider;
 	LogicHandler *logicHandler
 	*/
 	InputHandler *input;
+	CollisionDetector *collisionDetector;
 
 	State_Menu *menuState;
 	State_Game *gameState;
@@ -58,7 +59,8 @@ protected:
 	~GameEngine();
 public:
 
-	State_Menu * GetMenuState() { return menuState; }
+	State_Menu * GetMenuState() const { return menuState; }
+	CollisionDetector * GetCollisionDetector() const { return collisionDetector; }
 
 	void StartGame();
 
@@ -79,6 +81,7 @@ public:
 	void Quit();
 	
 	bool Done() const;
+	bool IsGameStateActive() const { return activeStates.back() == gameState; }
 
 	ALLEGRO_EVENT_QUEUE * GetEventQueue() const { return eventQueue; }
 	ALLEGRO_EVENT * GetEvent() { return &event; }

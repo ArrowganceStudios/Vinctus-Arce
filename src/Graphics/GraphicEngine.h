@@ -60,6 +60,8 @@ public:
 	void SetMapBitmap(ALLEGRO_BITMAP * bitmap) { mapBitmap = bitmap; }
 	ALLEGRO_BITMAP* GetMapBitmap() { return mapBitmap; }
 
+	Sprite* GetSpriteFromObject(AnimatedGraphic* owner);
+
 	void CleanUpUIMaps();
 	void Destroy();
 

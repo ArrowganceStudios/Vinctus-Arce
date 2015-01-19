@@ -30,6 +30,7 @@ void GameEngine::Init()
 	done = false;
 
 	input = new InputHandler();
+	collisionDetector = new CollisionDetector();
 
 	menuState = new State_Menu();
 	gameState = new State_Game();
@@ -81,10 +82,23 @@ void GameEngine::Escaper() //this should be done in seperate class if I'm correc
 		switch(event.keyboard.keycode)
 		{
 		case ALLEGRO_KEY_ESCAPE:
-			if (activeStates.back() == gameState)
+			if (IsGameStateActive())
 			{
 				PushState(menuState);
 				menuState->SwitchToMenu("Wave Menu");
+			}
+			else if (menuState->CurrentMenu->GetName() == "Wave Menu")
+			{
+				PopState();
+			}
+			break;
+		case ALLEGRO_KEY_B: //this should seriously be left somewhere else, or this method should change its name
+			if (IsGameStateActive())
+			{
+				if (collisionDetector->IsHitboxDisplayEnabled())
+					collisionDetector->EnableHitboxDisplay(false);
+				else
+					collisionDetector->EnableHitboxDisplay(true);
 			}
 			break;
 		}
@@ -135,6 +149,7 @@ void GameEngine::Update()
 	if(event.type == ALLEGRO_EVENT_TIMER)
 	{
 		activeStates.back()->Update();
+		if (IsGameStateActive()) collisionDetector->Update();
 		render = true;
 	}
 }
@@ -146,6 +161,10 @@ void GameEngine::Render()
 		render = false;
 		
 		graphicEngine::Instance().Render();
+
+#ifdef _DEBUG
+		if (IsGameStateActive()) collisionDetector->RenderHitboxes();
+#endif
 
 		al_flip_display();
 		al_clear_to_color(al_map_rgb(0,0,0));
@@ -176,8 +195,8 @@ void GameEngine::Destroy()
 	activeStates.clear();
 	activeStates.shrink_to_fit();
 	
-	
 	delete input;
+	delete collisionDetector;
 
 	graphicEngine::Instance().Destroy(); //bitmap
 	//allegro vars destroy

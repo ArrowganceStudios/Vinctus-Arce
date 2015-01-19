@@ -18,7 +18,8 @@ void Player::Init(float x, float y, float velocity)
 	Character::Init(x, y, velocity);
 
 	graphicEngine::Instance().CreateAnimationInstance(this);
-	graphicEngine::Instance().RequestAnimation(this, 0);
+	gameEngine::Instance().GetCollisionDetector()->CreateHitbox(this, 30);
+	
 	Show();
 }
 

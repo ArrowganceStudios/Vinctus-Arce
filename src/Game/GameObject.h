@@ -31,6 +31,9 @@ public:
 	float GetX() const { return x; }
 	float GetY() const { return y; }
 
+	float GetDisplayedX() const;
+	float GetDisplayedY() const;
+
 	bool IsAlive() const { return alive; }
 	void SetAlive(bool alive) { GameObject::alive = alive; }
 };
