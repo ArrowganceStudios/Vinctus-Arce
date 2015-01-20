@@ -25,5 +25,7 @@ public:
 	int GetFrameHeight() const { return frameHeight; }
 	int GetAnimationColumns () const { return animationColumns; }
 
+	void SetCurFrame(int current);
+
 	ALLEGRO_BITMAP * GetImage() const { return image; }
 };

@@ -25,9 +25,32 @@ void Player::Init(float x, float y, float velocity)
 
 void Player::Update()
 {
-	if (key_arrows[UP])		y -= velocity;
-	if (key_arrows[DOWN])	y += velocity;
-	if (key_arrows[LEFT])	x -= velocity;
-	if (key_arrows[RIGHT])	x += velocity;
+	if (key_arrows[UP] || key_arrows[DOWN] || key_arrows[LEFT] || key_arrows[RIGHT]) PlayAnimation();
+	else
+	{
+		StopAnimation();
+		SetCurFrame(0);
+	}
+
+	if (key_arrows[UP])
+	{
+		graphicEngine::Instance().RequestAnimation(this, 0);
+		y -= velocity;
+	}
+	if (key_arrows[DOWN])
+	{
+		graphicEngine::Instance().RequestAnimation(this, 1);
+		y += velocity;
+	}
+	if (key_arrows[LEFT])
+	{
+		graphicEngine::Instance().RequestAnimation(this, 2);
+		x -= velocity;
+	}
+	if (key_arrows[RIGHT])
+	{
+		graphicEngine::Instance().RequestAnimation(this, 3);
+		x += velocity;
+	}
 
 }

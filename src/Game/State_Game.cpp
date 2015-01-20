@@ -77,9 +77,20 @@ void State_Game::Update()
 void State_Game::LoadResources()
 {
 	//Graphics
-	Sprite *heroSprite = new Sprite(16, 0, 0, 5, 64, 64, 4, al_load_bitmap("assets/img/custom_hero.png"));
+	//Sprite *heroSprite = new Sprite(16, 0, 0, 5, 64, 64, 4, al_load_bitmap("assets/img/custom_hero.png"));
+	
+	Sprite *heroGoUp = new Sprite(3, 0, 4, 5, 64, 64, 4, al_load_bitmap("assets/img/hero_walk_up.png"));
+	Sprite *heroGoDown = new Sprite(3, 0, 4, 5, 64, 64, 4, al_load_bitmap("assets/img/hero_walk_down.png"));
+	Sprite *heroGoLeft = new Sprite(3, 0, 4, 5, 64, 64, 4, al_load_bitmap("assets/img/hero_walk_left.png"));
+	Sprite *heroGoRight = new Sprite(3, 0, 4, 5, 64, 64, 4, al_load_bitmap("assets/img/hero_walk_right.png"));
 
-	graphicEngine::Instance().DefineAnimation("class Player", heroSprite);
+
+	//graphicEngine::Instance().DefineAnimation("class Player", heroSprite);
+
+	graphicEngine::Instance().DefineAnimation("class Player", heroGoUp);
+	graphicEngine::Instance().DefineAnimation("class Player", heroGoDown);
+	graphicEngine::Instance().DefineAnimation("class Player", heroGoLeft);
+	graphicEngine::Instance().DefineAnimation("class Player", heroGoRight);
 
 	//bars
 	graphicEngine::Instance().DefineGraphic("class GameUI_bar", "assets/img/UI/button.png");

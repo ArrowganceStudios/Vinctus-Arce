@@ -9,6 +9,7 @@ private:
 	MobileObject_AttackState* attackState;*/
 protected:
 	float velocity;
+	int animCounter;
 
 public:
 	MobileObject();

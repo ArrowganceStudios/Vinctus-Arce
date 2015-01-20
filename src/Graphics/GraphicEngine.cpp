@@ -213,8 +213,21 @@ void GraphicEngine::DrawAnimatedElements()
 				//xOnScreen = object->GetDisplayedX();
 				//yOnScreen = object->GetDisplayedY();
 
-				float fx = (animatedObject.second->GetCurFrame() % animatedObject.second->GetAnimationColumns()) * animatedObject.second->GetFrameWidth();
-				float fy = (animatedObject.second->GetCurFrame() / animatedObject.second->GetAnimationColumns()) * animatedObject.second->GetFrameHeight();
+				if (animatedObject.first->CanPlayAnimation())
+				{
+					animatedObject.first->IncrementAnimCounter();
+
+					if (animatedObject.first->GetAnimCounter() >= animatedObject.second->GetFrameDelay())
+					{
+						if (animatedObject.first->GetCurFrame() >= animatedObject.second->GetMaxFrame())
+							animatedObject.first->SetCurFrame(0);
+						else animatedObject.first->IncrementCurFrame();
+						animatedObject.first->SetAnimCounter(0);
+					}
+				}
+
+				float fx = (animatedObject.first->GetCurFrame() % animatedObject.second->GetAnimationColumns()) * animatedObject.second->GetFrameWidth();
+				float fy = (animatedObject.first->GetCurFrame() / animatedObject.second->GetAnimationColumns()) * animatedObject.second->GetFrameHeight();
 
 				al_draw_bitmap_region(animatedObject.second->GetImage(), fx, fy, frameWidth,
 					frameHeight, xOnScreen - frameWidth /2, yOnScreen - frameHeight/2, 0);
