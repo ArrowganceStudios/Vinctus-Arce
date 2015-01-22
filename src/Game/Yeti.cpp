@@ -37,5 +37,18 @@ Yeti::~Yeti()
 	counter--;
 	if (!counter)
 		graphicEngine::Instance().DestroyAnimation("class Yeti");
-	Character::~Character();
+
+	graphicEngine::Instance().DestroyAnimationInstance(this);
+	gameEngine::Instance().GetCollisionDetector()->DestroyHitbox(this);
+#ifdef _DEBUG
+	cout << "Yeti got destroyed" << endl;
+#endif
+}
+
+void Yeti::Update()
+{
+	Character::Update();
+
+	if (!IsAlive())
+		Yeti::~Yeti();
 }

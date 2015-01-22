@@ -41,12 +41,15 @@ template<class Type> void ObjectHandler::CreateObject(float x, float y)
 	}
 }
 
-template<class Type> void ObjectHandler::DestroyObject(Type *objectToDestroy)
+void ObjectHandler::DestroyObject(GameObject *objectToDestroy)
 {
 	auto it = GetIterator(objectToDestroy);
 	objects.erase(it);
 	objects.shrink_to_fit();
-	delete objectToDestroy;
+
+	auto pointer = reinterpret_cast<Yeti *>(objectToDestroy);
+
+	delete pointer;
 }
 
 void ObjectHandler::SpawnObject()
@@ -93,4 +96,4 @@ template void ObjectHandler::CreateObject<Yeti>(float x, float y);
 template void ObjectHandler::CreateObject<Player>(float x, float y); //it is needed, without it we get unrsolved link external 2019 -_-
 template void ObjectHandler::CreateObject<StaticObject>(float x, float y);
 
-template void ObjectHandler::DestroyObject<Character>(Character *objectToDestroy);
+//template void ObjectHandler::DestroyObject<Character>(Character *objectToDestroy);

@@ -15,7 +15,7 @@ protected:
 
 public:
 	MobileObject();
-
+	virtual ~MobileObject() {};
 	void Init(float x, float y, float velocity);
 
 	float GetVelocity() const { return velocity; }

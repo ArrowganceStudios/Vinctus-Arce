@@ -6,6 +6,7 @@ class NPC : public Character
 public:
 	NPC() : Character() {};
 	NPC(int initialPower) : power(initialPower), Character() {};
+	virtual ~NPC() {};
 
 	void SetPower(int nPower) { power = nPower; }
 	int GetPower() const { return power; }

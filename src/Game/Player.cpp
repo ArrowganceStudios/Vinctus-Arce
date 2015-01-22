@@ -13,6 +13,15 @@ Player::Player()
 	SetName("Waclaw");
 }
 
+Player::~Player()
+{
+	graphicEngine::Instance().DestroyAnimationInstance(this);
+	gameEngine::Instance().GetCollisionDetector()->DestroyHitbox(this);
+#ifdef _DEBUG
+	cout << "Player got destroyed" << endl;
+#endif
+}
+
 void Player::Init(float x, float y, float velocity) 
 {
 	Character::Init(x, y, velocity);
@@ -25,7 +34,7 @@ void Player::Init(float x, float y, float velocity)
 
 int Player::GetMeleeStrikeDamage()
 {
-	return 5; //deals 5 dmg
+	return 25; //deals 5 dmg
 }
 
 void Player::Update()

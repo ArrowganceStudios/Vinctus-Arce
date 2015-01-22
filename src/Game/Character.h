@@ -6,7 +6,7 @@ class Character : public MobileObject
 {
 public:
 	Character() : name("unnamed"), health(0), maxHealth(0), armor(0), level(0), maxLevel(0) {};
-	~Character();
+	virtual ~Character() {};
 
 	void Init(float x, float y, float velocity) { MobileObject::Init(x, y, velocity); }
 

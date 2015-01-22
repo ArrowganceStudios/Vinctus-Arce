@@ -13,12 +13,18 @@ void CollisionDetector::CreateHitbox(Character *owner, int radius)
 {
 	Hitbox newHitbox(owner, radius);
 	hitboxes.push_back(newHitbox);
+#ifdef _DEBUG
+	cout << "Hitbox got created" << endl;
+#endif
 }
 
 void CollisionDetector::CreateAttack(Character *owner, int radius, float xOffset, float yOffset)
 {
 	Attack attack(owner, radius, xOffset, yOffset);
 	attacks.push_back(attack);
+#ifdef _DEBUG
+	cout << "Attack got created" << endl;
+#endif
 }
 
 void CollisionDetector::DestroyHitbox(Character *owner)
@@ -28,6 +34,9 @@ void CollisionDetector::DestroyHitbox(Character *owner)
 		if (hitboxes[i].GetOwner() == owner)
 		{
 			hitboxes.erase(hitboxes.begin() + i);
+#ifdef _DEBUG
+			cout << "Hitbox got destroyed" << endl;
+#endif
 			break;
 		}
 	}
