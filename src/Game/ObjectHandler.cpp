@@ -46,7 +46,6 @@ template<class Type> void ObjectHandler::DestroyObject(Type *objectToDestroy)
 	auto it = GetIterator(objectToDestroy);
 	objects.erase(it);
 	objects.shrink_to_fit();
-	objectToDestroy->SetAlive(false);
 	delete objectToDestroy;
 }
 
@@ -81,6 +80,11 @@ std::vector <GameObject*>::iterator ObjectHandler::GetIterator(GameObject * obje
 
 void ObjectHandler::Update()
 {
+	for (int i = 0; i < objects.size();  i++)
+	{
+		if (!objects[i]->IsAlive())
+			DestroyObject(objects[i]);
+	}
 	for (auto object : objects)
 		object->Update();
 }
@@ -88,3 +92,5 @@ void ObjectHandler::Update()
 template void ObjectHandler::CreateObject<Yeti>(float x, float y);
 template void ObjectHandler::CreateObject<Player>(float x, float y); //it is needed, without it we get unrsolved link external 2019 -_-
 template void ObjectHandler::CreateObject<StaticObject>(float x, float y);
+
+template void ObjectHandler::DestroyObject<Character>(Character *objectToDestroy);

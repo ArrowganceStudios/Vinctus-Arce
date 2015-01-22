@@ -27,6 +27,7 @@ private:
 	public:
 		Hitbox(Character* owner, int radius) :owner(owner), radius(radius) {};
 
+
 		virtual float GetDisplayedX() const;
 		virtual float GetDisplayedY() const;
 		virtual float GetX() const { return owner->GetX(); }
@@ -74,5 +75,7 @@ private:
 	std::vector <Hitbox> hitboxes;
 	std::vector <Attack> attacks;
 	bool display;
+	public: void DestroyHitbox(Character *owner);
+
 };
 

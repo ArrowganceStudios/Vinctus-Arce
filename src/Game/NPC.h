@@ -9,7 +9,6 @@ public:
 
 	void SetPower(int nPower) { power = nPower; }
 	int GetPower() const { return power; }
-	virtual void Update() {};
 
 private:
 	//AIType type;

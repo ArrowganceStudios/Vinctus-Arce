@@ -21,6 +21,18 @@ void CollisionDetector::CreateAttack(Character *owner, int radius, float xOffset
 	attacks.push_back(attack);
 }
 
+void CollisionDetector::DestroyHitbox(Character *owner)
+{
+	for (int i = 0; i < hitboxes.size(); i++)
+	{
+		if (hitboxes[i].GetOwner() == owner)
+		{
+			hitboxes.erase(hitboxes.begin() + i);
+			break;
+		}
+	}
+}
+
 void CollisionDetector::Update()
 {
 	if (hitboxes.size() > 2)
@@ -73,6 +85,7 @@ void CollisionDetector::Cleanup()
 	hitboxes.clear();
 }
 
+
 float CollisionDetector::Hitbox::GetDisplayedX() const
 { 
 	return owner->GetDisplayedX(); 
@@ -98,9 +111,9 @@ bool CollisionDetector::Hitbox::CollidesWith(const Hitbox& otherHitbox)
 
 void CollisionDetector::Hitbox::TakeDamage(float damage)
 {
+	cout << "Health drops from " << owner->GetHealth() << "HP to ";
 	owner->DamageFor(damage);
-	
-	cout << "wprdl" << endl;
+	cout << owner->GetHealth() << "HP. "<< endl;
 }
 
 void CollisionDetector::Attack::DealDamageTo(Hitbox& hitbox)

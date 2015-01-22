@@ -10,6 +10,8 @@ private:
 protected:
 	float velocity;
 	int animCounter;
+	int directionX;
+	int directionY;
 
 public:
 	MobileObject();

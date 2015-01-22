@@ -6,7 +6,7 @@ class Character : public MobileObject
 {
 public:
 	Character() : name("unnamed"), health(0), maxHealth(0), armor(0), level(0), maxLevel(0) {};
-	~Character() { };
+	~Character();
 
 	void Init(float x, float y, float velocity) { MobileObject::Init(x, y, velocity); }
 
@@ -19,6 +19,7 @@ public:
 	void DamageFor(int healthToLose) { health -= healthToLose; if (health < 0) health = 0; }
 	void SetHealth(int health) { Character::health = health; }
 	int GetHealth() const { return health; }
+	void Die();
 
 	void IncreaseMaxHealth(int healthAdded) { maxHealth += healthAdded; }
 	void SetMaxHealth(int mHealth) { maxHealth = mHealth; }
@@ -35,7 +36,17 @@ public:
 	int GetGlobalCooldown() const { return globalCooldown; }
 	void SetGlobalCooldown(int gcd) { if(gcd >= 0) globalCooldown = gcd; }
 
+	virtual void Update();
+
 private:
+
+	virtual void MoveUp(){};
+	virtual void MoveDown(){};
+	virtual void MoveLeft(){};
+	virtual void MoveRight(){};
+
+	virtual void MeleeAttack(){};
+
 	std::string name;
 
 	int health;

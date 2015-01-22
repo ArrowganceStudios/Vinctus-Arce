@@ -37,4 +37,5 @@ Yeti::~Yeti()
 	counter--;
 	if (!counter)
 		graphicEngine::Instance().DestroyAnimation("class Yeti");
+	Character::~Character();
 }

@@ -2,6 +2,7 @@
 #include "InputMap.h"
 
 bool key_arrows[4] = { false, false, false, false };
+bool key_general[2] = { false, false };
 bool mouse[2] = { false, false };
 float mouseX = 0;
 float mouseY = 0;
@@ -24,6 +25,9 @@ void InputHandler::Update(ALLEGRO_EVENT *event)
             case ALLEGRO_KEY_RIGHT:
                	key_arrows[RIGHT] = true;
 				break;
+			case ALLEGRO_KEY_SPACE:
+				key_general[SPACE] = true;
+				break;
             default:
             	break;
 		}
@@ -42,6 +46,9 @@ void InputHandler::Update(ALLEGRO_EVENT *event)
             case ALLEGRO_KEY_RIGHT:
                key_arrows[RIGHT] = false;
 			   break;
+			case ALLEGRO_KEY_SPACE:
+				key_general[SPACE] = false;
+				break;
             default:
             	break;
          }

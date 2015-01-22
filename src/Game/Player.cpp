@@ -41,27 +41,65 @@ void Player::Update()
 
 	if (key_arrows[UP])
 	{
-		graphicEngine::Instance().RequestAnimation(this, 0);
-		y -= velocity;
+		MoveUp();
 	}
 	if (key_arrows[DOWN])
 	{
-		graphicEngine::Instance().RequestAnimation(this, 1);
-		y += velocity;
+		MoveDown();
 	}
 	if (key_arrows[LEFT])
 	{
-		graphicEngine::Instance().RequestAnimation(this, 2);
-		x -= velocity;
+		MoveLeft();
 	}
 	if (key_arrows[RIGHT])
 	{
-		graphicEngine::Instance().RequestAnimation(this, 3);
-		x += velocity;
+		MoveRight();
 	}
-	if (mouse[LMB] && !GetGlobalCooldown())
+	/*if (!(key_arrows[UP] || key_arrows[DOWN]))
 	{
-		gameEngine::Instance().GetCollisionDetector()->CreateAttack(this, 10, 10, 10);
-		SetGlobalCooldown(15);
+		directionY = 0;
 	}
+	else if (!(key_arrows[LEFT] || key_arrows[RIGHT]))
+	{
+		directionX = 0;
+	}*/
+	if (key_general[SPACE] && !GetGlobalCooldown())
+	{
+		MeleeAttack();
+	}
+}
+
+void Player::MoveUp()
+{
+	directionY = -1;
+	directionX = 0;
+	graphicEngine::Instance().RequestAnimation(this, 0);
+	y -= velocity;
+}
+void Player::MoveDown()
+{
+	directionY = 1;
+	directionX = 0;
+	graphicEngine::Instance().RequestAnimation(this, 1);
+	y += velocity;
+}
+void Player::MoveLeft()
+{
+	directionX = -1;
+	directionY = 0;
+	graphicEngine::Instance().RequestAnimation(this, 2);
+	x -= velocity;
+}
+void Player::MoveRight()
+{
+	directionX = 1;
+	directionY = 0;
+	graphicEngine::Instance().RequestAnimation(this, 3);
+	x += velocity;
+}
+
+void Player::MeleeAttack()
+{
+	gameEngine::Instance().GetCollisionDetector()->CreateAttack(this, 10, directionX * 50, directionY * 50);
+	SetGlobalCooldown(15);
 }
