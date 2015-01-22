@@ -29,7 +29,7 @@ void CollisionDetector::CreateAttack(Character *owner, int radius, float xOffset
 
 void CollisionDetector::DestroyHitbox(Character *owner)
 {
-	for (int i = 0; i < hitboxes.size(); i++)
+	for (unsigned int i = 0; i < hitboxes.size(); i++)
 	{
 		if (hitboxes[i].GetOwner() == owner)
 		{
@@ -47,8 +47,8 @@ void CollisionDetector::Update()
 	if (hitboxes.size() > 2)
 		for (unsigned int i = 0; i < hitboxes.size(); i++)
 			for (unsigned int j = i + 1; j < hitboxes.size(); j++)
-				if (hitboxes[i].CollidesWith(hitboxes[j]))
-					cout << hitboxes[i].GetOwner()->GetName() << " has collided with " << hitboxes[j].GetOwner()->GetName() << endl; //temp
+				if (hitboxes[i].CollidesWith(hitboxes[j]));
+				//	cout << hitboxes[i].GetOwner()->GetName() << " has collided with " << hitboxes[j].GetOwner()->GetName() << endl; //temp
 
 	if (!attacks.empty())
 		for (unsigned int i = 0; i < hitboxes.size(); i++)

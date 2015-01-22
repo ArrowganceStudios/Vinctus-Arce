@@ -4,6 +4,9 @@
 #include "allegro5\allegro.h"
 #include <vector>
 #include "Yeti.h"
+#include <ctime>
+#include <stdlib.h> 
+
 
 void State_Game::Init()
 {
@@ -24,6 +27,7 @@ void State_Game::Init()
 	ObjectHandler::Instance().CreateObject<class Yeti>(SCREEN_WIDTH / 2 - 50, SCREEN_HEIGHT / 2);
 	ObjectHandler::Instance().CreateObject<class Yeti>(SCREEN_WIDTH / 2 + 200, SCREEN_HEIGHT / 2);
 
+	srand(time(NULL));
 
 	interFace->Show();
 
@@ -72,7 +76,7 @@ void State_Game::Update()
 	objectHandler::Instance().Update();
 	camera::Instance().CalculateCamera();
 	camera::Instance().Update();
-
+	NPCGenerator();
 }
 
 void State_Game::LoadResources()
@@ -97,4 +101,35 @@ void State_Game::LoadResources()
 	graphicEngine::Instance().DefineGraphic("class GameUI_bar", "assets/img/UI/button.png");
 
 	//Sounds
+}
+
+void State_Game::NPCGenerator()
+{
+	if (Yeti::GetCounter() <= 10)
+	{
+		int random = rand() % 4 + 1;
+
+		float topLeftX = camera::Instance().GetTopLeftCornerX();
+		float topLeftY = camera::Instance().GetTopLeftCornerY();
+
+		float bottomRightX = camera::Instance().GetBottomRightCornerX();
+		float bottomRightY = camera::Instance().GetBottomRightCornerY();
+
+		if (random == 1)
+		{
+			objectHandler::Instance().CreateObject<Yeti>(topLeftX - 32, rand() % (int)bottomRightY + (bottomRightY - SCREEN_HEIGHT / 2));
+		}
+		else if (random == 2)
+		{
+			objectHandler::Instance().CreateObject<Yeti>(bottomRightX + 32, rand() % (int)bottomRightY + (bottomRightY - SCREEN_HEIGHT / 2));
+		}
+		else if (random == 3)
+		{
+			objectHandler::Instance().CreateObject<Yeti>(rand() % (int)bottomRightX + (bottomRightY - SCREEN_WIDTH / 2), topLeftY - 32);
+		}
+		else
+		{
+			objectHandler::Instance().CreateObject<Yeti>(rand() % (int)bottomRightX + (bottomRightY - SCREEN_WIDTH / 2), bottomRightY + 32);
+		}
+	}
 }

@@ -14,7 +14,7 @@ ObjectHandler::ObjectHandler()
 
 }
 
-template<class Type> void ObjectHandler::CreateObject(float x, float y)	
+template<class Type> void ObjectHandler::CreateObject(float x, float y)
 {
 	float width = al_get_bitmap_width(graphicEngine::Instance().GetMapBitmap());
 	float height = al_get_bitmap_height(graphicEngine::Instance().GetMapBitmap());
@@ -29,9 +29,23 @@ template<class Type> void ObjectHandler::CreateObject(float x, float y)
 	}
 	else if (std::is_same<Type, Yeti>::value)
 	{
-		Yeti *object = new Yeti();
-		object->Init(x, y, 1);
-		objects.push_back(object);
+			Yeti *object = new Yeti();
+			object->Init(x, y, 1);
+			objects.push_back(object);
+
+
+			for (int i = 0; i < objects.size(); i++)
+			{
+				const std::type_info& info = typeid(*objects[i]);
+				string className = static_cast<string>(info.name());
+
+				if (className == "class Player")
+				{
+					object->SetTarget(objects[i]);
+					break;
+				}
+			}
+
 	}
 	else if (std::is_same<Type, StaticObject>::value)
 	{
@@ -39,6 +53,7 @@ template<class Type> void ObjectHandler::CreateObject(float x, float y)
 		//object->Init(2, 2); 
 		objects.push_back(object);
 	}
+	
 }
 
 void ObjectHandler::DestroyObject(GameObject *objectToDestroy)

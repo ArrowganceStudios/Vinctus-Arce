@@ -60,6 +60,8 @@ void Camera::CalculateCamera()
 {
 	//if (center.x > SCREEN_WIDTH / 2 && center.x < mapWidth - SCREEN_WIDTH / 2)	
 		topLeftCorner.x = center.x - SCREEN_WIDTH / 2;
+		bottomRightCorner.x = center.x + SCREEN_WIDTH / 2;
 	//if (center.y > SCREEN_HEIGHT / 2 && center.y < mapHeight - SCREEN_HEIGHT / 2)	
 		topLeftCorner.y = center.y - SCREEN_HEIGHT / 2;
+		bottomRightCorner.y = center.y + SCREEN_HEIGHT / 2;
 }

@@ -51,4 +51,19 @@ void Yeti::Update()
 
 	if (!IsAlive())
 		Yeti::~Yeti();
+
+	AI();
+}
+
+void Yeti::AI()
+{
+	if (target->GetX() > x)
+		x += velocity;
+	if (target->GetX() < x)
+		x -= velocity;
+	if (target->GetY() > y)
+		y += velocity;
+	if (target->GetY() < y)
+		y -= velocity;
+
 }
