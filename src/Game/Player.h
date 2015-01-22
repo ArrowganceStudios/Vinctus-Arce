@@ -9,6 +9,8 @@ public:
 
 	void Init(float x, float y, float velocity);
 
+	int GetMeleeStrikeDamage();
+
 	void GrantXP(int xp) { experience += xp; }
 	int SetXP(int xp) { experience = xp; }
 	int GetCurrentXP() const { return experience; }

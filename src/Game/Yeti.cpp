@@ -23,7 +23,7 @@ Yeti::Yeti()
 	}
 
 	graphicEngine::Instance().CreateAnimationInstance(this);
-	gameEngine::Instance().GetCollisionDetector()->CreateHitbox(this, 30);
+	gameEngine::Instance().GetCollisionDetector()->CreateHitbox(this, 25);
 
 	counter++;
 

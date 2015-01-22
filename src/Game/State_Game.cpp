@@ -21,8 +21,8 @@ void State_Game::Init()
 	interFace->AddBar(SCREEN_WIDTH / 2 , SCREEN_HEIGHT - 100);
 	
 	ObjectHandler::Instance().CreateObject<class Player>(600, 600);
-	ObjectHandler::Instance().CreateObject<class Yeti>(SCREEN_WIDTH / 2 - 50, SCREEN_HEIGHT / 2 + 50);
-	ObjectHandler::Instance().CreateObject<class Yeti>(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+	ObjectHandler::Instance().CreateObject<class Yeti>(SCREEN_WIDTH / 2 - 50, SCREEN_HEIGHT / 2);
+	ObjectHandler::Instance().CreateObject<class Yeti>(SCREEN_WIDTH / 2 + 200, SCREEN_HEIGHT / 2);
 
 	interFace->Show();
 

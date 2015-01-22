@@ -1,5 +1,4 @@
 #include "GameObject.h"
-#include "../Globals.h"
 
 
 GameObject::GameObject()
@@ -19,14 +18,4 @@ void GameObject::DefineAnimation(int maxFrame, int curFrame, int frameCount, int
 {
 	Sprite *newAnimation = new Sprite(maxFrame, curFrame, frameCount, frameDelay, frameWidth, frameHeight, animationColumns, image);
 	animations.push_back(newAnimation);
-}
-
-float GameObject::GetDisplayedX() const
-{
-	return (SCREEN_WIDTH / 2 - camera::Instance().GetCenterX() + GetX());
-}
-
-float GameObject::GetDisplayedY() const
-{
-	return (SCREEN_HEIGHT / 2 - camera::Instance().GetCenterY() + GetY());
 }

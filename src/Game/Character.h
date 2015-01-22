@@ -13,6 +13,8 @@ public:
 	void SetName(std::string newName) { name = newName; }
 	std::string GetName() const { return name; }
 
+	virtual int GetMeleeStrikeDamage() { return 0; }
+
 	void HealFor(int healthAdded) { health += healthAdded; if (health > maxHealth) health = maxHealth; }
 	void DamageFor(int healthToLose) { health -= healthToLose; if (health < 0) health = 0; }
 	void SetHealth(int health) { Character::health = health; }
@@ -30,6 +32,9 @@ public:
 	void SetMaxLevel(int maxLev) { maxLevel = maxLev; }
 	int GetLevel() const { return level; }
 
+	int GetGlobalCooldown() const { return globalCooldown; }
+	void SetGlobalCooldown(int gcd) { if(gcd >= 0) globalCooldown = gcd; }
+
 private:
 	std::string name;
 
@@ -40,4 +45,6 @@ private:
 
 	int level;
 	int maxLevel;
+
+	int globalCooldown;
 };

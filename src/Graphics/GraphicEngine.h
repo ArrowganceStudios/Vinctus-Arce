@@ -10,7 +10,6 @@
 #include <map>
 #include <algorithm>
 
-class GameEngine;
 class TextManager;
 
 class GraphicEngine : public Singleton<GraphicEngine>

@@ -201,17 +201,11 @@ void GraphicEngine::DrawAnimatedElements()
 		{
 			if (animatedObject.second != nullptr && animatedObject.first->IsVisible() && animatedObject.first->GetZ() == i)
 			{
-				xOnScreen = SCREEN_WIDTH /2 - camera::Instance().GetCenterX() + animatedObject.first->GetX();
-				yOnScreen = SCREEN_HEIGHT /2 - camera::Instance().GetCenterY() + animatedObject.first->GetY();
-
 				frameWidth = animatedObject.second->GetFrameWidth();
 				frameHeight = animatedObject.second->GetFrameHeight();
 				
-				auto object = reinterpret_cast<GameObject*>(animatedObject.first);
-		
-				//I'd love to know if this is more correct than previous method o.O
-				//xOnScreen = object->GetDisplayedX();
-				//yOnScreen = object->GetDisplayedY();
+				xOnScreen = animatedObject.first->GetDisplayedX();
+				yOnScreen = animatedObject.first->GetDisplayedY();
 
 				if (animatedObject.first->CanPlayAnimation())
 				{

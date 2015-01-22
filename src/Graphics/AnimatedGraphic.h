@@ -23,6 +23,6 @@ public:
 	inline void StopAnimation() { playAnimation = false; }
 	inline bool CanPlayAnimation() const { return playAnimation; }
 
-
-
+	float GetDisplayedX() const;
+	float GetDisplayedY() const;
 };
