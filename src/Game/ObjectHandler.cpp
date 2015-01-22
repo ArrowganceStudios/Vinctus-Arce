@@ -107,6 +107,21 @@ void ObjectHandler::Update()
 		object->Update();
 }
 
+void ObjectHandler::ClearTargets()
+{
+	for (int i = 0; i < objects.size(); i++)
+	{
+		const std::type_info& info = typeid(*objects[i]);
+		string className = static_cast<string>(info.name());
+
+		if (className == "class Yeti")
+		{
+			auto obj = reinterpret_cast<Yeti*>(objects[i]);
+			obj->SetTarget(nullptr);
+		}
+	}
+}
+
 template void ObjectHandler::CreateObject<Yeti>(float x, float y);
 template void ObjectHandler::CreateObject<Player>(float x, float y); //it is needed, without it we get unrsolved link external 2019 -_-
 template void ObjectHandler::CreateObject<StaticObject>(float x, float y);

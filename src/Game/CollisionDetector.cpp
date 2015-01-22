@@ -42,6 +42,21 @@ void CollisionDetector::DestroyHitbox(Character *owner)
 	}
 }
 
+void CollisionDetector::DestroyAttack(Character *owner)
+{
+	for (unsigned int i = 0; i < hitboxes.size(); i++)
+	{
+		if (hitboxes[i].GetOwner() == owner)
+		{
+			hitboxes.erase(hitboxes.begin() + i);
+#ifdef _DEBUG
+			cout << "Attack got destroyed" << endl;
+#endif
+			break;
+		}
+	}
+}
+
 void CollisionDetector::Update()
 {
 	if (hitboxes.size() > 2)
@@ -131,6 +146,14 @@ void CollisionDetector::Attack::DealDamageTo(Hitbox& hitbox)
 	
 	if (attacker == hitbox.GetOwner())
 		return;
+
+	const std::type_info& info = typeid(*(hitbox.GetOwner()));
+	string className = static_cast<string>(info.name());
+
+	const std::type_info& info2 = typeid(*attacker);
+	string className2 = static_cast<string>(info2.name());
+	
+	if (className == className2) return;
 
 	hitbox.TakeDamage(damage);
 }

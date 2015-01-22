@@ -40,9 +40,21 @@ Yeti::~Yeti()
 
 	graphicEngine::Instance().DestroyAnimationInstance(this);
 	gameEngine::Instance().GetCollisionDetector()->DestroyHitbox(this);
+	gameEngine::Instance().GetCollisionDetector()->DestroyAttack(this);
 #ifdef _DEBUG
 	cout << "Yeti got destroyed" << endl;
 #endif
+}
+
+void Yeti::MeleeAttack()
+{
+	gameEngine::Instance().GetCollisionDetector()->CreateAttack(this, 10, 0, 0);
+	SetGlobalCooldown(15);
+}
+
+int Yeti::GetMeleeStrikeDamage()
+{
+	return 5;
 }
 
 void Yeti::Update()
@@ -57,6 +69,10 @@ void Yeti::Update()
 
 void Yeti::AI()
 {
+	SetGlobalCooldown(GetGlobalCooldown() - 1);
+
+	if (target == nullptr) return;
+
 	if (target->GetX() > x)
 		x += velocity;
 	if (target->GetX() < x)
@@ -66,4 +82,6 @@ void Yeti::AI()
 	if (target->GetY() < y)
 		y -= velocity;
 
+	if (!GetGlobalCooldown())
+ 		MeleeAttack();
 }

@@ -21,6 +21,8 @@ void Camera::Init(GameObject * object)
 
 	actor = object;
 
+	if (actor == nullptr) return;
+
 	center.x = actor->GetX();
 	center.y = actor->GetY();
 
@@ -47,6 +49,8 @@ bool Camera::CanGoRight()
 
 void Camera::Update()
 {
+	if (actor == nullptr) return;
+
 	if (actor->GetX() > SCREEN_WIDTH / 2 && actor->GetX() < mapWidth - SCREEN_WIDTH / 2)
 		target.x = actor->GetX();
 	if (actor->GetY() > SCREEN_HEIGHT / 2 && actor->GetY() < mapHeight - SCREEN_HEIGHT / 2)

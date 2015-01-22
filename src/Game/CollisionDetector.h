@@ -76,6 +76,6 @@ private:
 	std::vector <Attack> attacks;
 	bool display;
 	public: void DestroyHitbox(Character *owner);
-
+			void DestroyAttack(Character *owner);
 };
 

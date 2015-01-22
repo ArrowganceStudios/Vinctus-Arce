@@ -16,6 +16,8 @@ public:
 	template <class Type> 
 	void CreateObject(float x = 0, float y = 0);
 
+	void ClearTargets();
+
 	//template <class Type>
 	void DestroyObject(GameObject *objectToDestroy);
 

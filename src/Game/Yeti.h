@@ -8,6 +8,9 @@ public:
 	Yeti();
 	~Yeti();
 
+	void MeleeAttack();
+	int GetMeleeStrikeDamage();
+
 	void AI();
 	void SetTarget(GameObject *target) { Yeti::target = target; }
 

@@ -2,7 +2,7 @@
 #include "../Globals.h"
 #include "../Graphics/GraphicEngine.h"
 #include "../InputMap.h"
-
+#include "../Menu/MenuActions.h"
 
 Player::Player()
 {
@@ -17,9 +17,15 @@ Player::~Player()
 {
 	graphicEngine::Instance().DestroyAnimationInstance(this);
 	gameEngine::Instance().GetCollisionDetector()->DestroyHitbox(this);
+	gameEngine::Instance().GetCollisionDetector()->DestroyAttack(this);
 #ifdef _DEBUG
 	cout << "Player got destroyed" << endl;
 #endif
+
+	objectHandler::Instance().ClearTargets();
+	camera::Instance().Init(nullptr);
+
+	//MenuActions::Yesh();
 }
 
 void Player::Init(float x, float y, float velocity) 
@@ -30,6 +36,8 @@ void Player::Init(float x, float y, float velocity)
 	gameEngine::Instance().GetCollisionDetector()->CreateHitbox(this, 25);
 	
 	Show();
+	SetMaxHealth(200);
+	SetHealth(200);
 }
 
 int Player::GetMeleeStrikeDamage()
@@ -76,6 +84,11 @@ void Player::Update()
 	{
 		MeleeAttack();
 	}
+
+	Character::Update();
+
+	if (!IsAlive())
+		Player::~Player();
 }
 
 void Player::MoveUp()
