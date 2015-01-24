@@ -20,7 +20,6 @@ protected:
 	std::vector<Sprite *> animations; // ??? <- I think that this should be just sent to Graphic Engine, and handled there.
 public:
 	GameObject();
-	virtual ~GameObject() {};
 
 	void Init(float x, float y);
 

@@ -14,7 +14,7 @@ ObjectHandler::ObjectHandler()
 
 }
 
-template<class Type> void ObjectHandler::CreateObject(float x, float y)
+template<class Type> void ObjectHandler::CreateObject(float x, float y)	
 {
 	float width = al_get_bitmap_width(graphicEngine::Instance().GetMapBitmap());
 	float height = al_get_bitmap_height(graphicEngine::Instance().GetMapBitmap());
@@ -29,23 +29,9 @@ template<class Type> void ObjectHandler::CreateObject(float x, float y)
 	}
 	else if (std::is_same<Type, Yeti>::value)
 	{
-			Yeti *object = new Yeti();
-			object->Init(x, y, 1);
-			objects.push_back(object);
-
-
-			for (unsigned int i = 0; i < objects.size(); i++)
-			{
-				const std::type_info& info = typeid(*objects[i]);
-				string className = static_cast<string>(info.name());
-
-				if (className == "class Player")
-				{
-					object->SetTarget(objects[i]);
-					break;
-				}
-			}
-
+		Yeti *object = new Yeti();
+		object->Init(x, y, 1);
+		objects.push_back(object);
 	}
 	else if (std::is_same<Type, StaticObject>::value)
 	{
@@ -53,18 +39,14 @@ template<class Type> void ObjectHandler::CreateObject(float x, float y)
 		//object->Init(2, 2); 
 		objects.push_back(object);
 	}
-	
 }
 
-void ObjectHandler::DestroyObject(GameObject *objectToDestroy)
+template<class Type> void ObjectHandler::DestroyObject(Type *objectToDestroy)
 {
 	auto it = GetIterator(objectToDestroy);
 	objects.erase(it);
 	objects.shrink_to_fit();
-
-	auto pointer = reinterpret_cast<Yeti *>(objectToDestroy);
-
-	delete pointer;
+	delete objectToDestroy;
 }
 
 void ObjectHandler::SpawnObject()
@@ -98,33 +80,17 @@ std::vector <GameObject*>::iterator ObjectHandler::GetIterator(GameObject * obje
 
 void ObjectHandler::Update()
 {
-	for (unsigned int i = 0; i < objects.size(); i++)
+	for (int i = 0; i < objects.size();  i++)
 	{
 		if (!objects[i]->IsAlive())
 			DestroyObject(objects[i]);
 	}
 	for (auto object : objects)
-		if (object->IsAlive())
-			object->Update();
-}
-
-void ObjectHandler::ClearTargets()
-{
-	for (unsigned int i = 0; i < objects.size(); i++)
-	{
-		const std::type_info& info = typeid(*objects[i]);
-		string className = static_cast<string>(info.name());
-
-		if (className == "class Yeti")
-		{
-			auto obj = reinterpret_cast<Yeti*>(objects[i]);
-			obj->SetTarget(nullptr);
-		}
-	}
+		object->Update();
 }
 
 template void ObjectHandler::CreateObject<Yeti>(float x, float y);
 template void ObjectHandler::CreateObject<Player>(float x, float y); //it is needed, without it we get unrsolved link external 2019 -_-
 template void ObjectHandler::CreateObject<StaticObject>(float x, float y);
 
-//template void ObjectHandler::DestroyObject<Character>(Character *objectToDestroy);
+template void ObjectHandler::DestroyObject<Character>(Character *objectToDestroy);

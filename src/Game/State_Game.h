@@ -28,8 +28,6 @@ public:
     
 	void Pause();
 	void Resume();
-
-	void NPCGenerator();
     
 	void HandleEvents();
 	void Update();

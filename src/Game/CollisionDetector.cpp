@@ -13,46 +13,21 @@ void CollisionDetector::CreateHitbox(Character *owner, int radius)
 {
 	Hitbox newHitbox(owner, radius);
 	hitboxes.push_back(newHitbox);
-#ifdef _DEBUG
-	cout << "Hitbox got created" << endl;
-#endif
 }
 
 void CollisionDetector::CreateAttack(Character *owner, int radius, float xOffset, float yOffset)
 {
 	Attack attack(owner, radius, xOffset, yOffset);
 	attacks.push_back(attack);
-#ifdef _DEBUG
-	cout << "Attack got created" << endl;
-#endif
 }
 
 void CollisionDetector::DestroyHitbox(Character *owner)
 {
-	for (unsigned int i = 0; i < hitboxes.size(); i++)
+	for (int i = 0; i < hitboxes.size(); i++)
 	{
 		if (hitboxes[i].GetOwner() == owner)
 		{
 			hitboxes.erase(hitboxes.begin() + i);
-#ifdef _DEBUG
-			cout << "Hitbox got destroyed" << endl;
-#endif
-			break;
-		}
-	}
-}
-
-void CollisionDetector::DestroyAttack(Character *owner)
-{
-	for (unsigned int i = 0; i < attacks.size(); i++)
-	{
-		if (attacks[i].GetAttacker() == owner)
-		{
-			attacks[i].SetToInactive();
-			attacks.erase(attacks.begin() + i);
-#ifdef _DEBUG
-			cout << "Attack got destroyed" << endl;
-#endif
 			break;
 		}
 	}
@@ -60,11 +35,11 @@ void CollisionDetector::DestroyAttack(Character *owner)
 
 void CollisionDetector::Update()
 {
-	/*if (hitboxes.size() > 2)
+	if (hitboxes.size() > 2)
 		for (unsigned int i = 0; i < hitboxes.size(); i++)
 			for (unsigned int j = i + 1; j < hitboxes.size(); j++)
-				if (hitboxes[i].CollidesWith(hitboxes[j]));*/
-				//	cout << hitboxes[i].GetOwner()->GetName() << " has collided with " << hitboxes[j].GetOwner()->GetName() << endl; //temp
+				if (hitboxes[i].CollidesWith(hitboxes[j]))
+					cout << hitboxes[i].GetOwner()->GetName() << " has collided with " << hitboxes[j].GetOwner()->GetName() << endl; //temp
 
 	if (!attacks.empty())
 		for (unsigned int i = 0; i < hitboxes.size(); i++)
@@ -147,14 +122,6 @@ void CollisionDetector::Attack::DealDamageTo(Hitbox& hitbox)
 	
 	if (attacker == hitbox.GetOwner())
 		return;
-
-	const std::type_info& info = typeid(*(hitbox.GetOwner()));
-	string className = static_cast<string>(info.name());
-
-	const std::type_info& info2 = typeid(*attacker);
-	string className2 = static_cast<string>(info2.name());
-	
-	if (className == className2) return;
 
 	hitbox.TakeDamage(damage);
 }

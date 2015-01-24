@@ -2,7 +2,7 @@
 #include "../Globals.h"
 #include "../Graphics/GraphicEngine.h"
 #include "../InputMap.h"
-#include "../Menu/MenuActions.h"
+
 
 Player::Player()
 {
@@ -13,21 +13,6 @@ Player::Player()
 	SetName("Waclaw");
 }
 
-Player::~Player()
-{
-	graphicEngine::Instance().DestroyAnimationInstance(this);
-	gameEngine::Instance().GetCollisionDetector()->DestroyHitbox(this);
-	gameEngine::Instance().GetCollisionDetector()->DestroyAttack(this);
-#ifdef _DEBUG
-	cout << "Player got destroyed" << endl;
-#endif
-
-	objectHandler::Instance().ClearTargets();
-	camera::Instance().Init(nullptr);
-
-	//MenuActions::Yesh();
-}
-
 void Player::Init(float x, float y, float velocity) 
 {
 	Character::Init(x, y, velocity);
@@ -36,13 +21,11 @@ void Player::Init(float x, float y, float velocity)
 	gameEngine::Instance().GetCollisionDetector()->CreateHitbox(this, 25);
 	
 	Show();
-	SetMaxHealth(200);
-	SetHealth(200);
 }
 
 int Player::GetMeleeStrikeDamage()
 {
-	return 25; //deals 5 dmg
+	return 5; //deals 5 dmg
 }
 
 void Player::Update()
@@ -84,12 +67,6 @@ void Player::Update()
 	{
 		MeleeAttack();
 	}
-
-	Character::Update();
-
-	if (!IsAlive())
-
-		Player::~Player();
 }
 
 void Player::MoveUp()
@@ -123,6 +100,6 @@ void Player::MoveRight()
 
 void Player::MeleeAttack()
 {
-	gameEngine::Instance().GetCollisionDetector()->CreateAttack(this, 20, directionX * 30, directionY * 30);
+	gameEngine::Instance().GetCollisionDetector()->CreateAttack(this, 10, directionX * 50, directionY * 50);
 	SetGlobalCooldown(15);
 }
