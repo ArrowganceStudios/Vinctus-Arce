@@ -64,6 +64,8 @@ private:
 		int GetFade() const { return fade; }
 		void DecreaseFade() { if(fade > 0) fade--; }
 
+		Character* GetAttacker() { return attacker; }
+
 	private:
 		Character *attacker;
 		float xOffset;

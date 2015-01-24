@@ -34,7 +34,7 @@ template<class Type> void ObjectHandler::CreateObject(float x, float y)
 			objects.push_back(object);
 
 
-			for (int i = 0; i < objects.size(); i++)
+			for (unsigned int i = 0; i < objects.size(); i++)
 			{
 				const std::type_info& info = typeid(*objects[i]);
 				string className = static_cast<string>(info.name());
@@ -98,18 +98,19 @@ std::vector <GameObject*>::iterator ObjectHandler::GetIterator(GameObject * obje
 
 void ObjectHandler::Update()
 {
-	for (int i = 0; i < objects.size();  i++)
+	for (unsigned int i = 0; i < objects.size(); i++)
 	{
 		if (!objects[i]->IsAlive())
 			DestroyObject(objects[i]);
 	}
 	for (auto object : objects)
-		object->Update();
+		if (object->IsAlive())
+			object->Update();
 }
 
 void ObjectHandler::ClearTargets()
 {
-	for (int i = 0; i < objects.size(); i++)
+	for (unsigned int i = 0; i < objects.size(); i++)
 	{
 		const std::type_info& info = typeid(*objects[i]);
 		string className = static_cast<string>(info.name());

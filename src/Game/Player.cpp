@@ -88,6 +88,7 @@ void Player::Update()
 	Character::Update();
 
 	if (!IsAlive())
+
 		Player::~Player();
 }
 
@@ -122,6 +123,6 @@ void Player::MoveRight()
 
 void Player::MeleeAttack()
 {
-	gameEngine::Instance().GetCollisionDetector()->CreateAttack(this, 10, directionX * 50, directionY * 50);
+	gameEngine::Instance().GetCollisionDetector()->CreateAttack(this, 20, directionX * 30, directionY * 30);
 	SetGlobalCooldown(15);
 }

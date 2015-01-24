@@ -35,8 +35,8 @@ Yeti::Yeti()
 Yeti::~Yeti()
 {
 	counter--;
-	if (!counter)
-		graphicEngine::Instance().DestroyAnimation("class Yeti");
+	//if (!counter)
+		//graphicEngine::Instance().DestroyAnimation("class Yeti");
 
 	graphicEngine::Instance().DestroyAnimationInstance(this);
 	gameEngine::Instance().GetCollisionDetector()->DestroyHitbox(this);
@@ -63,8 +63,8 @@ void Yeti::Update()
 
 	if (!IsAlive())
 		Yeti::~Yeti();
-
-	AI();
+	else
+		AI();
 }
 
 void Yeti::AI()

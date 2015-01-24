@@ -44,11 +44,12 @@ void CollisionDetector::DestroyHitbox(Character *owner)
 
 void CollisionDetector::DestroyAttack(Character *owner)
 {
-	for (unsigned int i = 0; i < hitboxes.size(); i++)
+	for (unsigned int i = 0; i < attacks.size(); i++)
 	{
-		if (hitboxes[i].GetOwner() == owner)
+		if (attacks[i].GetAttacker() == owner)
 		{
-			hitboxes.erase(hitboxes.begin() + i);
+			attacks[i].SetToInactive();
+			attacks.erase(attacks.begin() + i);
 #ifdef _DEBUG
 			cout << "Attack got destroyed" << endl;
 #endif
@@ -59,10 +60,10 @@ void CollisionDetector::DestroyAttack(Character *owner)
 
 void CollisionDetector::Update()
 {
-	if (hitboxes.size() > 2)
+	/*if (hitboxes.size() > 2)
 		for (unsigned int i = 0; i < hitboxes.size(); i++)
 			for (unsigned int j = i + 1; j < hitboxes.size(); j++)
-				if (hitboxes[i].CollidesWith(hitboxes[j]));
+				if (hitboxes[i].CollidesWith(hitboxes[j]));*/
 				//	cout << hitboxes[i].GetOwner()->GetName() << " has collided with " << hitboxes[j].GetOwner()->GetName() << endl; //temp
 
 	if (!attacks.empty())
