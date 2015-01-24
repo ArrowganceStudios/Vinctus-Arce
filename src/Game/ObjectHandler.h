@@ -5,11 +5,17 @@
 
 
 class GameObject;
+class NPC;
+class Character;
+
 class ObjectHandler : public Singleton <ObjectHandler>
 {
 private:
 	friend Singleton < ObjectHandler > ;
 	std::vector <GameObject *> objects;
+	std::vector <NPC *> NPCs;
+	Character* player;
+
 protected:
 	ObjectHandler();
 public:
@@ -21,11 +27,14 @@ public:
 
 	std::vector <GameObject*>::iterator GetIterator(GameObject * object);
 
+	int GetNPCNumber() { return NPCs.size(); }
+
 	void SpawnObject();
 	void CleanUp();
 
 	void Update();
 
+	void ClearTargets();
 
 };
 

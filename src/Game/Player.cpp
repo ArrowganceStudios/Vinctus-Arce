@@ -11,6 +11,18 @@ Player::Player()
 	resource = 0;
 	maxResourceLevel = 0;
 	SetName("Waclaw");
+	SetMaxHealth(100);
+	SetHealth(100);
+}
+
+Player::~Player()
+{
+	graphicEngine::Instance().DestroyAnimationInstance(this);
+#ifdef _DEBUG
+	cout << "Player got destroyed" << endl;
+#endif
+	objectHandler::Instance().ClearTargets();
+	camera::Instance().Init(nullptr);
 }
 
 void Player::Init(float x, float y, float velocity) 
@@ -25,11 +37,15 @@ void Player::Init(float x, float y, float velocity)
 
 int Player::GetMeleeStrikeDamage()
 {
-	return 5; //deals 5 dmg
+	return 25; //deals 25 dmg
 }
 
 void Player::Update()
 {
+	Character::Update();
+
+	if (!IsAlive()) return;
+
 	SetGlobalCooldown(GetGlobalCooldown() - 1);
 
 	if (key_arrows[UP] || key_arrows[DOWN] || key_arrows[LEFT] || key_arrows[RIGHT]) PlayAnimation();
@@ -69,6 +85,38 @@ void Player::Update()
 	}
 }
 
+void Player::InputHandling()
+{
+	if (key_arrows[UP] || key_arrows[DOWN] || key_arrows[LEFT] || key_arrows[RIGHT]) //if busy
+		PlayAnimation();
+	else //if idle
+	{
+		StopAnimation();
+		SetCurFrame(0);
+	}
+
+	if (key_arrows[UP])
+		MoveUp();
+	else if (key_arrows[DOWN])
+		MoveDown();
+
+	if (key_arrows[LEFT])
+		MoveLeft();
+	else if (key_arrows[RIGHT])
+		MoveRight();
+
+	/*if (!(key_arrows[UP] || key_arrows[DOWN]))
+	{
+	directionY = 0;
+	}
+	else if (!(key_arrows[LEFT] || key_arrows[RIGHT]))
+	{
+	directionX = 0;
+	}*/
+	if (key_general[SPACE] && !GetGlobalCooldown())
+		MeleeAttack();
+}
+
 void Player::MoveUp()
 {
 	directionY = -1;
@@ -100,6 +148,6 @@ void Player::MoveRight()
 
 void Player::MeleeAttack()
 {
-	gameEngine::Instance().GetCollisionDetector()->CreateAttack(this, 10, directionX * 50, directionY * 50);
+	gameEngine::Instance().GetCollisionDetector()->CreateAttack(this, 20, directionX * 30, directionY * 30);
 	SetGlobalCooldown(15);
 }

@@ -6,6 +6,7 @@ class Player : public Character
 public:
 
 	Player();
+	~Player();
 
 	void Init(float x, float y, float velocity);
 
@@ -24,6 +25,8 @@ public:
 	bool HasEnoughOfResource(int cost) const { if (cost < resource) return true; else return false; }
 
 	virtual void Update();
+
+	void InputHandling();
 
 private:
 

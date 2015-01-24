@@ -64,6 +64,8 @@ private:
 		int GetFade() const { return fade; }
 		void DecreaseFade() { if(fade > 0) fade--; }
 
+		Character* GetAttacker() { return attacker; }
+
 	private:
 		Character *attacker;
 		float xOffset;
@@ -76,6 +78,7 @@ private:
 	std::vector <Attack> attacks;
 	bool display;
 	public: void DestroyHitbox(Character *owner);
+			void DestroyAttack(Character *owner);
 
 };
 

@@ -37,5 +37,69 @@ Yeti::~Yeti()
 	counter--;
 	if (!counter)
 		graphicEngine::Instance().DestroyAnimation("class Yeti");
-	Character::~Character();
+	graphicEngine::Instance().DestroyAnimationInstance(this);
+#ifdef _DEBUG
+	cout << "Yeti got destroyed" << endl;
+#endif
+}
+
+void Yeti::MeleeAttack()
+{
+	gameEngine::Instance().GetCollisionDetector()->CreateAttack(this, 10, 0, 0);
+	SetGlobalCooldown(15);
+}
+
+int Yeti::GetMeleeStrikeDamage()
+{
+	return 5;
+}
+
+void Yeti::Update()
+{
+	Character::Update();
+
+	if (!IsAlive())
+		Yeti::~Yeti();
+	else
+		AI();
+}
+
+void Yeti::AI()
+{
+	SetGlobalCooldown(GetGlobalCooldown() - 1);
+
+	if (GetTarget() == nullptr) return;
+
+	if (GetTarget()->GetX() > x)
+		MoveRight();
+	else if (GetTarget()->GetX() < x)
+		MoveLeft();
+
+	if (GetTarget()->GetY() > y)
+		MoveDown();
+	else if (GetTarget()->GetY() < y)
+		MoveUp();
+
+	if (!GetGlobalCooldown())
+		MeleeAttack();
+}
+
+void Yeti::MoveUp()
+{
+	y -= velocity;
+}
+
+void Yeti::MoveDown()
+{
+	y += velocity;
+}
+
+void Yeti::MoveLeft()
+{
+	x -= velocity;
+}
+
+void Yeti::MoveRight()
+{
+	x += velocity;
 }

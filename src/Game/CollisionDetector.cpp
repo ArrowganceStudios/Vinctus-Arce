@@ -13,34 +13,59 @@ void CollisionDetector::CreateHitbox(Character *owner, int radius)
 {
 	Hitbox newHitbox(owner, radius);
 	hitboxes.push_back(newHitbox);
+#ifdef _DEBUG
+	cout << "Hitbox got created" << endl;
+#endif
 }
 
 void CollisionDetector::CreateAttack(Character *owner, int radius, float xOffset, float yOffset)
 {
 	Attack attack(owner, radius, xOffset, yOffset);
 	attacks.push_back(attack);
+#ifdef _DEBUG
+	cout << "Attack got created" << endl;
+#endif
 }
 
 void CollisionDetector::DestroyHitbox(Character *owner)
 {
-	for (int i = 0; i < hitboxes.size(); i++)
+	for (unsigned int i = 0; i < hitboxes.size(); i++)
 	{
 		if (hitboxes[i].GetOwner() == owner)
 		{
 			hitboxes.erase(hitboxes.begin() + i);
+#ifdef _DEBUG
+			cout << "Hitbox got destroyed" << endl;
+#endif
 			break;
+		}
+	}
+}
+
+void CollisionDetector::DestroyAttack(Character *owner)
+{
+	for (unsigned int i = 0; i < attacks.size(); i++)
+	{
+		if (attacks[i].GetAttacker() == owner)
+		{
+			attacks[i].SetToInactive();
+			attacks.erase(attacks.begin() + i);
+#ifdef _DEBUG
+			cout << "Attack got destroyed" << endl;
+#endif
+			//break; //commented since if we happen to have AoE spells which will persist on the ground they need to be removed as well
 		}
 	}
 }
 
 void CollisionDetector::Update()
 {
-	if (hitboxes.size() > 2)
+	/*if (hitboxes.size() > 2)
 		for (unsigned int i = 0; i < hitboxes.size(); i++)
 			for (unsigned int j = i + 1; j < hitboxes.size(); j++)
 				if (hitboxes[i].CollidesWith(hitboxes[j]))
 					cout << hitboxes[i].GetOwner()->GetName() << " has collided with " << hitboxes[j].GetOwner()->GetName() << endl; //temp
-
+*/
 	if (!attacks.empty())
 		for (unsigned int i = 0; i < hitboxes.size(); i++)
 			for (unsigned int j = 0; j < attacks.size(); j++)
@@ -118,11 +143,12 @@ void CollisionDetector::Hitbox::TakeDamage(float damage)
 
 void CollisionDetector::Attack::DealDamageTo(Hitbox& hitbox)
 {
+	//if the classes are same, don't deal dmg
+	if (typeid(*(hitbox.GetOwner())) == typeid(*attacker))
+		return;
+	
 	float damage = attacker->GetMeleeStrikeDamage();
 	
-	if (attacker == hitbox.GetOwner())
-		return;
-
 	hitbox.TakeDamage(damage);
 }
 

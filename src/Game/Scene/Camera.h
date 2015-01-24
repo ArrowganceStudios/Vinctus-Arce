@@ -39,6 +39,9 @@ public:
 	float GetTopLeftCornerX() { return topLeftCorner.x; }
 	float GetTopLeftCornerY() { return topLeftCorner.y; }
 
+	float GetBottomRightCornerX() { return bottomRightCorner.x; }
+	float GetBottomRightCornerY() { return bottomRightCorner.y; }
+
 	float GetCenterX() { return center.x; }
 	float GetCenterY() { return center.y; }
 

@@ -3,11 +3,15 @@
 #include "GameUI.h"
 #include "allegro5\allegro.h"
 #include <vector>
+#include <ctime>
+#include <stdio.h>
 #include "Yeti.h"
 
 void State_Game::Init()
 {
 	LoadResources();
+
+	srand(time(NULL));
 
 	isCleanedUp = false;
 
@@ -72,6 +76,37 @@ void State_Game::Update()
 	camera::Instance().CalculateCamera();
 	camera::Instance().Update();
 
+	GenerateNPCs();
+}
+
+void State_Game::GenerateNPCs()
+{
+	if (objectHandler::Instance().GetNPCNumber() <= 10)
+	{
+		int random = rand() % 4 + 1;
+
+		float topLeftX = camera::Instance().GetTopLeftCornerX();
+		float topLeftY = camera::Instance().GetTopLeftCornerY();
+
+		float bottomRightX = camera::Instance().GetBottomRightCornerX();
+		float bottomRightY = camera::Instance().GetBottomRightCornerY();
+
+		switch (random)
+		{
+		case 1:
+			objectHandler::Instance().CreateObject<Yeti>(topLeftX - 32, rand() % (int)bottomRightY + (bottomRightY - SCREEN_HEIGHT / 2));
+			break;
+		case 2:
+			objectHandler::Instance().CreateObject<Yeti>(bottomRightX + 32, rand() % (int)bottomRightY + (bottomRightY - SCREEN_HEIGHT / 2));
+			break;
+		case 3:
+			objectHandler::Instance().CreateObject<Yeti>(rand() % (int)bottomRightX + (bottomRightY - SCREEN_WIDTH / 2), topLeftY - 32);
+			break;
+		default:
+			objectHandler::Instance().CreateObject<Yeti>(rand() % (int)bottomRightX + (bottomRightY - SCREEN_WIDTH / 2), bottomRightY + 32);
+			break;
+		}
+	}
 }
 
 void State_Game::LoadResources()
