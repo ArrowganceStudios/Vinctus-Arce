@@ -131,6 +131,10 @@ void ObjectHandler::Update()
 		else
 			DestroyObject(objects[i]);
 	}
+
+	for (unsigned int i = 0; i < objects.size(); i++)
+		if (!objects[i]->IsAlive())
+			DestroyObject(objects[i]);
 	
 	//movement update
 	for (auto mobile : mobiles)

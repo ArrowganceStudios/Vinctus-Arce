@@ -40,6 +40,7 @@ Yeti::~Yeti()
 	graphicEngine::Instance().DestroyAnimationInstance(this);
 #ifdef _DEBUG
 	cout << "Yeti got destroyed" << endl;
+	cout << "Yeti counter = " << counter << endl;
 #endif
 }
 
@@ -80,6 +81,11 @@ void Yeti::AI()
 		SetIntentToGoLeft(true);
 		SetIntentToGoRight(false);
 	}
+	else
+	{
+		SetIntentToGoLeft(false);
+		SetIntentToGoRight(false);
+	}
 
 	if (GetTarget()->GetY() > y)
 	{
@@ -90,6 +96,11 @@ void Yeti::AI()
 	{
 		SetIntentToGoDown(true);
 		SetIntentToGoUp(false);
+	}
+	else
+	{
+		SetIntentToGoUp(false);
+		SetIntentToGoDown(false);
 	}
 
 	if (!GetGlobalCooldown())

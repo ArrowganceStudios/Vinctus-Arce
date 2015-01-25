@@ -108,6 +108,7 @@ void CollisionDetector::AttacksCleanup()
 void CollisionDetector::Cleanup()
 {
 	hitboxes.clear();
+	attacks.clear();
 }
 
 

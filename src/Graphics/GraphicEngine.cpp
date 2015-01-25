@@ -297,6 +297,7 @@ void GraphicEngine::DestroyAnimation(std::string className)
 			{
 				delete sprite;
 			}
+			AnimationsMap.erase(animMap.first);
 			break;
 		}
 	}
