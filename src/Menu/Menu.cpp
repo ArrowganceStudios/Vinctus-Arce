@@ -1,6 +1,16 @@
+#include "../Globals.h"
 #include "Menu.h"
 #include "MenuButton.h"
 #include "ClassSelectionIcon.h"
+
+Menu::Menu(string title) : menuTitle(title), UIElement(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+{
+	width = SCREEN_WIDTH;
+	height = SCREEN_HEIGHT;
+	z = 0;
+	MarkedButton = nullptr;
+	graphicEngine::Instance().CreateGraphicInstance(this);
+}
 
 Menu::Menu(string title, float x, float y) : UIElement(x, y), menuTitle(title)
 {

@@ -48,29 +48,8 @@ void Player::Update()
 
 	SetGlobalCooldown(GetGlobalCooldown() - 1);
 
-	if (key_arrows[UP] || key_arrows[DOWN] || key_arrows[LEFT] || key_arrows[RIGHT]) PlayAnimation();
-	else
-	{
-		StopAnimation();
-		SetCurFrame(0);
-	}
-
-	if (key_arrows[UP])
-	{
-		MoveUp();
-	}
-	if (key_arrows[DOWN])
-	{
-		MoveDown();
-	}
-	if (key_arrows[LEFT])
-	{
-		MoveLeft();
-	}
-	if (key_arrows[RIGHT])
-	{
-		MoveRight();
-	}
+	InputHandling();
+	
 	/*if (!(key_arrows[UP] || key_arrows[DOWN]))
 	{
 		directionY = 0;
@@ -79,10 +58,6 @@ void Player::Update()
 	{
 		directionX = 0;
 	}*/
-	if (key_general[SPACE] && !GetGlobalCooldown())
-	{
-		MeleeAttack();
-	}
 }
 
 void Player::InputHandling()
@@ -95,16 +70,6 @@ void Player::InputHandling()
 		SetCurFrame(0);
 	}
 
-	if (key_arrows[UP])
-		MoveUp();
-	else if (key_arrows[DOWN])
-		MoveDown();
-
-	if (key_arrows[LEFT])
-		MoveLeft();
-	else if (key_arrows[RIGHT])
-		MoveRight();
-
 	/*if (!(key_arrows[UP] || key_arrows[DOWN]))
 	{
 	directionY = 0;
@@ -117,33 +82,46 @@ void Player::InputHandling()
 		MeleeAttack();
 }
 
+void Player::Move()
+{
+	if (key_arrows[UP] && CanMoveUp())
+		MoveUp();
+	else if (key_arrows[DOWN] && CanMoveDown())
+		MoveDown();
+
+	if (key_arrows[LEFT] && CanMoveLeft())
+		MoveLeft();
+	else if (key_arrows[RIGHT] && CanMoveRight())
+		MoveRight();
+}
+
 void Player::MoveUp()
 {
 	directionY = -1;
 	directionX = 0;
 	graphicEngine::Instance().RequestAnimation(this, 0);
-	y -= velocity;
+	y--;
 }
 void Player::MoveDown()
 {
 	directionY = 1;
 	directionX = 0;
 	graphicEngine::Instance().RequestAnimation(this, 1);
-	y += velocity;
+	y++;
 }
 void Player::MoveLeft()
 {
 	directionX = -1;
 	directionY = 0;
 	graphicEngine::Instance().RequestAnimation(this, 2);
-	x -= velocity;
+	x--;
 }
 void Player::MoveRight()
 {
 	directionX = 1;
 	directionY = 0;
 	graphicEngine::Instance().RequestAnimation(this, 3);
-	x += velocity;
+	x++;
 }
 
 void Player::MeleeAttack()

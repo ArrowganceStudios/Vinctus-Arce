@@ -121,6 +121,11 @@ float CollisionDetector::Hitbox::GetDisplayedY() const
 	return owner->GetDisplayedY();
 }
 
+bool CollisionDetector::CanStepOnto(float leftCornerX, float leftCornerY, float rightBottomX, float rightBottomY)
+{
+	return true;
+}
+
 bool CollisionDetector::Hitbox::CollidesWith(const Hitbox& otherHitbox)
 {
 	float dx = (GetX()) - (otherHitbox.GetX());

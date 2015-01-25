@@ -1,7 +1,6 @@
 #pragma once
 #include <string>
 #include <vector>
-#include "../Globals.h"
 #include "../Graphics/UI/Image.h"
 
 using namespace std;
@@ -9,7 +8,7 @@ using namespace std;
 class ClassSelectionIcon;
 class MenuButton;
 class Image;
-	
+
 class Menu : public UIElement
 {
 	friend class State_Menu;
@@ -23,7 +22,8 @@ class Menu : public UIElement
 	void Polymorphic() {}
 
 public:
-	Menu(string title, float x = 400, float y = 300); //temp soultion till we fix cir.dependency
+	Menu(string title); //this is a better way of solving this.
+	Menu(string title, float x, float y);
 	~Menu();
 
 	string GetName() const { return menuTitle; }

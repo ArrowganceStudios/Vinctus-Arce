@@ -19,6 +19,7 @@ public:
 	void AttacksCleanup();
 	void SetAttacksToInactive() { for (auto& attack : attacks) attack.SetToInactive(); }
 
+	bool CanStepOnto(float leftCornerX, float leftCornerY, float rightBottomX, float rightBottomY);
 	bool IsHitboxDisplayEnabled() const { return display; }
 private:
 

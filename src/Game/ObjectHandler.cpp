@@ -30,6 +30,7 @@ template<class Type> void ObjectHandler::CreateObject(float x, float y)
 		Player *object = new Player();
 		object->Init(x, y, 3);
 		objects.push_back(object);
+		mobiles.push_back(object);
 		player = object;
 
 		camera::Instance().Init(object);
@@ -39,6 +40,7 @@ template<class Type> void ObjectHandler::CreateObject(float x, float y)
 		Yeti *object = new Yeti();
 		object->Init(x, y, 1);
 		objects.push_back(object);
+		mobiles.push_back(object);
 		NPCs.push_back(object);
 
 		object->SetTarget(player);
@@ -60,10 +62,19 @@ template<class Type> void ObjectHandler::DestroyObject(Type *objectToDestroy)
 	
 	if (GetNPCIterator(objectToDestroy) != NPCs.end()) //if object to destroy is an actual NPC
 	{
-		NPCs.erase(npc);
+		NPCs.erase(GetNPCIterator(objectToDestroy));
 		NPCs.shrink_to_fit();
 #ifdef _DEBUG
 		cout << "NPC got deleted" << endl;
+#endif
+	}
+
+	if (GetMobileObjectIterator(objectToDestroy) != mobiles.end()) //if object to destroy is an actual NPC
+	{
+		mobiles.erase(GetMobileObjectIterator(objectToDestroy));
+		mobiles.shrink_to_fit();
+#ifdef _DEBUG
+		cout << "Mobile Object got deleted" << endl;
 #endif
 	}
 
@@ -80,10 +91,10 @@ void ObjectHandler::CleanUp()
 {
 	if (objects.size())
 	{
-		for (auto object : objects) 
+		/*for (auto object : objects) 
 		{
 			graphicEngine::Instance().DestroyAnimationInstance(object);
-		}
+		}*/
 		for (unsigned int i = 0; i < objects.size(); i++) 
 		{
 			DestroyObject(objects[i]);
@@ -104,15 +115,28 @@ std::vector <NPC*>::iterator ObjectHandler::GetNPCIterator(GameObject * npc)
 	return std::find(NPCs.begin(), NPCs.end(), npc);
 }
 
+std::vector <MobileObject*>::iterator ObjectHandler::GetMobileObjectIterator(GameObject * mobile)
+{
+	return std::find(mobiles.begin(), mobiles.end(), mobile);
+}
+
 void ObjectHandler::Update()
 {
 	for (unsigned int i = 0; i < objects.size();  i++)
 	{
 		if (objects[i]->IsAlive())
+		{
 			objects[i]->Update();
+		}
 		else
 			DestroyObject(objects[i]);
 	}
+	
+	//movement update
+	for (auto mobile : mobiles)
+		for (int i = 0; i < mobile->GetVelocity(); i++)
+			if (mobile->IsAlive())
+				mobile->Move();
 
 }
 

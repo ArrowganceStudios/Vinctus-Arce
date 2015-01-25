@@ -25,6 +25,7 @@ public:
 	bool HasEnoughOfResource(int cost) const { if (cost < resource) return true; else return false; }
 
 	virtual void Update();
+	virtual void Move();
 
 	void InputHandling();
 

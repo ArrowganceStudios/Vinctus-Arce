@@ -5,6 +5,7 @@
 
 
 class GameObject;
+class MobileObject;
 class NPC;
 class Character;
 
@@ -14,6 +15,7 @@ private:
 	friend Singleton < ObjectHandler > ;
 	std::vector <GameObject *> objects;
 	std::vector <NPC *> NPCs;
+	std::vector <MobileObject *> mobiles;
 	Character* player;
 
 protected:
@@ -26,6 +28,8 @@ public:
 	void DestroyObject(Type *objectToDestroy);
 
 	std::vector <GameObject*>::iterator GetIterator(GameObject * object);
+	std::vector <NPC*>::iterator ObjectHandler::GetNPCIterator(GameObject * npc);
+	std::vector <MobileObject*>::iterator ObjectHandler::GetMobileObjectIterator(GameObject * mobile);
 
 	int GetNPCNumber() { return NPCs.size(); }
 

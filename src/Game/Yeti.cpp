@@ -71,35 +71,27 @@ void Yeti::AI()
 	if (GetTarget() == nullptr) return;
 
 	if (GetTarget()->GetX() > x)
-		MoveRight();
+	{
+		SetIntentToGoRight(true);
+		SetIntentToGoLeft(false);
+	}
 	else if (GetTarget()->GetX() < x)
-		MoveLeft();
+	{
+		SetIntentToGoLeft(true);
+		SetIntentToGoRight(false);
+	}
 
 	if (GetTarget()->GetY() > y)
-		MoveDown();
+	{
+		SetIntentToGoUp(true);
+		SetIntentToGoDown(false);
+	}
 	else if (GetTarget()->GetY() < y)
-		MoveUp();
+	{
+		SetIntentToGoDown(true);
+		SetIntentToGoUp(false);
+	}
 
 	if (!GetGlobalCooldown())
 		MeleeAttack();
-}
-
-void Yeti::MoveUp()
-{
-	y -= velocity;
-}
-
-void Yeti::MoveDown()
-{
-	y += velocity;
-}
-
-void Yeti::MoveLeft()
-{
-	x -= velocity;
-}
-
-void Yeti::MoveRight()
-{
-	x += velocity;
 }

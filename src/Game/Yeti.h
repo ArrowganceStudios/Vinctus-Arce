@@ -14,11 +14,6 @@ public:
 
 	void Update();
 private:
-	void MoveLeft();
-	void MoveRight();
-	void MoveUp();
-	void MoveDown();
-
 	void MeleeAttack();
 
 	static int counter;

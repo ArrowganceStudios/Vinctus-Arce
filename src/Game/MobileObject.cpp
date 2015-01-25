@@ -1,4 +1,5 @@
 #include "MobileObject.h"
+#include "../Globals.h"
 
 MobileObject::MobileObject()
 {
@@ -15,22 +16,63 @@ void MobileObject::Init(float x, float y, float velocity)
 	MobileObject::velocity = velocity;
 }
 
+void MobileObject::Move()
+{
+	if (CanMoveUp())
+		MoveUp();
+	else if (CanMoveDown())
+		MoveDown();
+
+	if (CanMoveLeft())
+		MoveLeft();
+	else if (CanMoveRight())
+		MoveRight();
+}
+
 void MobileObject::MoveUp()
 {
-	y += velocity;
+	y++;
 }
 
 void MobileObject::MoveDown()
 {
-	y -= velocity;
+	y--;
 }
 
 void MobileObject::MoveLeft()
 {
-	x -= velocity;
+	x--;
 }
 
 void MobileObject::MoveRight()
 {
-	x += velocity;
+	x++;
+}
+
+bool MobileObject::CanMoveUp()
+{
+	return gameEngine::Instance().GetCollisionDetector()->CanStepOnto(
+		GetX(), GetX() + GetWidth(), GetY() - 1, GetY() - 1 + GetHeight()
+		);
+}
+
+bool MobileObject::CanMoveDown()
+{
+	return gameEngine::Instance().GetCollisionDetector()->CanStepOnto(
+		GetX(), GetX() + GetWidth(), GetY() + 1, GetY() + 1 + GetHeight()
+		);
+}
+
+bool MobileObject::CanMoveLeft()
+{
+	return gameEngine::Instance().GetCollisionDetector()->CanStepOnto(
+		GetX() - 1, GetX() - 1 + GetWidth(), GetY(), GetY() + GetHeight()
+		);
+}
+
+bool MobileObject::CanMoveRight()
+{
+	return gameEngine::Instance().GetCollisionDetector()->CanStepOnto(
+		GetX() + 1, GetX() + 1 + GetWidth(), GetY(), GetY() + GetHeight()
+		);
 }
