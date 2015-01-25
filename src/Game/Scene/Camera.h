@@ -2,12 +2,7 @@
 #include "../../Singleton.h"
 #include <allegro5\allegro.h>
 #include "../GameObject.h"
-
-struct Point
-{
-	float x = 0;
-	float y = 0;
-};
+#include "../../Common.h"
 
 class Camera : public Singleton <Camera>
 {

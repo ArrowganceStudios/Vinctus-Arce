@@ -1,5 +1,6 @@
 #include "CollisionDetector.h"
 #include "../Globals.h"
+#include "../Common.h"
 #include "allegro5\allegro_primitives.h"
 
 using namespace std;
@@ -122,9 +123,54 @@ float CollisionDetector::Hitbox::GetDisplayedY() const
 	return owner->GetDisplayedY();
 }
 
-bool CollisionDetector::CanStepOnto(float leftCornerX, float leftCornerY, float rightBottomX, float rightBottomY)
+bool CollisionDetector::CanStepOnto(CircleType object, int direction)
 {
-	return true;
+	int dx = 0;
+	int dy = 0;
+
+	switch (direction)
+	{
+	case Up:
+		dy -= object.radius;
+		break;
+	case Down:
+		dy += object.radius;
+		break;
+	case Left:
+		dx -= object.radius;
+		break;
+	case Right:
+		dx += object.radius;
+		break;
+	default:
+		break;
+	}
+
+	char tileType = gameEngine::Instance().Instance().GetGameState()->GetMapLayer()->GetTileTypeAtCoords(object.center.x + dx, object.center.y + dy);
+	RectangleType tile = gameEngine::Instance().Instance().GetGameState()->GetMapLayer()->GetTileMeshAt(object.center.x, object.center.y);
+
+	if (!(tileType && CollisionBetween(object, tile)))
+		return true;
+	else
+		return false;
+}
+
+bool CollisionDetector::CollisionBetween(CircleType circle, RectangleType rect)
+{
+	Point circleDistance;
+	circleDistance.x = abs(circle.center.x - rect.center.x);
+	circleDistance.y = abs(circle.center.y - rect.center.y);
+
+	if (circleDistance.x > (rect.width / 2 + circle.radius)) { return false; }
+	if (circleDistance.y > (rect.height / 2 + circle.radius)) { return false; }
+
+	if (circleDistance.x <= (rect.width / 2)) { return true; }
+	if (circleDistance.y <= (rect.height / 2)) { return true; }
+
+	float cornerDistance_sq = (circleDistance.x - rect.width / 2) * (circleDistance.x - rect.width / 2) +
+		(circleDistance.y - rect.height / 2) * (circleDistance.y - rect.height / 2);
+
+	return (cornerDistance_sq <= (circle.radius * circle.radius));
 }
 
 bool CollisionDetector::Hitbox::CollidesWith(const Hitbox& otherHitbox)

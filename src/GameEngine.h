@@ -58,7 +58,7 @@ protected:
 	GameEngine();
 	~GameEngine();
 public:
-
+	State_Game * GetGameState() const { return gameState; }
 	State_Menu * GetMenuState() const { return menuState; }
 	CollisionDetector * GetCollisionDetector() const { return collisionDetector; }
 

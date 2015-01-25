@@ -13,6 +13,9 @@ Player::Player()
 	SetName("Waclaw");
 	SetMaxHealth(100);
 	SetHealth(100);
+	SetHeight(64);
+	SetWidth(64);
+
 }
 
 Player::~Player()

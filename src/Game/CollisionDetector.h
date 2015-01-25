@@ -3,6 +3,9 @@
 #include "Character.h"
 #include <vector>
 
+struct CircleType;
+struct RectangleType;
+
 class CollisionDetector
 {
 public:
@@ -19,7 +22,8 @@ public:
 	void AttacksCleanup();
 	void SetAttacksToInactive() { for (auto& attack : attacks) attack.SetToInactive(); }
 
-	bool CanStepOnto(float leftCornerX, float leftCornerY, float rightBottomX, float rightBottomY);
+	bool CollisionBetween(CircleType circle, RectangleType rect);
+	bool CollisionDetector::CanStepOnto(CircleType object, int direction);
 	bool IsHitboxDisplayEnabled() const { return display; }
 private:
 

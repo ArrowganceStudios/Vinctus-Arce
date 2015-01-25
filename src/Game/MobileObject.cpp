@@ -1,5 +1,6 @@
 #include "MobileObject.h"
 #include "../Globals.h"
+#include "../Common.h"
 
 MobileObject::MobileObject()
 {
@@ -51,28 +52,28 @@ void MobileObject::MoveRight()
 
 bool MobileObject::CanMoveUp()
 {
-	return gameEngine::Instance().GetCollisionDetector()->CanStepOnto(
-		GetX(), GetX() + GetWidth(), GetY() - 1, GetY() - 1 + GetHeight()
-		);
+	CircleType object(GetX(), GetY() - 1, GetHeight() / 2);
+
+	return gameEngine::Instance().GetCollisionDetector()->CanStepOnto(object, Up);
 }
 
 bool MobileObject::CanMoveDown()
 {
-	return gameEngine::Instance().GetCollisionDetector()->CanStepOnto(
-		GetX(), GetX() + GetWidth(), GetY() + 1, GetY() + 1 + GetHeight()
-		);
+	CircleType object(GetX(), GetY() + 1, GetHeight() / 2);
+
+	return gameEngine::Instance().GetCollisionDetector()->CanStepOnto(object, Down);
 }
 
 bool MobileObject::CanMoveLeft()
 {
-	return gameEngine::Instance().GetCollisionDetector()->CanStepOnto(
-		GetX() - 1, GetX() - 1 + GetWidth(), GetY(), GetY() + GetHeight()
-		);
+	CircleType object(GetX() - 1, GetY(), GetWidth() / 2);
+
+	return gameEngine::Instance().GetCollisionDetector()->CanStepOnto(object, Left);
 }
 
 bool MobileObject::CanMoveRight()
 {
-	return gameEngine::Instance().GetCollisionDetector()->CanStepOnto(
-		GetX() + 1, GetX() + 1 + GetWidth(), GetY(), GetY() + GetHeight()
-		);
+	CircleType object(GetX() + 1, GetY(), GetWidth() / 2);
+
+	return gameEngine::Instance().GetCollisionDetector()->CanStepOnto(object, Right);
 }

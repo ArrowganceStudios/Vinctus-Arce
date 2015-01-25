@@ -34,4 +34,6 @@ public:
 	void Render() {};
 
 	void GenerateNPCs();
+
+	MapLayer* GetMapLayer() const { return myLevel; }
 };

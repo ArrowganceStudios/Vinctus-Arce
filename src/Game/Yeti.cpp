@@ -15,6 +15,8 @@ Yeti::Yeti()
 	z = 2;
 
 	Show();
+	SetWidth(64);
+	SetHeight(64);
 
 	if (!counter)
 	{

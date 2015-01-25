@@ -15,6 +15,9 @@ public:
 	float GetWidth() const { return width; };
 	float GetHeight() const { return height; };
 
+	void SetWidth(float w) { width = w; }
+	void SetHeight(float h) { height = h; }
+
 	virtual float GetX() const { return 0; };
 	virtual float GetY() const { return 0; };
 

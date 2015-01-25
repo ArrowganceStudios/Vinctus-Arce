@@ -25,6 +25,7 @@ private:
 public:
 	Map(std::string maptemplatePath, std::string tilesetPath);
 	~Map();
+
 	void GenerateBitmap(std::string tilesetPath);
 	void Init();
 };

@@ -8,6 +8,7 @@ using namespace std;
 int main()
 {
 	gameEngine::Instance().Init();
+	//gameEngine::Instance().StartGame(); //for quick game access
 
 	while(gameEngine::Instance().Done())
 	{

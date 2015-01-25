@@ -9,30 +9,38 @@ struct Point
 	Point(float x, float y) : x(x), y(y) {};
 };
 
-struct Circle
+struct CircleType
 {
 	Point center;
 	int radius;
 
-	Circle() : radius(0) 
+	CircleType() : radius(0) 
 	{ 
 		center = Point(0, 0); 
 	}
 
-	Circle(float x, float y, int radius) : radius(radius) 
+	CircleType(float x, float y, int radius) : radius(radius) 
 	{ 
 		center = Point(x, y); 
 	}
 };
 
-struct Rectangle
+struct RectangleType
 {
 	Point center;
 	float width;
 	float height;
 
-	Rectangle(float x, float y, float width, float height) : width(width), height(height) 
+	RectangleType(float x, float y, float width, float height) : width(width), height(height) 
 	{
 		center = Point(x, y);
 	}
+};
+
+enum directions
+{
+	Up,
+	Down,
+	Left,
+	Right
 };
