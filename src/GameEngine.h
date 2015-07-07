@@ -8,7 +8,7 @@
 #include <vector>
 #include "State.h"
 #include "Input.h"
-#include "Game\CollisionDetector.h"
+#include "Game/CollisionDetector.h"
 #include "Graphics/GraphicEngine.h"
 #include "Menu/State_Menu.h"
 #include "Game/State_Game.h"

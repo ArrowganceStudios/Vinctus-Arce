@@ -1,7 +1,7 @@
 #include "CollisionDetector.h"
 #include "../Globals.h"
 #include "../Common.h"
-#include "allegro5\allegro_primitives.h"
+#include "allegro5/allegro_primitives.h"
 
 using namespace std;
 

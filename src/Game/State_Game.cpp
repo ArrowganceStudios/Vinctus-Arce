@@ -1,7 +1,7 @@
 #include "State_Game.h"
-#include "..\Globals.h"
+#include "../Globals.h"
 #include "GameUI.h"
-#include "allegro5\allegro.h"
+#include "allegro5/allegro.h"
 #include <vector>
 #include <ctime>
 #include <stdio.h>

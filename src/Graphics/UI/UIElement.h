@@ -1,5 +1,5 @@
 #pragma once
-#include "..\StaticGraphic.h"
+#include "../StaticGraphic.h"
 
 class StaticGraphic;
 
