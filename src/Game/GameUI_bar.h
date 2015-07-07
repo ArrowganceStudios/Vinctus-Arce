@@ -1,5 +1,5 @@
 #pragma once
-#include "..\Graphics\UI\UIElement.h"
+#include "../Graphics/UI/UIElement.h"
 
 class GameUI_bar : public UIElement
 {

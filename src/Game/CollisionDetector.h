@@ -23,7 +23,7 @@ public:
 	void SetAttacksToInactive() { for (auto& attack : attacks) attack.SetToInactive(); }
 
 	bool CollisionBetween(CircleType circle, RectangleType rect);
-	bool CollisionDetector::CanStepOnto(CircleType object, int direction);
+	bool CanStepOnto(CircleType object, int direction);
 	bool IsHitboxDisplayEnabled() const { return display; }
 private:
 

@@ -1,6 +1,6 @@
 #pragma once
 #include "../../Singleton.h"
-#include <allegro5\allegro.h>
+#include <allegro5/allegro.h>
 #include "../GameObject.h"
 #include "../../Common.h"
 

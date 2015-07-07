@@ -1,10 +1,10 @@
 #pragma once
 #include "../State.h"
-#include "Scene\Layers\MapLayer.h"
-#include "Scene\Layer.h"
+#include "Scene/Layers/MapLayer.h"
+#include "Scene/Layer.h"
 #include <vector>
 #include "Player.h"
-#include "Scene\Camera.h"
+#include "Scene/Camera.h"
 
 class GameUI;
 
@@ -19,7 +19,7 @@ private:
 
 	Player *player;
 
-	void State_Game::LoadResources();
+	void LoadResources();
 
 public:
 	//	~State_Game();

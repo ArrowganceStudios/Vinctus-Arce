@@ -28,8 +28,8 @@ public:
 	void DestroyObject(Type *objectToDestroy);
 
 	std::vector <GameObject*>::iterator GetIterator(GameObject * object);
-	std::vector <NPC*>::iterator ObjectHandler::GetNPCIterator(GameObject * npc);
-	std::vector <MobileObject*>::iterator ObjectHandler::GetMobileObjectIterator(GameObject * mobile);
+	std::vector <NPC*>::iterator GetNPCIterator(GameObject * npc);
+	std::vector <MobileObject*>::iterator GetMobileObjectIterator(GameObject * mobile);
 
 	int GetNPCNumber() { return NPCs.size(); }
 
