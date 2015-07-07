@@ -19,7 +19,7 @@ private:
 
 	Player *player;
 
-	void State_Game::LoadResources();
+	void LoadResources();
 
 public:
 	//	~State_Game();
