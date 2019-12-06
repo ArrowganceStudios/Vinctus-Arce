@@ -1,4 +1,5 @@
 #include "CollisionDetector.h"
+#include <typeinfo>
 #include "../Globals.h"
 #include "../Common.h"
 #include "allegro5/allegro_primitives.h"

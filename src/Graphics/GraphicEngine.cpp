@@ -1,5 +1,6 @@
 #include "../GameEngine.h"
 #include <iostream>
+#include <typeinfo>
 
 
 GraphicEngine::GraphicEngine()
@@ -22,6 +23,7 @@ void GraphicEngine::DefineAnimation(std::string ownersClassName, Sprite * animat
 	//else
 	vector <Sprite *> newSpriteVector = { animation }; //make a vector of sprites
 	AnimationsMap.emplace(ownersClassName, newSpriteVector); //and create a new element in map
+	sleep(1);
 }
 
 
@@ -29,7 +31,7 @@ void GraphicEngine::CreateAnimationInstance(AnimatedGraphic *owner)
 {
 	//getting the class name
 	const std::type_info& info = typeid(*owner);
-	string className = static_cast<string>(info.name());
+	string className = std::to_string(info.hash_code());
 
 	//setting default sprite
 	for (auto &graphMap : AnimationsMap)
@@ -40,6 +42,7 @@ void GraphicEngine::CreateAnimationInstance(AnimatedGraphic *owner)
 			break;
 		}
 	}
+	sleep(1);
 }
 
 void GraphicEngine::RequestAnimation(AnimatedGraphic *owner, int animationNumber)
@@ -53,7 +56,7 @@ void GraphicEngine::RequestAnimation(AnimatedGraphic *owner, int animationNumber
 
 	//getting name of the class of object passed
 	const std::type_info& info = typeid(*owner);
-	string className = static_cast<string>(info.name());
+	string className = std::to_string(info.hash_code());
 
 	std::pair<AnimatedGraphic *, Sprite *> *currentPair = nullptr;
 
@@ -94,6 +97,7 @@ void GraphicEngine::DefineGraphic(std::string ownersClassName, std::string pathN
 	//else
 	vector <ALLEGRO_BITMAP *> newBitmapVector = { newBitmap }; //make a vector of bitmap(s)
 	GraphicsMap.emplace(ownersClassName, newBitmapVector); //and create a new element in map
+	sleep(1);
 }
 //here
 void GraphicEngine::DefineGraphic(std::string ownersClassName, ALLEGRO_BITMAP *bitmap)
@@ -106,13 +110,14 @@ void GraphicEngine::DefineGraphic(std::string ownersClassName, ALLEGRO_BITMAP *b
 	//else
 	vector <ALLEGRO_BITMAP *> newBitmapVector = { bitmap }; //make a vector of bitmap(s)
 	GraphicsMap.emplace(ownersClassName, newBitmapVector); //and create a new element in map
+	sleep(1);
 }
 
 void GraphicEngine::CreateGraphicInstance(StaticGraphic *owner)
 {
 	//getting the class name
 	const std::type_info& info = typeid(*owner);
-	string className = static_cast<string>(info.name());
+	string className = std::to_string(info.hash_code());
 
 
 	//setting default graphic
@@ -135,7 +140,7 @@ void GraphicEngine::RequestGraphic(StaticGraphic *owner, int graphicID)
 	}
 
 	const std::type_info& info = typeid(*owner);
-	string className = static_cast<string>(info.name());
+	string className = std::to_string(info.hash_code());
 
 	std::pair<StaticGraphic *, ALLEGRO_BITMAP *> *currentPair = nullptr;
 

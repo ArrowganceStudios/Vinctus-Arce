@@ -1,6 +1,5 @@
 #include "MenuButton.h"
 
-using ::ButtonState;
 
 void MenuButton::SetNormalState()
 {

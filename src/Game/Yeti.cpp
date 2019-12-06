@@ -62,7 +62,16 @@ void Yeti::Update()
 	Character::Update();
 
 	if (!IsAlive())
-		Yeti::~Yeti();
+	{
+		counter--;
+		if (!counter)
+			graphicEngine::Instance().DestroyAnimation("class Yeti");
+		graphicEngine::Instance().DestroyAnimationInstance(this);
+	#ifdef _DEBUG
+		cout << "Yeti got destroyed" << endl;
+		cout << "Yeti counter = " << counter << endl;
+	#endif
+	}
 	else
 		AI();
 }
